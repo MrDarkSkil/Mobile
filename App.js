@@ -13,12 +13,13 @@ const formStyles = {
     ...Form.stylesheet,
     controlLabel: {
         normal: {
-            color: 'black',
+            color: 'white',
             fontSize: 18,
             marginBottom: 7,
             fontWeight: '600'
         },
         error: {
+            color: 'white',
             fontSize: 18,
             marginBottom: 7,
             fontWeight: '600'
@@ -54,15 +55,14 @@ export default class App extends React.Component {
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    display: 'none',
                 }}
             >
-                <Image resizeMode='cover' blurRadius={17} style={styles.background}
-                    source={require('./assets/images/luna-heroimage.jpg') }
+                <Image resizeMode='cover' style={styles.background}
+                    source={require('./assets/images/background.png') }
                 />
             </View>
             <View style={styles.title}>
-                <Text style={{color: 'black', fontSize: 40}}>
+                <Text style={{color: 'white', fontSize: 40}}>
                     Elios
                 </Text>
             </View>

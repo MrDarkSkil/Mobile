@@ -2,6 +2,9 @@ import React, { Component }  from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, AppRegistry } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import t from 'tcomb-form-native';
+import styles from './styles/general.js'
+
+var _ = require('lodash');
 
 const Form = t.form.Form;
 
@@ -9,6 +12,13 @@ const User = t.struct({
     email: t.String,
     mot_de_passe: t.String,
 });
+
+// clone the default stylesheet
+const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
+
+// overriding the text color
+stylesheet.textbox.normal.color = 'white';
+stylesheet.controlLabel.normal.color = 'white';
 
 const formStyles = {
     ...Form.stylesheet,
@@ -25,16 +35,21 @@ const formStyles = {
             marginBottom: 7,
             fontWeight: '600'
         }
-    }
+    },
 };
 
 const options = {
     fields: {
         email: {
-            error: 'Vous devez entrer une adresse email valide'
+            error: 'Vous devez entrer une adresse email valide',
+            keyboardType: 'email-address',
+            stylesheet: stylesheet
         },
         mot_de_passe: {
-            error: 'Vous devez entrer un mot de passe'
+            error: 'Vous devez entrer un mot de passe',
+            password: true,
+            secureTextEntry: true,
+            stylesheet: stylesheet
         },
     },
     stylesheet: formStyles,
@@ -47,8 +62,10 @@ export default class LoginScreen extends React.Component {
     };
 
     handleSubmit = () => {
-        const value = this._form.getValue(); // use that ref to get the form value
-        console.log('value: ', value);
+        var value = this._form.getValue();
+        if (value) {
+            console.log(value);
+        }
     };
 
     render() {
@@ -84,56 +101,10 @@ export default class LoginScreen extends React.Component {
                     </TouchableHighlight>
 
                     <TouchableHighlight style={styles.buttonRegister} onPress={() => navigate('Register', { name: 'Jane' })} underlayColor='#FF7184'>
-                        <Text style={styles.buttonText}>S'inscrire</Text>
+                        <Text style={styles.buttonText}>Créer un compte</Text>
                     </TouchableHighlight>
                 </View>
             </ScrollView>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'transparent',
-    },
-    background: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    title: {
-        alignItems: 'center',
-        margin: 20,
-        marginTop: 90,
-    },
-    form: {
-        justifyContent: 'center',
-        marginTop: 15,
-        padding: 40,
-    },
-    buttonText: {
-        fontSize: 18,
-        color: 'white',
-        alignSelf: 'center'
-    },
-    button: {
-        height: 36,
-        backgroundColor: '#48BBEC',
-        borderColor: '#48BBEC',
-        borderWidth: 1,
-        borderRadius: 8,
-        marginBottom: 10,
-        alignSelf: 'stretch',
-        justifyContent: 'center'
-    },
-    buttonRegister: {
-        height: 36,
-        backgroundColor: '#ec3f59',
-        borderColor: '#ec254a',
-        borderWidth: 1,
-        borderRadius: 8,
-        marginBottom: 10,
-        alignSelf: 'stretch',
-        justifyContent: 'center',
-    }
-});

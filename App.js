@@ -3,14 +3,18 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, AppRegis
 import { StackNavigator } from 'react-navigation';
 import LoginScreen from './App/Components/Login.js';
 import RegisterScreen from './App/Components/Register.js';
+import HomeScreen from './App/Components/Home.js';
 
 const RootStack = StackNavigator(
     {
-        Home: {
+        Login: {
             screen: LoginScreen,
         },
         Register: {
             screen: RegisterScreen,
+        },
+        Home: {
+            screen: HomeScreen,
         },
     },
 );

@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, AppRegistry } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, AppRegistry, AsyncStorage } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import t from 'tcomb-form-native';
 import styles from './styles/general.js'
@@ -61,10 +61,61 @@ export default class LoginScreen extends React.Component {
         header: null,
     };
 
+    constructor(){
+        super();
+        this.getUserData();
+    }
+
+    getUserData() {
+        AsyncStorage.getItem('access_token').then(data => {
+            fetch('http://dev.emodyz.eu/api/user', {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + data,
+                },
+            }).then((response) => response.json())
+                .then((responseJson) => {
+                    console.log('Access Token is valid user data saved!');
+                    const { navigate } = this.props.navigation;
+                    return (navigate('Home'));
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        });
+    }
+
     handleSubmit = () => {
-        var value = this._form.getValue();
+        const value = this._form.getValue();
         if (value) {
-            console.log(value);
+            fetch('http://dev.emodyz.eu/oauth/token', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    grant_type: 'password',
+                    client_id: '1',
+                    client_secret: 'Rp52CEoYWjiIA0kRTTGspdbjee3tQxSaNCVn7J87',
+                    username: value.email,
+                    password: value.mot_de_passe
+                }),
+            }).then((response) => response.json())
+                .then((responseJson) => {
+                    try {
+                        AsyncStorage.setItem('access_token', responseJson.access_token);
+                        this.getUserData();
+                    } catch (error) {
+                        console.log('Error while saving login key');
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     };
 
@@ -100,7 +151,7 @@ export default class LoginScreen extends React.Component {
                         <Text style={styles.buttonText}>Se connecter</Text>
                     </TouchableHighlight>
 
-                    <TouchableHighlight style={styles.buttonRegister} onPress={() => navigate('Register', { name: 'Jane' })} underlayColor='#FF7184'>
+                    <TouchableHighlight style={styles.buttonRegister} onPress={() => navigate('Register')} underlayColor='#FF7184'>
                         <Text style={styles.buttonText}>Créer un compte</Text>
                     </TouchableHighlight>
                 </View>

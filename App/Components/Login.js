@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, AppRegistry, AsyncStorage } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import t from 'tcomb-form-native';
-import styles from './styles/general.js'
+import styles from './styles/general.js';
 
 var _ = require('lodash');
 
@@ -61,11 +61,6 @@ export default class LoginScreen extends React.Component {
         header: null,
     };
 
-    constructor(){
-        super();
-        this.getUserData();
-    }
-
     getUserData() {
         AsyncStorage.getItem('access_token').then(data => {
             fetch('http://dev.emodyz.eu/api/user', {
@@ -75,12 +70,19 @@ export default class LoginScreen extends React.Component {
                     'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + data,
                 },
-            }).then((response) => response.json())
+            }).then((response) => response.text())
                 .then((responseJson) => {
-                    console.log('Access Token is valid user data saved!');
-                    const { navigate } = this.props.navigation;
-                    return (navigate('Home'));
-
+                    if (responseJson != null) {
+                        console.log('Access Token is valid user data saved!');
+                        console.log(responseJson);
+                        AsyncStorage.setItem('user_data', responseJson);
+                        const {navigate} = this.props.navigation;
+                        return (navigate('Home'));
+                    }
+                    else {
+                        const {navigate} = this.props.navigation;
+                        return (navigate('Login'));
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -132,9 +134,7 @@ export default class LoginScreen extends React.Component {
                         height: '100%',
                     }}
                 >
-                    <Image resizeMode='cover' style={styles.background}
-                           source={require('../assets/images/background.png') }
-                    />
+                    <Image resizeMode='cover' source={require('../assets/images/background.png') }/>
                 </View>
                 <View style={styles.title}>
                     <Text style={{color: 'white', fontSize: 40}}>

@@ -41,5 +41,5 @@ export default styles = StyleSheet.create({
         marginBottom: 10,
         alignSelf: 'stretch',
         justifyContent: 'center',
-    }
+    },
 });

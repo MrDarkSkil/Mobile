@@ -1,7 +1,10 @@
 import React, { Component }  from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, AppRegistry } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, AppRegistry, AsyncStorage } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import t from 'tcomb-form-native';
+import styles from './styles/general.js';
+
+var _ = require('lodash');
 
 const Form = t.form.Form;
 
@@ -9,6 +12,13 @@ const User = t.struct({
     email: t.String,
     mot_de_passe: t.String,
 });
+
+// clone the default stylesheet
+const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
+
+// overriding the text color
+stylesheet.textbox.normal.color = 'white';
+stylesheet.controlLabel.normal.color = 'white';
 
 const formStyles = {
     ...Form.stylesheet,
@@ -25,16 +35,21 @@ const formStyles = {
             marginBottom: 7,
             fontWeight: '600'
         }
-    }
+    },
 };
 
 const options = {
     fields: {
         email: {
-            error: 'Vous devez entrer une adresse email valide'
+            error: 'Vous devez entrer une adresse email valide',
+            keyboardType: 'email-address',
+            stylesheet: stylesheet
         },
         mot_de_passe: {
-            error: 'Vous devez entrer un mot de passe'
+            error: 'Vous devez entrer un mot de passe',
+            password: true,
+            secureTextEntry: true,
+            stylesheet: stylesheet
         },
     },
     stylesheet: formStyles,
@@ -46,9 +61,64 @@ export default class LoginScreen extends React.Component {
         header: null,
     };
 
+    getUserData() {
+        AsyncStorage.getItem('access_token').then(data => {
+            fetch('http://dev.emodyz.eu/api/user', {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + data,
+                },
+            }).then((response) => response.text())
+                .then((responseJson) => {
+                    if (responseJson != null) {
+                        console.log('Access Token is valid user data saved!');
+                        console.log(responseJson);
+                        AsyncStorage.setItem('user_data', responseJson);
+                        const {navigate} = this.props.navigation;
+                        return (navigate('Home'));
+                    }
+                    else {
+                        const {navigate} = this.props.navigation;
+                        return (navigate('Login'));
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        });
+    }
+
     handleSubmit = () => {
-        const value = this._form.getValue(); // use that ref to get the form value
-        console.log('value: ', value);
+        const value = this._form.getValue();
+        if (value) {
+            fetch('http://dev.emodyz.eu/oauth/token', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    grant_type: 'password',
+                    client_id: '1',
+                    client_secret: 'Rp52CEoYWjiIA0kRTTGspdbjee3tQxSaNCVn7J87',
+                    username: value.email,
+                    password: value.mot_de_passe
+                }),
+            }).then((response) => response.json())
+                .then((responseJson) => {
+                    try {
+                        AsyncStorage.setItem('access_token', responseJson.access_token);
+                        this.getUserData();
+                    } catch (error) {
+                        console.log('Error while saving login key');
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     };
 
     render() {
@@ -64,9 +134,7 @@ export default class LoginScreen extends React.Component {
                         height: '100%',
                     }}
                 >
-                    <Image resizeMode='cover' style={styles.background}
-                           source={require('../assets/images/background.png') }
-                    />
+                    <Image resizeMode='cover' source={require('../assets/images/background.png') }/>
                 </View>
                 <View style={styles.title}>
                     <Text style={{color: 'white', fontSize: 40}}>
@@ -83,57 +151,11 @@ export default class LoginScreen extends React.Component {
                         <Text style={styles.buttonText}>Se connecter</Text>
                     </TouchableHighlight>
 
-                    <TouchableHighlight style={styles.buttonRegister} onPress={() => navigate('Register', { name: 'Jane' })} underlayColor='#FF7184'>
-                        <Text style={styles.buttonText}>S'inscrire</Text>
+                    <TouchableHighlight style={styles.buttonRegister} onPress={() => navigate('Register')} underlayColor='#FF7184'>
+                        <Text style={styles.buttonText}>Créer un compte</Text>
                     </TouchableHighlight>
                 </View>
             </ScrollView>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'transparent',
-    },
-    background: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    title: {
-        alignItems: 'center',
-        margin: 20,
-        marginTop: 90,
-    },
-    form: {
-        justifyContent: 'center',
-        marginTop: 15,
-        padding: 40,
-    },
-    buttonText: {
-        fontSize: 18,
-        color: 'white',
-        alignSelf: 'center'
-    },
-    button: {
-        height: 36,
-        backgroundColor: '#48BBEC',
-        borderColor: '#48BBEC',
-        borderWidth: 1,
-        borderRadius: 8,
-        marginBottom: 10,
-        alignSelf: 'stretch',
-        justifyContent: 'center'
-    },
-    buttonRegister: {
-        height: 36,
-        backgroundColor: '#ec3f59',
-        borderColor: '#ec254a',
-        borderWidth: 1,
-        borderRadius: 8,
-        marginBottom: 10,
-        alignSelf: 'stretch',
-        justifyContent: 'center',
-    }
-});

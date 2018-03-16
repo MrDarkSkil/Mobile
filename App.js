@@ -6,11 +6,12 @@ import RegisterScreen from './App/Components/Register.js';
 import HomeScreen from './App/Components/Home.js';
 import LoadingScreen from './App/Components/Loading.js';
 import Logout from './App/Components/Logout.js';
+import AddMirrorScreen from './App/Components/AddMirror.js';
 
 const RootStack = StackNavigator(
     {
         Loading: {
-          screen: LoadingScreen,
+            screen: LoadingScreen,
         },
         Login: {
             screen: LoginScreen,
@@ -24,6 +25,9 @@ const RootStack = StackNavigator(
         Home: {
             screen: HomeScreen,
         },
+        AddMirror: {
+            screen: AddMirrorScreen,
+        }
     },
 );
 

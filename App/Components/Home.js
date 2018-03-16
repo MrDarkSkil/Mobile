@@ -20,10 +20,8 @@ export default class HomeScreen extends React.Component {
             gesturesEnabled: false,
             headerLeft: null,
             headerRight: (
-                <Button
-                    title="+"
-                    onPress={() => console.log('done')}
-                />
+                <Icon.Button name="plus" backgroundColor="transparent" color="#4F8EF7" underlayColor='transparent'
+                             onPress={() => navigation.navigate('AddMirror')}/>
             ),
             headerLeft: (
                 <Icon.Button name="power-off" backgroundColor="transparent" color="#4F8EF7" underlayColor='transparent'
@@ -44,18 +42,7 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View>
-                <Button
-                    title="Delete Record"
-                    onPress={() => Alert.alert(
-                        'Alert Title',
-                        'alertMessage',
-                        [
-                            {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-                            {text: 'OK', onPress: this.logout},
-                        ],
-                        { cancelable: false }
-                    )}
-                />
+                <Text>You're Logged</Text>
             </View>
         )}
 }

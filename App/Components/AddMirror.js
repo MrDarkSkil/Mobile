@@ -77,10 +77,13 @@ export default class AddMirrorScreen extends React.Component {
     };
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <ScrollView>
                 <View style={styles.addMirrorContainer}>
-                    <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
+                    <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={() =>
+                      navigate('AddMirrorQrCode')
+                    }>
                         <Text style={styles.buttonText}>Scanner le QR Code</Text>
                     </TouchableHighlight>
                     <Text style={styles.addMirrorText}>

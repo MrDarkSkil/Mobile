@@ -7,6 +7,7 @@ import HomeScreen from './App/Components/Home.js';
 import LoadingScreen from './App/Components/Loading.js';
 import Logout from './App/Components/Logout.js';
 import AddMirrorScreen from './App/Components/AddMirror.js';
+import AddMirrorQrCode from './App/Components/AddMirrorQRCode.js';
 
 const RootStack = StackNavigator(
     {
@@ -27,6 +28,9 @@ const RootStack = StackNavigator(
         },
         AddMirror: {
             screen: AddMirrorScreen,
+        },
+        AddMirrorQrCode: {
+            screen: AddMirrorQrCode
         }
     },
 );

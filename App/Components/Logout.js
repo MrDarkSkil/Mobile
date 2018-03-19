@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, AppRegistry, AsyncStorage, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, AppRegistry, AsyncStorage, Button, Alert, ActivityIndicator } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import styles from './styles/general.js'
 
@@ -21,10 +21,25 @@ export default class Logout extends React.Component {
 
     render() {
         return (
-            <ScrollView style={styles.container}>
-                <Image resizeMode='cover' source={require('../assets/images/background.png') }/>
-                <Text>Good bye!</Text>
-            </ScrollView>
+            <View style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}>
+                <View
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                    }}
+                >
+                    <Image resizeMode='cover' source={require('../assets/images/background.png') }/>
+                </View>
+                <ActivityIndicator size="large" color="white" />
+            </View>
         )
     }
 }

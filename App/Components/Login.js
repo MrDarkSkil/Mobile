@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, AppRegistry, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, AppRegistry, AsyncStorage, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import t from 'tcomb-form-native';
 import styles from './styles/general.js';
@@ -18,6 +18,7 @@ const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
 
 // overriding the text color
 stylesheet.textbox.normal.color = 'white';
+stylesheet.textbox.error.color = 'white';
 stylesheet.controlLabel.normal.color = 'white';
 
 const formStyles = {
@@ -59,6 +60,8 @@ export default class LoginScreen extends React.Component {
 
     static navigationOptions = {
         header: null,
+        gesturesEnabled: false,
+        headerLeft: null,
     };
 
     getUserData() {
@@ -106,13 +109,27 @@ export default class LoginScreen extends React.Component {
                     username: value.email,
                     password: value.mot_de_passe
                 }),
-            }).then((response) => response.json())
+            }).then((response) => {
+                if (response.status !== 200){
+                    return ('error');
+                }
+                return (response.json());
+            })
                 .then((responseJson) => {
-                    try {
+                    if (responseJson && responseJson !== 'error') {
                         AsyncStorage.setItem('access_token', responseJson.access_token);
                         this.getUserData();
-                    } catch (error) {
-                        console.log('Error while saving login key');
+                    }
+                    else {
+                        console.log('Auth error');
+                        Alert.alert(
+                            'Erreur',
+                            'Vos identifiants sont incorrects',
+                            [
+                                {text: 'Ok'},
+                            ],
+                            { cancelable: false }
+                        )
                     }
                 })
                 .catch((error) => {
@@ -124,7 +141,7 @@ export default class LoginScreen extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <ScrollView style={styles.container}>
+            <View>
                 <View
                     style={{
                         position: 'absolute',
@@ -155,7 +172,7 @@ export default class LoginScreen extends React.Component {
                         <Text style={styles.buttonText}>Créer un compte</Text>
                     </TouchableHighlight>
                 </View>
-            </ScrollView>
+            </View>
         );
     }
 }

@@ -27,7 +27,7 @@ export default styles = StyleSheet.create({
         backgroundColor: '#48BBEC',
         borderColor: '#48BBEC',
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius: 4,
         marginBottom: 10,
         alignSelf: 'stretch',
         justifyContent: 'center'
@@ -37,9 +37,35 @@ export default styles = StyleSheet.create({
         backgroundColor: '#ec3f59',
         borderColor: '#ec254a',
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius: 4,
         marginBottom: 10,
         alignSelf: 'stretch',
         justifyContent: 'center',
     },
+    buttonConfirm: {
+        height: 36,
+        backgroundColor: '#ec3f59',
+        borderColor: '#ec254a',
+        borderWidth: 1,
+        borderRadius: 4,
+        marginBottom: 10,
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+    },
+    addMirrorContainer: {
+        justifyContent: 'center',
+        marginTop: 10,
+        padding: 40,
+    },
+    addMirrorText: {
+        fontSize: 17,
+        marginTop: 50,
+        textAlign: 'center'
+    },
+    addMirrorForm: {
+        marginTop: 25,
+    },
+    loading: {
+
+    }
 });

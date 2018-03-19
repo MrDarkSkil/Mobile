@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Alert, AsyncStorage } from 'react-native';
 import { Constants, BarCodeScanner, Permissions } from 'expo';
 
-// You can import from local files
-import AssetExample from './AddMirroQRCodeSample.js';
-
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-elements'; // Version can be specified in package.json
 
@@ -91,10 +88,6 @@ export default class AddMirrorQRCodeScreen extends React.Component {
               style={{ height: 200, width: 200 }}
             />
         }
-
-        <Card title="Des problèmes ?">
-          <AssetExample />
-        </Card>
       </View>
     );
   }

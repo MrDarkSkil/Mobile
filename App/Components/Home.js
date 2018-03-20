@@ -42,7 +42,6 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View>
-                <Text>You're Logged</Text>
             </View>
         )}
 }

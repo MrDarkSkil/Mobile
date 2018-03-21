@@ -82,7 +82,7 @@ export default class AddMirrorQRCodeScreen extends React.Component {
             <Text>Camera permission is not granted</Text> :
             <BarCodeScanner
               onBarCodeRead={this._handleBarCodeRead}
-              style={{ height: 200, width: 200 }}
+              style={{ height: 300, width: 300 }}
             />
         }
       </View>
@@ -92,14 +92,16 @@ export default class AddMirrorQRCodeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingTop: Constants.statusBarHeight,
+      backgroundColor: '#ecf0f1',
+      padding: 10,
+      marginTop: 10,
   },
   paragraph: {
-    margin: 24,
+    margin: 10,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',

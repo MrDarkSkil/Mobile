@@ -52,20 +52,39 @@ export default styles = StyleSheet.create({
         alignSelf: 'stretch',
         justifyContent: 'center',
     },
+    buttonScan: {
+        height: 36,
+        backgroundColor: '#48BBEC',
+        borderColor: '#48BBEC',
+        borderWidth: 1,
+        borderRadius: 4,
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 20,
+    },
     addMirrorContainer: {
         justifyContent: 'center',
         marginTop: 10,
-        padding: 40,
+        padding: 10,
     },
     addMirrorText: {
         fontSize: 17,
-        marginTop: 50,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginBottom: 5,
     },
     addMirrorForm: {
-        marginTop: 25,
+        padding: 30,
+        backgroundColor: 'white',
     },
-    loading: {
-
+    addMirrorTitle: {
+        marginBottom: 13,
+        borderWidth: 1,
+        padding: 10,
+        borderColor: 'grey',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 18,
     }
 });

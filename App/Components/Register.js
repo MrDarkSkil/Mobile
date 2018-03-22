@@ -78,7 +78,7 @@ export default class RegisterScreen extends React.Component {
 
     render() {
         return (
-            <ScrollView style={styles.container}>
+            <View>
                 <View
                     style={{
                         position: 'absolute',
@@ -88,9 +88,7 @@ export default class RegisterScreen extends React.Component {
                         height: '100%',
                     }}
                 >
-                    <Image resizeMode='cover' style={styles.background}
-                           source={require('../assets/images/background.png') }
-                    />
+                    <Image resizeMode='cover' source={require('../assets/images/background.png') }/>
                 </View>
                 <View style={styles.title}>
                     <Text style={{color: 'white', fontSize: 40}}>
@@ -108,7 +106,7 @@ export default class RegisterScreen extends React.Component {
                     </TouchableHighlight>
 
                 </View>
-            </ScrollView>
+            </View>
         );
     }
 }

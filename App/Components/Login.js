@@ -154,9 +154,7 @@ export default class LoginScreen extends React.Component {
                     <Image resizeMode='cover' source={require('../assets/images/background.png') }/>
                 </View>
                 <View style={styles.title}>
-                    <Text style={{color: 'white', fontSize: 40}}>
-                        Elios
-                    </Text>
+                    <Image resizeMode='cover' source={require('../assets/images/elios.png') } style={{height: 90, width: 90}}/>
                 </View>
                 <View style={styles.form}>
                     <Form

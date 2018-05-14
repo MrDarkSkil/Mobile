@@ -4,10 +4,10 @@ page-login {
 .login {
   background: $gradient-background no-repeat;
   &-header {
-    margin-top: 7rem;
+    margin-top: 5rem;
   }
   &-form {
-    margin-top: 7rem;
+    margin-top: 5rem;
     background-color: white;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     ion-item {
@@ -15,7 +15,7 @@ page-login {
       border-bottom: none;
     }
     &-buttons {
-      margin: 3rem .75rem 0 .75rem;
+      margin: 3rem .75rem 0 0;
     }
   }
 }

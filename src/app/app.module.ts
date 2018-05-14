@@ -10,7 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {LoginPage} from "../pages/login/login";
+import {AuthModule} from "../pages/auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -18,12 +18,12 @@ import {LoginPage} from "../pages/login/login";
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage,
-    LoginPage
+    TabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,8 +31,7 @@ import {LoginPage} from "../pages/login/login";
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage,
-    LoginPage
+    TabsPage
   ],
   providers: [
     StatusBar,

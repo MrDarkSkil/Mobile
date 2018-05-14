@@ -9,22 +9,21 @@
   </div>
 
   <ion-list class="login-form" padding>
-
-    <ion-item no-lines>
+    <h3 padding-left padding-top>Se connecter</h3>
+    <ion-item>
       <ion-label floating>Email</ion-label>
       <ion-input type="email"></ion-input>
     </ion-item>
 
-    <ion-item no-lines>
+    <ion-item >
       <ion-label floating>Mot de passe</ion-label>
       <ion-input type="password"></ion-input>
     </ion-item>
 
     <ion-item class="login-form-buttons" no-lines>
-      <button default ion-button item-right color="secondary" outline>S'inscrire</button>
-      <button default ion-button item-right color="primary" (click)="login()">{{ loginButton }}</button>
+      <button [navPush]="registerPage" default ion-button item-right color="secondary" outline>S'inscrire</button>
+      <button default ion-button item-right color="primary" (click)="login()">Envoyer</button>
     </ion-item>
-
   </ion-list>
 
 </ion-content>

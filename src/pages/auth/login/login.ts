@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {LoadingController, NavController, NavParams} from 'ionic-angular';
+import {RegisterPage} from "../register/register";
 
 @Component({
   selector: 'page-login',
@@ -7,7 +8,7 @@ import {LoadingController, NavController, NavParams} from 'ionic-angular';
 })
 export class LoginPage {
 
-  public loginButton = 'Se connecter';
+  registerPage:any = RegisterPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }

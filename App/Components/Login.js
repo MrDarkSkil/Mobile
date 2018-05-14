@@ -66,7 +66,7 @@ export default class LoginScreen extends React.Component {
 
     getUserData() {
         AsyncStorage.getItem('access_token').then(data => {
-            fetch('http://dev.emodyz.eu/api/user', {
+            fetch('http://dev.elios-mirror.com/api/user', {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
@@ -96,7 +96,7 @@ export default class LoginScreen extends React.Component {
     handleSubmit = () => {
         const value = this._form.getValue();
         if (value) {
-            fetch('http://dev.emodyz.eu/oauth/token', {
+            fetch('http://dev.elios-mirror.com/oauth/token', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

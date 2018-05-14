@@ -26,7 +26,7 @@ export default class AddMirrorQRCodeScreen extends React.Component {
     }
     canRescan = false;
     AsyncStorage.getItem('access_token').then(access_token => {
-        fetch('http://dev.emodyz.eu/api/mirrors/' + data.data + '/link', {
+        fetch('http://dev.elios-mirror.com/api/mirrors/' + data.data + '/link', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

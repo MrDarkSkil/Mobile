@@ -19,7 +19,7 @@ export default class LoadingScreen extends React.Component {
 
     getUserData() {
         AsyncStorage.getItem('access_token').then(data => {
-            fetch('http://dev.emodyz.eu/api/user', {
+            fetch('http://dev.elios-mirror.com/api/user', {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',

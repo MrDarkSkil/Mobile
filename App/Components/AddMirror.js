@@ -32,7 +32,7 @@ export default class AddMirrorScreen extends React.Component {
     handleSubmit = () => {
         const value = this._form.getValue();
         AsyncStorage.getItem('access_token').then(data => {
-            fetch('http://dev.emodyz.eu/api/mirrors/' + value.id + '/link', {
+            fetch('http://dev.elios-mirror.com/api/mirrors/' + value.id + '/link', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {AlertController, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {RegisterPage} from "../register/register";
 import {TabsPage} from "../../main/tabs/tabs";
-import {ApiServiceProvider} from "../../../providers/api-service/api-service";
+import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 
 @Component({
   selector: 'page-login',
@@ -17,11 +17,10 @@ export class LoginPage {
   public password: string = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
-              private api: ApiServiceProvider, private alertCtrl: AlertController) {
+              private auth: AuthServiceProvider, private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
 
   login() {
@@ -31,20 +30,18 @@ export class LoginPage {
 
     loading.present();
 
-    this.api.getApiToken(this.email, this.password)
-      .then(result => {
-        loading.dismiss();
-        this.navCtrl.setRoot(this.tabsPage);
-      })
-      .catch(error => {
-        loading.dismiss();
-        let alert = this.alertCtrl.create({
-          title: 'Erreur',
-          subTitle: error,
-          buttons: [{text: 'Ok'}]
-        });
-        alert.present();
+    this.auth.login(this.email, this.password).then(data => {
+      loading.dismiss();
+      this.navCtrl.setRoot(this.tabsPage);
+    }).catch(data => {
+      loading.dismiss();
+      let alert = this.alertCtrl.create({
+        title: 'Erreur',
+        subTitle: data,
+        buttons: [{text: 'Ok'}]
       });
+      alert.present();
+    })
   }
 
 }

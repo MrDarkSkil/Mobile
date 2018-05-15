@@ -16,7 +16,7 @@ export class PostService {
         },
         error => {
           if (error.status = 401) {
-            reject('Il semblerait que vos identifiants sont incorrects');
+            reject('401 Unauthorized');
           } else {
             reject(error);
           }

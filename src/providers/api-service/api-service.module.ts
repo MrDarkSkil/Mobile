@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
-import {ApiServiceProvider} from "./api-service/api-service";
-import {GetService} from "./api-service/http/get-service";
-import {PostService} from "./api-service/http/post-service";
 import { HttpClientModule } from '@angular/common/http';
+import {ApiServiceProvider} from "./api-service";
+import {GetService} from "./http/get-service";
+import {PostService} from "./http/post-service";
 
 @NgModule({
   declarations: [
@@ -19,5 +19,5 @@ import { HttpClientModule } from '@angular/common/http';
   ]
 })
 
-export class ApiModule {
+export class ApiServiceModule {
 }

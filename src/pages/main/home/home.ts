@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 
 @Component({
   selector: 'page-home',
@@ -7,11 +8,13 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider) {
+  }
+
+  ionViewCanEnter() {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
   }
 
 }

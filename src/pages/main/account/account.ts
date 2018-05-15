@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AlertController, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {LoginPage} from "../../auth/login/login";
+import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 
 @Component({
   selector: 'page-account',
@@ -8,10 +9,12 @@ import {LoginPage} from "../../auth/login/login";
 })
 export class AccountPage {
 
-  loginPage:any = LoginPage;
+  loginPage: any = LoginPage;
+  tabBarElement: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController, private auth: AuthServiceProvider) {
+    this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
 
   ionViewDidLoad() {
@@ -26,8 +29,6 @@ export class AccountPage {
         {
           text: 'Annuler',
           role: 'cancel',
-          handler: () => {
-          }
         },
         {
           text: 'Confirmer',
@@ -38,10 +39,11 @@ export class AccountPage {
 
             loading.present();
 
-            setTimeout(() => {
+            this.auth.logout().then(() => {
               loading.dismiss();
+              this.tabBarElement.style.display = 'none';
               this.navCtrl.setRoot(this.loginPage);
-            }, 2000);
+            });
           }
         }
       ]

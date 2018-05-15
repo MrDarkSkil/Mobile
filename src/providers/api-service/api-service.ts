@@ -7,27 +7,18 @@ export class ApiServiceProvider {
 
   private apiUrl = 'http://dev.elios-mirror.com/';
 
-  constructor(private get: GetService, private post: PostService) {
+  constructor(private getService: GetService, private postService: PostService) {
   }
 
   public getApiUrl() {
     return (this.apiUrl);
   }
 
-  public getApiToken(username: string, password: string) {
-    if (username && password) {
-      return this.post.submit(this.apiUrl + 'oauth/token', null, {
-        'grant_type': 'password',
-        'client_id': '1',
-        'client_secret': 'Rp52CEoYWjiIA0kRTTGspdbjee3tQxSaNCVn7J87',
-        'username': username,
-        'password': password
-      });
-    }
-    else {
-      return new Promise((resolve, reject) => {
-        reject('L\'email ou le mot de passe ne peuvent être vides');
-      })
-    }
+  public get<T>(url: string, token?: string, body?: object): Promise<T> {
+    return (this.getService.submit(url, token, body));
+  }
+
+  public post<T>(url: string, token?: string, body?: object): Promise<T> {
+    return (this.postService.submit(url, token, body));
   }
 }

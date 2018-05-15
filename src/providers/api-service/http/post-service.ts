@@ -8,9 +8,10 @@ export class PostService {
   }
 
   public submit<T>(url: string, token?: string, body?: object): Promise<T> {
+
     return new Promise((resolve, reject) => {
-      this.http.post<T>(url, body)
-        .subscribe(data => {
+      this.http.post<T>(url, body).subscribe(
+        data => {
           resolve(data);
         },
         error => {

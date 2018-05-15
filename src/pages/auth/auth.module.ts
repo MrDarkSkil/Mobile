@@ -11,9 +11,10 @@ import {RegisterPage} from "./register/register";
   ],
   imports: [
     IonicPageModule.forChild(LoginPage),
-    IonicPageModule.forChild(RegisterPage)
+    IonicPageModule.forChild(RegisterPage),
   ],
   exports: [
+    LoginPage,
     RegisterPage
   ]
 })

@@ -12,12 +12,12 @@
     <h3 padding-left padding-top>Se connecter</h3>
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input type="email"></ion-input>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
     </ion-item>
 
     <ion-item >
       <ion-label floating>Mot de passe</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 
     <ion-item class="login-form-buttons" no-lines>

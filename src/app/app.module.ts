@@ -8,7 +8,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AuthModule} from "../pages/auth/auth.module";
 import {MainModule} from "../pages/main/main.module";
 import {ApiModule} from "../providers/api.module";
-import {HTTP} from "@ionic-native/http";
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import {HTTP} from "@ionic-native/http";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HTTP
   ]
 })
 export class AppModule {}

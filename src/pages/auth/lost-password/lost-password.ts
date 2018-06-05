@@ -1,49 +1,51 @@
 import {Component} from '@angular/core';
 import {AlertController, LoadingController, NavController, NavParams} from 'ionic-angular';
-import {RegisterPage} from "../register/register";
-import {TabsPage} from "../../main/tabs/tabs";
 import {AuthServiceProvider} from "../../../providers/auth/auth-service";
-import {LostPasswordPage} from "../lost-password/lost-password";
 
 @Component({
-    selector: 'page-login',
-    templateUrl: 'login.html',
+    selector: 'page-auth-lost-password',
+    templateUrl: 'lost-password.html',
 })
-export class LoginPage {
-
-    registerPage: any = RegisterPage;
-    tabsPage: any = TabsPage;
-    lostPasswordPage: any = LostPasswordPage;
+export class LostPasswordPage {
 
     public email: string = null;
-    public password: string = null;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
                 private auth: AuthServiceProvider, private alertCtrl: AlertController) {
     }
 
     ionViewDidLoad() {
+        //
     }
 
-    login() {
+    lostPassword() {
         let loading = this.loadingCtrl.create({
-            content: 'Connexion en cours...'
+            content: 'Envoi en cours...'
         });
 
         loading.present();
 
-        this.auth.login(this.email, this.password).then(data => {
+        this.auth.lostPassword(this.email).then(data => {
             loading.dismiss();
-            this.navCtrl.setRoot(this.tabsPage);
-        }).catch(data => {
+            let alert = this.alertCtrl.create({
+                title: 'Succès',
+                subTitle: 'Vous allez recevoir un email pour réinitialiser votre mot de passe !',
+                buttons: [{
+                    text: 'Ok',
+                    handler: () => {
+                        this.navCtrl.pop();
+                    }
+                }]
+            });
+            alert.present();
+        }).catch(error => {
             loading.dismiss();
             let alert = this.alertCtrl.create({
                 title: 'Erreur',
-                subTitle: data,
+                subTitle: error,
                 buttons: [{text: 'Ok'}]
             });
             alert.present();
-        })
+        });
     }
-
 }

@@ -54,7 +54,6 @@ export class AuthServiceProvider {
     }
 
     public register(email: string, password: string, name?: string): Promise<AuthTokenDto> {
-
         if (email && password && password.length >= 6) {
 
             return this.api.post(this.api.getApiUrl() + 'api/register', null, {
@@ -69,13 +68,29 @@ export class AuthServiceProvider {
                 reject('L\'email ou le mot de passe ne peuvent être vides');
             })
         } else if (password.length < 6) {
+
             return new Promise((resolve, reject) => {
                 reject('Le mot de passe doit faire au moins 6 caractères');
             })
         }
     }
 
+    public lostPassword(email: string): Promise<AuthTokenDto> {
+        if (email) {
+
+            return this.api.post(this.api.getApiUrl() + 'api/password/email', null, {
+                'email': email,
+            });
+        } else {
+
+            return new Promise((resolve, reject) => {
+                reject('Le champ d\'email est vide, veuillez le remplir');
+            })
+        }
+    }
+
     public logout<T>(): Promise<T> {
+
         return new Promise((resolve, reject) => {
             this.storage.remove('access_token').then(data => {
                 resolve(data);

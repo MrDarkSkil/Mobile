@@ -7,61 +7,83 @@ import {LoadingController} from "ionic-angular";
 @Injectable()
 export class AuthServiceProvider {
 
-  constructor(private api: ApiServiceProvider, private storage: Storage,
-              public loadingCtrl: LoadingController) {
-  }
-
-  public getUserToken<T>(): Promise<T> {
-    return new Promise((resolve, reject) => {
-      this.storage.get('access_token').then(data => {
-        resolve(data);
-      }).catch(error => {
-        reject(null);
-      });
-    });
-  }
-
-  public login(username: string, password: string): Promise<AuthTokenDto> {
-
-    return new Promise((resolve, reject) => {
-      this.refreshUserToken<AuthTokenDto>(username, password)
-        .then(data => {
-          this.storage.set('access_token', data.access_token);
-          resolve(data);
-        })
-        .catch(data => {
-          reject(data);
-        });
-    });
-  }
-
-  public refreshUserToken<T>(username: string, password: string): Promise<T> {
-    if (username && password) {
-
-      return this.api.post(this.api.getApiUrl() + 'oauth/token', null, {
-        'grant_type': 'password',
-        'client_id': '1',
-        'client_secret': 'Rp52CEoYWjiIA0kRTTGspdbjee3tQxSaNCVn7J87',
-        'username': username,
-        'password': password
-      });
-    } else {
-
-      return new Promise((resolve, reject) => {
-        reject('L\'email ou le mot de passe ne peuvent être vides');
-      })
+    constructor(private api: ApiServiceProvider, private storage: Storage,
+                public loadingCtrl: LoadingController) {
     }
-  }
 
-  public logout<T>(): Promise<T> {
-    return new Promise((resolve, reject) => {
-      this.storage.remove('access_token').then(data => {
-        resolve(data);
-      }).catch(data => {
-        reject(data);
-      });
-    });
-  }
+    public getUserToken<T>(): Promise<T> {
+        return new Promise((resolve, reject) => {
+            this.storage.get('access_token').then(data => {
+                resolve(data);
+            }).catch(error => {
+                reject(null);
+            });
+        });
+    }
+
+    public login(username: string, password: string): Promise<AuthTokenDto> {
+
+        return new Promise((resolve, reject) => {
+            this.refreshUserToken<AuthTokenDto>(username, password)
+                .then(data => {
+                    this.storage.set('access_token', data.access_token);
+                    resolve(data);
+                })
+                .catch(data => {
+                    reject(data);
+                });
+        });
+    }
+
+    public refreshUserToken<T>(username: string, password: string): Promise<T> {
+        if (username && password) {
+
+            return this.api.post(this.api.getApiUrl() + 'oauth/token', null, {
+                'grant_type': 'password',
+                'client_id': '1',
+                'client_secret': 'Rp52CEoYWjiIA0kRTTGspdbjee3tQxSaNCVn7J87',
+                'username': username,
+                'password': password
+            });
+        } else {
+
+            return new Promise((resolve, reject) => {
+                reject('L\'email ou le mot de passe ne peuvent être vides');
+            })
+        }
+    }
+
+    public register(email: string, password: string, name?: string): Promise<AuthTokenDto> {
+
+        if (email && password && password.length >= 6) {
+
+            return this.api.post(this.api.getApiUrl() + 'api/register', null, {
+                'name': name ? name : 'default',
+                'email': email,
+                'password': password,
+                'password_confirmation': password
+            });
+        } else if (!email || !password) {
+
+            return new Promise((resolve, reject) => {
+                reject('L\'email ou le mot de passe ne peuvent être vides');
+            })
+        } else if (password.length < 6) {
+            return new Promise((resolve, reject) => {
+                reject('Le mot de passe doit faire au moins 6 caractères');
+            })
+        }
+    }
+
+    public logout<T>(): Promise<T> {
+        return new Promise((resolve, reject) => {
+            this.storage.remove('access_token').then(data => {
+                resolve(data);
+            }).catch(data => {
+                reject(data);
+            });
+        });
+    }
 
 
 }

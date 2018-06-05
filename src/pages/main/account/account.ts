@@ -18,7 +18,7 @@ export class AccountPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AccountPage');
+    //
   }
 
   logout() {

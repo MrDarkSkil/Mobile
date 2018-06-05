@@ -9,8 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AuthModule} from "../pages/auth/auth.module";
 import {MainModule} from "../pages/main/main.module";
 import {ProvidersModule} from "../providers/providers.module";
-import { ProvidersAuthRegisterProvider } from '../providers/providers-auth-register/providers-auth-register';
-import { ProvidersProvider } from '../providers/providers/providers';
+
 
 @NgModule({
   declarations: [
@@ -33,11 +32,7 @@ import { ProvidersProvider } from '../providers/providers/providers';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ProvidersAuthRegisterProvider,
-    ProvidersProvider,
-    ProvidersAuthRegisterProvider,
-    ProvidersAuthRegisterProvider,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}

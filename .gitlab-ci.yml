@@ -1,0 +1,15 @@
+stages:
+  - build
+
+build:
+  stage: build
+  image: beevelop/ionic:latest
+  script:
+    - rm -rf node_modules
+    - npm install
+    - ionic build
+  artifacts:
+    paths:
+      - ./storage/logs
+    expire_in: 15 days
+    when: always

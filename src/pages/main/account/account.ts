@@ -40,8 +40,8 @@ export class AccountPage {
             loading.present();
 
             this.auth.logout().then(() => {
+              /*this.tabBarElement.style.display = 'none';*/
               loading.dismiss();
-              this.tabBarElement.style.display = 'none';
               this.navCtrl.setRoot(this.loginPage);
             });
           }

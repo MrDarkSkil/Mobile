@@ -40,7 +40,7 @@ var TabsPage = /** @class */ (function () {
         });
     };
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/prost/EIP/Mobile/src/pages/main/tabs/tabs.html"*/'<ion-tabs *ngIf="token">\n  <ion-tab [root]="home" tabTitle="Miroirs" tabIcon="apps"></ion-tab>\n  <ion-tab tabTitle="Scanner" tabIcon="qr-scanner"></ion-tab>\n  <ion-tab [root]="account" tabTitle="Compte" tabIcon="contact"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/home/prost/EIP/Mobile/src/pages/main/tabs/tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/main/tabs/tabs.html"*/'<ion-tabs *ngIf="token">\n  <ion-tab [root]="home" tabTitle="Miroirs" tabIcon="apps"></ion-tab>\n  <ion-tab tabTitle="Scanner" tabIcon="qr-scanner"></ion-tab>\n  <ion-tab [root]="account" tabTitle="Compte" tabIcon="contact"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/main/tabs/tabs.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_auth_auth_service__["a" /* AuthServiceProvider */]])
     ], TabsPage);
@@ -113,7 +113,7 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/home/prost/EIP/Mobile/src/pages/auth/login/login.html"*/'<ion-header>\n\n</ion-header>\n\n\n<ion-content class="login" padding>\n    <div class="login-header" text-center>\n        <ion-img width="80" height="80" [cache]="true" src="/assets/imgs/elios.png"></ion-img>\n    </div>\n\n    <ion-list class="login-form" padding>\n        <h3 padding-left padding-top>Se connecter</h3>\n        <ion-item>\n            <ion-label floating>Email</ion-label>\n            <ion-input type="email" [(ngModel)]="email"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label floating>Mot de passe</ion-label>\n            <ion-input type="password" [(ngModel)]="password"></ion-input>\n        </ion-item>\n\n        <ion-item class="login-form-buttons" no-lines>\n            <button [navPush]="registerPage" default ion-button item-right color="secondary" outline>S\'inscrire</button>\n            <button default ion-button item-right color="primary" (click)="login()">Envoyer</button>\n        </ion-item>\n\n        <div text-right padding-top padding-right padding-left>\n            <a [navPush]="lostPasswordPage" text-right>Mot de passe oublié ?</a>\n        </div>\n    </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/prost/EIP/Mobile/src/pages/auth/login/login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/auth/login/login.html"*/'<ion-header>\n\n</ion-header>\n\n\n<ion-content class="login" padding>\n    <div class="login-header" text-center>\n        <ion-img width="80" height="80" [cache]="true" src="/assets/imgs/elios.png"></ion-img>\n    </div>\n\n    <ion-list class="login-form" padding>\n        <h3 padding-left padding-top>Se connecter</h3>\n        <ion-item>\n            <ion-label floating>Email</ion-label>\n            <ion-input type="email" [(ngModel)]="email"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label floating>Mot de passe</ion-label>\n            <ion-input type="password" [(ngModel)]="password"></ion-input>\n        </ion-item>\n\n        <ion-item class="login-form-buttons" no-lines>\n            <button [navPush]="registerPage" default ion-button item-right color="secondary" outline>S\'inscrire</button>\n            <button default ion-button item-right color="primary" (click)="login()">Envoyer</button>\n        </ion-item>\n\n        <div text-right padding-top padding-right padding-left>\n            <a [navPush]="lostPasswordPage" text-right>Mot de passe oublié ?</a>\n        </div>\n    </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/auth/login/login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth_service__["a" /* AuthServiceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
@@ -191,7 +191,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/prost/EIP/Mobile/src/pages/main/home/home.html"*/'<!--\n  Generated template for the HomePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Mes miroirs</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <p text-center>Aucun miroir enregistré</p>\n</ion-content>\n'/*ion-inline-end:"/home/prost/EIP/Mobile/src/pages/main/home/home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/main/home/home.html"*/'<!--\n  Generated template for the HomePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Mes miroirs</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <p text-center>Aucun miroir enregistré</p>\n</ion-content>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/main/home/home.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth_service__["a" /* AuthServiceProvider */]])
     ], HomePage);
@@ -226,7 +226,7 @@ var ApiServiceProvider = /** @class */ (function () {
     function ApiServiceProvider(getService, postService) {
         this.getService = getService;
         this.postService = postService;
-        this.apiUrl = 'http://dev.elios-mirror.com/';
+        this.apiUrl = '/api';
     }
     ApiServiceProvider.prototype.getApiUrl = function () {
         return (this.apiUrl);
@@ -419,7 +419,7 @@ var AccountPage = /** @class */ (function () {
     };
     AccountPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-account',template:/*ion-inline-start:"/home/prost/EIP/Mobile/src/pages/main/account/account.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Mon compte</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="logout()">\n        <ion-icon name="log-out"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/home/prost/EIP/Mobile/src/pages/main/account/account.html"*/,
+            selector: 'page-account',template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/main/account/account.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Mon compte</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="logout()">\n        <ion-icon name="log-out"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/main/account/account.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth_service__["a" /* AuthServiceProvider */]])
@@ -507,7 +507,7 @@ var RegisterPage = /** @class */ (function () {
     };
     RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"/home/prost/EIP/Mobile/src/pages/auth/register/register.html"*/'<ion-header>\n\n\n</ion-header>\n\n\n<ion-content class="register" padding>\n  <div class="register-header" text-center>\n    <ion-img width="80" height="80" [cache]="true" src="/assets/imgs/elios.png"></ion-img>\n  </div>\n\n  <ion-list class="register-form" padding>\n    <h3 padding-left padding-top>S\'inscrire</h3>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="email" [(ngModel)]="email"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Mot de passe</ion-label>\n      <ion-input type="password" [(ngModel)]="password"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Répétez le mot de passe</ion-label>\n      <ion-input type="password" [(ngModel)]="password_confirmation"></ion-input>\n    </ion-item>\n\n    <ion-item class="register-form-buttons" no-lines>\n      <button navPop default ion-button item-left color="secondary" outline><ion-icon name="arrow-dropleft"></ion-icon></button>\n      <button default ion-button item-right color="primary" (click)="register()">Envoyer</button>\n    </ion-item>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/prost/EIP/Mobile/src/pages/auth/register/register.html"*/,
+            selector: 'page-register',template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/auth/register/register.html"*/'<ion-header>\n\n\n</ion-header>\n\n\n<ion-content class="register" padding>\n  <div class="register-header" text-center>\n    <ion-img width="80" height="80" [cache]="true" src="/assets/imgs/elios.png"></ion-img>\n  </div>\n\n  <ion-list class="register-form" padding>\n    <h3 padding-left padding-top>S\'inscrire</h3>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="email" [(ngModel)]="email"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Mot de passe</ion-label>\n      <ion-input type="password" [(ngModel)]="password"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Répétez le mot de passe</ion-label>\n      <ion-input type="password" [(ngModel)]="password_confirmation"></ion-input>\n    </ion-item>\n\n    <ion-item class="register-form-buttons" no-lines>\n      <button navPop default ion-button item-left color="secondary" outline><ion-icon name="arrow-dropleft"></ion-icon></button>\n      <button default ion-button item-right color="primary" (click)="register()">Envoyer</button>\n    </ion-item>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/auth/register/register.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth_service__["a" /* AuthServiceProvider */]])
@@ -582,7 +582,7 @@ var LostPasswordPage = /** @class */ (function () {
     };
     LostPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-auth-lost-password',template:/*ion-inline-start:"/home/prost/EIP/Mobile/src/pages/auth/lost-password/lost-password.html"*/'<ion-header>\n\n</ion-header>\n\n\n<ion-content class="register" padding>\n    <div class="register-header" text-center>\n        <ion-img width="80" height="80" [cache]="true" src="/assets/imgs/elios.png"></ion-img>\n    </div>\n\n    <ion-list class="register-form" padding>\n        <h3 padding-left padding-top>Mot de passe oublié</h3>\n\n        <div padding>\n            Indiquez votre email pour recevoir un mail permettant de redéfinir un mot de passe\n        </div>\n\n        <ion-item>\n            <ion-label floating>Email</ion-label>\n            <ion-input type="email" [(ngModel)]="email"></ion-input>\n        </ion-item>\n\n        <ion-item class="register-form-buttons" no-lines>\n            <button navPop default ion-button item-left color="secondary" outline>\n                <ion-icon name="arrow-dropleft"></ion-icon>\n            </button>\n            <button default ion-button item-right color="primary" (click)="lostPassword()">Envoyer</button>\n        </ion-item>\n    </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/prost/EIP/Mobile/src/pages/auth/lost-password/lost-password.html"*/,
+            selector: 'page-auth-lost-password',template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/auth/lost-password/lost-password.html"*/'<ion-header>\n\n</ion-header>\n\n\n<ion-content class="register" padding>\n    <div class="register-header" text-center>\n        <ion-img width="80" height="80" [cache]="true" src="/assets/imgs/elios.png"></ion-img>\n    </div>\n\n    <ion-list class="register-form" padding>\n        <h3 padding-left padding-top>Mot de passe oublié</h3>\n\n        <div padding>\n            Indiquez votre email pour recevoir un mail permettant de redéfinir un mot de passe\n        </div>\n\n        <ion-item>\n            <ion-label floating>Email</ion-label>\n            <ion-input type="email" [(ngModel)]="email"></ion-input>\n        </ion-item>\n\n        <ion-item class="register-form-buttons" no-lines>\n            <button navPop default ion-button item-left color="secondary" outline>\n                <ion-icon name="arrow-dropleft"></ion-icon>\n            </button>\n            <button default ion-button item-right color="primary" (click)="lostPassword()">Envoyer</button>\n        </ion-item>\n    </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/auth/lost-password/lost-password.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth_service__["a" /* AuthServiceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
@@ -730,7 +730,7 @@ var AuthServiceProvider = /** @class */ (function () {
     };
     AuthServiceProvider.prototype.refreshUserToken = function (username, password) {
         if (username && password) {
-            return this.api.post(this.api.getApiUrl() + 'oauth/token', null, {
+            return this.api.post(this.api.getApiUrl() + '/oauth/token', null, {
                 'grant_type': 'password',
                 'client_id': '1',
                 'client_secret': 'Rp52CEoYWjiIA0kRTTGspdbjee3tQxSaNCVn7J87',
@@ -746,7 +746,7 @@ var AuthServiceProvider = /** @class */ (function () {
     };
     AuthServiceProvider.prototype.register = function (email, password, name) {
         if (email && password && password.length >= 6) {
-            return this.api.post(this.api.getApiUrl() + 'api/register', null, {
+            return this.api.post(this.api.getApiUrl() + '/api/register', null, {
                 'name': name ? name : 'default',
                 'email': email,
                 'password': password,
@@ -766,7 +766,7 @@ var AuthServiceProvider = /** @class */ (function () {
     };
     AuthServiceProvider.prototype.lostPassword = function (email) {
         if (email) {
-            return this.api.post(this.api.getApiUrl() + 'api/password/email', null, {
+            return this.api.post(this.api.getApiUrl() + '/api/password/email', null, {
                 'email': email,
             });
         }
@@ -853,7 +853,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/prost/EIP/Mobile/src/app/app.html"*/'<ion-nav [root]="page"></ion-nav>\n'/*ion-inline-end:"/home/prost/EIP/Mobile/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/app/app.html"*/'<ion-nav [root]="page"></ion-nav>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_6__providers_auth_auth_service__["a" /* AuthServiceProvider */]])
     ], MyApp);

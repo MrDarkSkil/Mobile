@@ -5,7 +5,7 @@ import {PostService} from "./http/post-service";
 @Injectable()
 export class ApiServiceProvider {
 
-  private apiUrl = 'http://dev.elios-mirror.com/';
+  private apiUrl = '/api';
 
   constructor(private getService: GetService, private postService: PostService) {
   }

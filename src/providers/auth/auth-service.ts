@@ -38,7 +38,7 @@ export class AuthServiceProvider {
     public refreshUserToken<T>(username: string, password: string): Promise<T> {
         if (username && password) {
 
-            return this.api.post(this.api.getApiUrl() + 'oauth/token', null, {
+            return this.api.post(this.api.getApiUrl() + '/oauth/token', null, {
                 'grant_type': 'password',
                 'client_id': '1',
                 'client_secret': 'Rp52CEoYWjiIA0kRTTGspdbjee3tQxSaNCVn7J87',
@@ -56,7 +56,7 @@ export class AuthServiceProvider {
     public register(email: string, password: string, name?: string): Promise<AuthTokenDto> {
         if (email && password && password.length >= 6) {
 
-            return this.api.post(this.api.getApiUrl() + 'api/register', null, {
+            return this.api.post(this.api.getApiUrl() + '/api/register', null, {
                 'name': name ? name : 'default',
                 'email': email,
                 'password': password,
@@ -78,7 +78,7 @@ export class AuthServiceProvider {
     public lostPassword(email: string): Promise<AuthTokenDto> {
         if (email) {
 
-            return this.api.post(this.api.getApiUrl() + 'api/password/email', null, {
+            return this.api.post(this.api.getApiUrl() + '/api/password/email', null, {
                 'email': email,
             });
         } else {

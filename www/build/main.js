@@ -232,7 +232,7 @@ var ApiServiceProvider = /** @class */ (function () {
         return (this.apiUrl);
     };
     ApiServiceProvider.prototype.get = function (url, token, body) {
-        return (this.getService.submit(url, token, body));
+        return (this.getService.submit(url, token));
     };
     ApiServiceProvider.prototype.post = function (url, token, body) {
         return (this.postService.submit(url, token, body));
@@ -270,23 +270,18 @@ var GetService = /** @class */ (function () {
     function GetService(http) {
         this.http = http;
     }
-    GetService.prototype.submit = function (url, token, body) {
+    GetService.prototype.submit = function (url, token) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.http.get(url, body).subscribe(function (data) {
+            _this.http.get(url, {
+                headers: token ?
+                    {
+                        'Authorization': token
+                    } : {}
+            }).subscribe(function (data) {
                 resolve(data);
             }, function (result) {
-                if (result.status = 401) {
-                    if (result.error.errors) {
-                        reject(result.error.errors[Object.keys(result.error.errors)[0]]);
-                    }
-                    else {
-                        reject('401 Unauthorized');
-                    }
-                }
-                else {
-                    reject(result);
-                }
+                reject(result);
             });
         });
     };
@@ -326,20 +321,16 @@ var PostService = /** @class */ (function () {
     PostService.prototype.submit = function (url, token, body) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.http.post(url, body).subscribe(function (data) {
+            _this.http.post(url, body, {
+                headers: token ?
+                    {
+                        'Authorization': token
+                    } : {}
+            }).subscribe(function (data) {
                 resolve(data);
             }, function (result) {
-                if (result.status = 401) {
-                    if (result.error.errors) {
-                        reject(result.error.errors[Object.keys(result.error.errors)[0]]);
-                    }
-                    else {
-                        reject('401 Unauthorized');
-                    }
-                }
-                else {
-                    reject(result);
-                }
+                console.log(result);
+                reject(result);
             });
         });
     };

@@ -14,7 +14,7 @@ export class PostService {
         {
           headers: token ?
             {
-              'Authorization': token
+              'Authorization': 'Bearer' + token
             } : {}
         }).subscribe(
         data => {

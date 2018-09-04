@@ -14,7 +14,7 @@ export class GetService {
       this.http.get<T>(url, {
         headers: token ?
           {
-            'Authorization': token
+            'Authorization': 'Bearer' + token
           } : {}
       }).subscribe(
         data => {

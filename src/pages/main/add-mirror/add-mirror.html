@@ -1,12 +1,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>addMirror</ion-title>
+    <ion-title>Add a new mirror</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding text-center>
+
+  <p>Pour lier un nouveau miroir à votre compte, scannez son QRCode</p>
+
+  <button ion-button [navPush]="qrcodePage">Scanner QRCode</button>
 
 </ion-content>

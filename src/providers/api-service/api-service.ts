@@ -18,7 +18,7 @@ export class ApiServiceProvider {
     return (this.apiUrl);
   }
 
-  public get<T>(url: string, token?: string, body?: object): Promise<T> {
+  public get<T>(url: string, token?: string): Promise<T> {
     return (this.getService.submit(url, token));
   }
 

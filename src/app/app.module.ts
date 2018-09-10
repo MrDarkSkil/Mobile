@@ -9,6 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AuthModule} from "../pages/auth/auth.module";
 import {MainModule} from "../pages/main/main.module";
 import {ProvidersModule} from "../providers/providers.module";
+import { MirrorLinkProvider } from '../providers/mirror/mirror-link/mirror-link.service';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {ProvidersModule} from "../providers/providers.module";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MirrorLinkProvider
   ]
 })
 export class AppModule {}

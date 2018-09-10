@@ -30605,3 +30605,7 @@ ion-navbar.toolbar {
 .register-form-buttons {
   margin: 3rem .75rem 0 0;
 }
+
+page-add-mirror .mirror-input {
+  margin-top: 8vh;
+}

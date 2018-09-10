@@ -6,6 +6,7 @@ import {AccountPage} from "./account/account";
 import {AddMirrorPage} from "./add-mirror/add-mirror";
 import { QRScanner } from '@ionic-native/qr-scanner';
 import {AddMirrorQrCodePage} from "./add-mirror/add-mirror-qr-code/add-mirror-qr-code";
+import {MirrorLinkProvider} from "../../providers/mirror/mirror-link/mirror-link.service";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {AddMirrorQrCodePage} from "./add-mirror/add-mirror-qr-code/add-mirror-qr
   ],
   providers: [
     QRScanner,
+    MirrorLinkProvider
   ]
 })
 

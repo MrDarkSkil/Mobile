@@ -22,7 +22,7 @@ export class PostService {
         },
         result => {
           console.log(result);
-          reject(result);
+          reject(JSON.stringify(result));
         });
     })
   }

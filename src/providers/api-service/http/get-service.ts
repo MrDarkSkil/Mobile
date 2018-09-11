@@ -21,7 +21,7 @@ export class GetService {
           resolve(data);
         },
         result => {
-          reject(result);
+          reject(JSON.stringify(result));
         });
     })
   }

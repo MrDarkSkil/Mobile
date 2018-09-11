@@ -6,44 +6,44 @@ import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 import {LostPasswordPage} from "../lost-password/lost-password";
 
 @Component({
-    selector: 'page-login',
-    templateUrl: 'login.html',
+  selector: 'page-login',
+  templateUrl: 'login.html',
 })
 export class LoginPage {
 
-    registerPage: any = RegisterPage;
-    tabsPage: any = TabsPage;
-    lostPasswordPage: any = LostPasswordPage;
+  registerPage: any = RegisterPage;
+  tabsPage: any = TabsPage;
+  lostPasswordPage: any = LostPasswordPage;
 
-    public email: string = null;
-    public password: string = null;
+  public email: string = null;
+  public password: string = null;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
-                private auth: AuthServiceProvider, private alertCtrl: AlertController) {
-    }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
+              private auth: AuthServiceProvider, private alertCtrl: AlertController) {
+  }
 
-    ionViewDidLoad() {
-    }
+  ionViewDidLoad() {
+  }
 
-    login() {
-        let loading = this.loadingCtrl.create({
-            content: 'Connexion en cours...'
-        });
+  login() {
+    let loading = this.loadingCtrl.create({
+      content: 'Connexion en cours...'
+    });
 
-        loading.present();
+    loading.present();
 
-        this.auth.login(this.email, this.password).then(data => {
-            loading.dismiss();
-            this.navCtrl.setRoot(this.tabsPage);
-        }).catch(data => {
-            loading.dismiss();
-            let alert = this.alertCtrl.create({
-                title: 'Erreur',
-                subTitle: data,
-                buttons: [{text: 'Ok'}]
-            });
-            alert.present();
-        })
-    }
+    this.auth.login(this.email, this.password).then(data => {
+      loading.dismiss();
+      this.navCtrl.setRoot(this.tabsPage);
+    }).catch(data => {
+      loading.dismiss();
+      let alert = this.alertCtrl.create({
+        title: 'Erreur',
+        subTitle: data,
+        buttons: [{text: 'Ok'}]
+      });
+      alert.present();
+    })
+  }
 
 }

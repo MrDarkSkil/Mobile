@@ -6,7 +6,7 @@ import {Platform} from "ionic-angular";
 @Injectable()
 export class ApiServiceProvider {
 
-  private apiUrl = '/api';
+  private apiUrl = '/elios';
 
   constructor(private platform: Platform, private getService: GetService, private postService: PostService) {
     if (this.platform.is('cordova') == true) {

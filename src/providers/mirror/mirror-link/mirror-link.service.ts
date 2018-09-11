@@ -15,6 +15,6 @@ export class MirrorLinkProvider {
   }
 
   public mirrorLink(mirrorId: string) {
-    return this.api.post(this.api.getApiUrl() + '/mirrors/' + mirrorId + '/link', this.token, null);
+    return this.api.post(this.api.getApiUrl() + '/api/mirrors/' + mirrorId + '/link', this.token, null);
   }
 }

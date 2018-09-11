@@ -22,12 +22,12 @@ export class AddMirrorQrCodePage {
           console.log('Camera Permission Given');
           this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
             console.log('something has been scanned', text);
-            /*this.mirrorService.mirrorLink(text).then(result => {
+            this.mirrorService.mirrorLink(text).then(result => {
               console.log('mirror linked');
             })
               .then(error => {
                 console.log('An error occurred', error);
-              });*/
+              });
             this.qrScanner.hide();
             this.scanSub.unsubscribe();
             this.hideCamera();

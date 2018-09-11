@@ -6,7 +6,7 @@
   "type": "ionic-angular",
   "proxies": [
     {
-      "path": "/api",
+      "path": "/elios",
       "proxyUrl": "http://dev.elios-mirror.com/"
     }
   ],

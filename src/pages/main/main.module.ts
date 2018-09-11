@@ -14,7 +14,7 @@ import {MirrorLinkProvider} from "../../providers/mirror/mirror-link/mirror-link
     TabsPage,
     AccountPage,
     AddMirrorPage,
-    AddMirrorQrCodePage
+    AddMirrorQrCodePage,
   ],
   imports: [
     IonicPageModule.forChild(HomePage),

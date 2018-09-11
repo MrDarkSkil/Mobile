@@ -12,19 +12,7 @@ export class TabsPage {
   home = HomePage;
   account = AccountPage;
   addMirror = AddMirrorPage;
-  token = null;
 
-  constructor(private auth: AuthServiceProvider) {
-    this.isLogged();
-    console.log(this.token);
+  constructor() {
   }
-
-  isLogged() {
-    this.auth.getUserToken().then(token => {
-      this.token = token;
-    }).catch(error => {
-      this.token = error;
-    });
-  }
-
 }

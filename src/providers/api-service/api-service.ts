@@ -10,7 +10,7 @@ export class ApiServiceProvider {
 
   constructor(private platform: Platform, private getService: GetService, private postService: PostService) {
     if (this.platform.is('cordova') == true) {
-      this.apiUrl = 'http://dev.elios-mirror.com/';
+      this.apiUrl = 'http://dev.elios-mirror.com';
     }
   }
 

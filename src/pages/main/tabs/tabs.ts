@@ -11,7 +11,6 @@ export class TabsPage {
 
   home = HomePage;
   account = AccountPage;
-  addMirror = AddMirrorPage;
 
   constructor() {
   }

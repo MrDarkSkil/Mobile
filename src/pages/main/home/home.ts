@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {NavController} from "ionic-angular";
+import {AddMirrorPage} from "../add-mirror/add-mirror";
 
 @Component({
   selector: 'page-home',
@@ -6,7 +8,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
+  }
+
+  public navigate() {
+    this.navCtrl.push(AddMirrorPage);
   }
 
 }

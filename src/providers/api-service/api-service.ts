@@ -19,10 +19,10 @@ export class ApiServiceProvider {
   }
 
   public get<T>(url: string, token?: string): Promise<T> {
-    return (this.getService.submit(url, token));
+    return (this.getService.submit<T>(url, token));
   }
 
   public post<T>(url: string, token?: string, body?: object): Promise<T> {
-    return (this.postService.submit(url, token, body));
+    return (this.postService.submit<T>(url, token, body));
   }
 }

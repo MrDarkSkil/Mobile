@@ -10,6 +10,7 @@ import {AuthModule} from "../pages/auth/auth.module";
 import {MainModule} from "../pages/main/main.module";
 import {ProvidersModule} from "../providers/providers.module";
 import { MirrorLinkProvider } from '../providers/mirror/mirror-link/mirror-link.service';
+import { MirrorProvider } from '../providers/mirror/mirror.service';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { MirrorLinkProvider } from '../providers/mirror/mirror-link/mirror-link.
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MirrorLinkProvider
+    MirrorLinkProvider,
+    MirrorProvider
   ]
 })
 export class AppModule {}

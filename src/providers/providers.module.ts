@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {ApiServiceModule} from "./api-service/api-service.module";
 import {AuthServiceProvider} from "./auth/auth-service";
-import {MirrorServiceModule} from "./mirror/mirror-service.module";
+import {MirrorModule} from "./mirror/mirror.module";
 
 @NgModule({
   declarations: [],
@@ -11,7 +11,7 @@ import {MirrorServiceModule} from "./mirror/mirror-service.module";
   exports: [],
   providers: [
     AuthServiceProvider,
-    MirrorServiceModule
+    MirrorModule
   ]
 })
 

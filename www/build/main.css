@@ -30609,3 +30609,21 @@ ion-navbar.toolbar {
 page-add-mirror .mirror-input {
   margin-top: 8vh;
 }
+
+page-home .icon {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+page-home ion-icon {
+  font-size: 2.75rem;
+}

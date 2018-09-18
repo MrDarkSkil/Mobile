@@ -13,12 +13,16 @@
 
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-list *ngIf="mirrors !== undefined">
 
     <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem>
       <ion-item>
-        <ion-avatar item-start>
-          <img class="img-os" src="">
+        <ion-avatar class="icon" item-start>
+          <ion-icon name="aperture"></ion-icon>
         </ion-avatar>
         <div class="state" [style.background]="'#27c295'"></div>
         <h2>{{ mirror.name }}</h2>

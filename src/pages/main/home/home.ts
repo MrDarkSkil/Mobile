@@ -26,6 +26,12 @@ export class HomePage {
     this.navCtrl.push(AddMirrorPage);
   }
 
+  public doRefresh(event) {
+    this.refresh().then(() => {
+      event.complete();
+    });
+  }
+
   private refresh() {
     return new Promise((resolve, reject) => {
       this.auth.getUserToken().then(result => {

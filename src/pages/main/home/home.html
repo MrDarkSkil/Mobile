@@ -15,7 +15,7 @@
 <ion-content>
   <ion-list *ngIf="mirrors !== undefined">
 
-    <ion-item-sliding *ngFor="let mirror of mirrors">
+    <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem>
       <ion-item>
         <ion-avatar item-start>
           <img class="img-os" src="">
@@ -29,7 +29,7 @@
       </ion-item>
 
       <ion-item-options>
-        <button ion-button color="danger" (click)="deleteMirror(mirror.id)">
+        <button ion-button color="danger" (click)="deleteMirror(slidingItem, mirror.id)">
           <ion-icon name="trash"></ion-icon>
           Delete
         </button>

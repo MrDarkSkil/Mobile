@@ -208,11 +208,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, mirrorProvider, auth, mirrorUnlinkProvider) {
+    function HomePage(navCtrl, mirrorProvider, auth, mirrorUnlinkProvider, loadingCtrl) {
         this.navCtrl = navCtrl;
         this.mirrorProvider = mirrorProvider;
         this.auth = auth;
         this.mirrorUnlinkProvider = mirrorUnlinkProvider;
+        this.loadingCtrl = loadingCtrl;
     }
     HomePage.prototype.ionViewDidEnter = function () {
         this.refresh();
@@ -222,29 +223,42 @@ var HomePage = /** @class */ (function () {
     };
     HomePage.prototype.refresh = function () {
         var _this = this;
-        this.auth.getUserToken().then(function (result) {
-            var token = result;
-            _this.mirrorProvider.getMirrors(token).then(function (mirrors) {
-                _this.mirrors = mirrors;
+        return new Promise(function (resolve, reject) {
+            _this.auth.getUserToken().then(function (result) {
+                var token = result;
+                _this.mirrorProvider.getMirrors(token).then(function (mirrors) {
+                    _this.mirrors = mirrors;
+                    resolve('ok');
+                });
+            })
+                .catch(function (error) {
+                reject(error);
             });
         });
     };
-    HomePage.prototype.deleteMirror = function (id) {
+    HomePage.prototype.deleteMirror = function (mirror, id) {
         var _this = this;
+        mirror.close();
+        var loading = this.loadingCtrl.create({
+            content: 'Chargement...'
+        });
+        loading.present();
         this.auth.getUserToken().then(function (result) {
             var token = result;
             _this.mirrorUnlinkProvider.unlinkMirror(id, token).then(function (result) {
                 console.log('done');
-                _this.refresh();
+                _this.refresh().then(function () {
+                    loading.dismiss();
+                });
             });
         });
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/main/home/home.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Mes miroirs</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="navigate()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <ion-list *ngIf="mirrors !== undefined">\n\n    <ion-item-sliding *ngFor="let mirror of mirrors">\n      <ion-item>\n        <ion-avatar item-start>\n          <img class="img-os" src="">\n        </ion-avatar>\n        <div class="state" [style.background]="\'#27c295\'"></div>\n        <h2>{{ mirror.name }}</h2>\n        <p>{{ mirror.ip }}</p>\n        <ion-note item-end>\n          <ion-icon name="arrow-forward"></ion-icon>\n        </ion-note>\n      </ion-item>\n\n      <ion-item-options>\n        <button ion-button color="danger" (click)="deleteMirror(mirror.id)">\n          <ion-icon name="trash"></ion-icon>\n          Delete\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/main/home/home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/main/home/home.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Mes miroirs</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="navigate()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <ion-list *ngIf="mirrors !== undefined">\n\n    <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem>\n      <ion-item>\n        <ion-avatar item-start>\n          <img class="img-os" src="">\n        </ion-avatar>\n        <div class="state" [style.background]="\'#27c295\'"></div>\n        <h2>{{ mirror.name }}</h2>\n        <p>{{ mirror.ip }}</p>\n        <ion-note item-end>\n          <ion-icon name="arrow-forward"></ion-icon>\n        </ion-note>\n      </ion-item>\n\n      <ion-item-options>\n        <button ion-button color="danger" (click)="deleteMirror(slidingItem, mirror.id)">\n          <ion-icon name="trash"></ion-icon>\n          Delete\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/main/home/home.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_mirror_mirror_service__["a" /* MirrorProvider */], __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth_service__["a" /* AuthServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_5__providers_mirror_mirror_unlink_mirror_unlink_service__["a" /* MirrorUnlinkProvider */]])
+            __WEBPACK_IMPORTED_MODULE_5__providers_mirror_mirror_unlink_mirror_unlink_service__["a" /* MirrorUnlinkProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
     ], HomePage);
     return HomePage;
 }());
@@ -653,10 +667,9 @@ var MirrorUnlinkProvider = /** @class */ (function () {
     };
     MirrorUnlinkProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__api_service_api_service__["a" /* ApiServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__api_service_api_service__["a" /* ApiServiceProvider */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__api_service_api_service__["a" /* ApiServiceProvider */]])
     ], MirrorUnlinkProvider);
     return MirrorUnlinkProvider;
-    var _a;
 }());
 
 //# sourceMappingURL=mirror-unlink.service.js.map

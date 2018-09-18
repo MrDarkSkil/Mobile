@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController} from "ionic-angular";
+import {LoadingController, NavController} from "ionic-angular";
 import {AddMirrorPage} from "../add-mirror/add-mirror";
 import {MirrorProvider} from "../../../providers/mirror/mirror.service";
 import {AuthServiceProvider} from "../../../providers/auth/auth-service";
@@ -15,7 +15,7 @@ export class HomePage {
   public mirrors: MirrorDto[];
 
   constructor(public navCtrl: NavController, private mirrorProvider: MirrorProvider, private auth: AuthServiceProvider,
-              private mirrorUnlinkProvider: MirrorUnlinkProvider) {
+              private mirrorUnlinkProvider: MirrorUnlinkProvider, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidEnter() {
@@ -27,20 +27,34 @@ export class HomePage {
   }
 
   private refresh() {
-    this.auth.getUserToken().then(result => {
-      const token = result;
-      this.mirrorProvider.getMirrors(token).then(mirrors => {
-        this.mirrors = mirrors;
+    return new Promise((resolve, reject) => {
+      this.auth.getUserToken().then(result => {
+        const token = result;
+        this.mirrorProvider.getMirrors(token).then(mirrors => {
+          this.mirrors = mirrors;
+          resolve('ok');
+        })
       })
+        .catch(error => {
+          reject(error);
+        });
     });
   }
 
-  public deleteMirror(id: string) {
+  public deleteMirror(mirror: any, id: string) {
+    mirror.close();
+    let loading = this.loadingCtrl.create({
+      content: 'Chargement...'
+    });
+
+    loading.present();
     this.auth.getUserToken().then(result => {
       const token = result;
       this.mirrorUnlinkProvider.unlinkMirror(id, token).then(result => {
         console.log('done');
-        this.refresh();
+        this.refresh().then(() => {
+          loading.dismiss();
+        });
       })
     });
   }

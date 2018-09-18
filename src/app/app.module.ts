@@ -11,6 +11,7 @@ import {MainModule} from "../pages/main/main.module";
 import {ProvidersModule} from "../providers/providers.module";
 import { MirrorLinkProvider } from '../providers/mirror/mirror-link/mirror-link.service';
 import { MirrorProvider } from '../providers/mirror/mirror.service';
+import { MirrorUnlinkProvider } from '../providers/mirror/mirror-unlink/mirror-unlink.service';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MirrorProvider } from '../providers/mirror/mirror.service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MirrorLinkProvider,
-    MirrorProvider
+    MirrorProvider,
+    MirrorUnlinkProvider
   ]
 })
 export class AppModule {}

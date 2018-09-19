@@ -4,7 +4,6 @@ import {AddMirrorPage} from "../add-mirror/add-mirror";
 import {MirrorProvider} from "../../../providers/mirror/mirror.service";
 import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 import {MirrorDto} from "../../../providers/mirror/mirror.dto";
-import {MirrorUnlinkProvider} from "../../../providers/mirror/mirror-unlink/mirror-unlink.service";
 
 @Component({
   selector: 'page-home',
@@ -15,7 +14,7 @@ export class HomePage {
   public mirrors: MirrorDto[];
 
   constructor(public navCtrl: NavController, private mirrorProvider: MirrorProvider, private auth: AuthServiceProvider,
-              private mirrorUnlinkProvider: MirrorUnlinkProvider, public loadingCtrl: LoadingController) {
+              public loadingCtrl: LoadingController) {
   }
 
   ionViewDidEnter() {
@@ -56,7 +55,7 @@ export class HomePage {
     loading.present();
     this.auth.getUserToken().then(result => {
       const token = result;
-      this.mirrorUnlinkProvider.unlinkMirror(id, token).then(result => {
+      this.mirrorProvider.unlinkMirror(id, token).then(result => {
         console.log('done');
         this.refresh().then(() => {
           loading.dismiss();

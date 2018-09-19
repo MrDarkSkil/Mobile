@@ -12,13 +12,7 @@ export class AuthServiceProvider {
     }
 
     public getUserToken<T>(): Promise<T> {
-        return new Promise((resolve, reject) => {
-            this.storage.get('access_token').then(data => {
-                resolve(data);
-            }).catch(error => {
-                reject(null);
-            });
-        });
+            return this.storage.get('access_token');
     }
 
     public login(username: string, password: string): Promise<AuthTokenDto> {

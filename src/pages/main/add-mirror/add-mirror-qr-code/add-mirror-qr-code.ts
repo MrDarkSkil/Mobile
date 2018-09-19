@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {QRScanner, QRScannerStatus} from "@ionic-native/qr-scanner";
 import {NavController} from "ionic-angular";
-import {MirrorLinkProvider} from "../../../../providers/mirror/mirror-link/mirror-link.service";
+import {MirrorProvider} from "../../../../providers/mirror/mirror.service";
+import {AuthServiceProvider} from "../../../../providers/auth/auth-service";
 
 @Component({
   selector: 'page-add-mirror-qr-code',
@@ -11,7 +12,8 @@ export class AddMirrorQrCodePage {
 
   private scanSub: any;
 
-  constructor(private qrScanner: QRScanner, public navCtrl: NavController, private mirrorService: MirrorLinkProvider) {
+  constructor(private qrScanner: QRScanner, public navCtrl: NavController, private mirrorProvider: MirrorProvider,
+              private authProvider: AuthServiceProvider) {
   }
 
   ionViewWillEnter() {
@@ -22,12 +24,16 @@ export class AddMirrorQrCodePage {
           console.log('Camera Permission Given');
           this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
             console.log('something has been scanned', text);
-            this.mirrorService.mirrorLink(text).then(result => {
-              console.log('mirror linked');
-            })
-              .then(error => {
-                console.log('An error occurred', error);
-              });
+
+            this.authProvider.getUserToken().then(token => {
+              this.mirrorProvider.mirrorLink(text, token).then(result => {
+                console.log('mirror linked');
+              })
+                .catch(error => {
+                  console.log('An error occurred', error);
+                });
+            });
+
             this.qrScanner.hide();
             this.scanSub.unsubscribe();
             this.hideCamera();

@@ -10,6 +10,7 @@ import {AuthModule} from "../pages/auth/auth.module";
 import {MainModule} from "../pages/main/main.module";
 import {ProvidersModule} from "../providers/providers.module";
 import {MirrorModule} from "../pages/mirror/mirror.module";
+import { TabProvider } from '../providers/tab/tab';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {MirrorModule} from "../pages/mirror/mirror.module";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    TabProvider,
   ]
 })
 export class AppModule {}

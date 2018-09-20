@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {LoadingController, NavController} from "ionic-angular";
 import {AddMirrorPage} from "../add-mirror/add-mirror";
 import {MirrorProvider} from "../../../providers/mirror/mirror.service";
 import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 import {MirrorDto} from "../../../providers/mirror/mirror.dto";
 import {MirrorPage} from "../../mirror/mirror";
+import {TabProvider} from "../../../providers/tab/tab";
 
 @Component({
   selector: 'page-home',
@@ -15,7 +16,7 @@ export class HomePage {
   public mirrors: MirrorDto[];
 
   constructor(public navCtrl: NavController, private mirrorProvider: MirrorProvider, private auth: AuthServiceProvider,
-              public loadingCtrl: LoadingController) {
+              public loadingCtrl: LoadingController, private tabProvider: TabProvider) {
   }
 
   ionViewDidEnter() {
@@ -29,16 +30,9 @@ export class HomePage {
         break;
       case 'mirror':
         this.navCtrl.setRoot(MirrorPage, parameters);
-        let elements = document.querySelectorAll(".tabbar");
-
-        if (elements != null) {
-          Object.keys(elements).map((key) => {
-            elements[key].style.display = 'none';
-          });
-        }
+        this.tabProvider.hideTab();
         break;
       default:
-
     }
   }
 

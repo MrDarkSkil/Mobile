@@ -30610,7 +30610,7 @@ page-add-mirror .mirror-input {
   margin-top: 8vh;
 }
 
-page-home .icon {
+page-home ion-list .icon {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -30624,6 +30624,6 @@ page-home .icon {
   align-items: center;
 }
 
-page-home ion-icon {
+page-home ion-list ion-icon {
   font-size: 2.75rem;
 }

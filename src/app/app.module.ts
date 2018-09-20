@@ -9,6 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AuthModule} from "../pages/auth/auth.module";
 import {MainModule} from "../pages/main/main.module";
 import {ProvidersModule} from "../providers/providers.module";
+import {MirrorModule} from "../pages/mirror/mirror.module";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {ProvidersModule} from "../providers/providers.module";
     AuthModule,
     MainModule,
     ProvidersModule,
+    MirrorModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

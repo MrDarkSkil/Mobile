@@ -1,9 +1,9 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Mes miroirs</ion-title>
+    <ion-title>Miroirs</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="navigate()">
+      <button ion-button icon-only (click)="navigate('addMirror')">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -19,7 +19,7 @@
 
   <ion-list *ngIf="mirrors !== undefined">
 
-    <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem>
+    <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem (click)="navigate('mirror', { 'name': mirror.name })">
       <ion-item>
         <ion-avatar class="icon" item-start>
           <ion-icon name="aperture"></ion-icon>

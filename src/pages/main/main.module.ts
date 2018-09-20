@@ -21,7 +21,7 @@ import {MirrorProvider} from "../../providers/mirror/mirror.service";
     IonicPageModule.forChild(TabsPage),
     IonicPageModule.forChild(AccountPage),
     IonicPageModule.forChild(AddMirrorPage),
-    IonicPageModule.forChild(AddMirrorQrCodePage)
+    IonicPageModule.forChild(AddMirrorQrCodePage),
   ],
   exports: [
     HomePage,

@@ -4,6 +4,7 @@ import {AddMirrorPage} from "../add-mirror/add-mirror";
 import {MirrorProvider} from "../../../providers/mirror/mirror.service";
 import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 import {MirrorDto} from "../../../providers/mirror/mirror.dto";
+import {MirrorPage} from "../../mirror/mirror";
 
 @Component({
   selector: 'page-home',
@@ -21,8 +22,24 @@ export class HomePage {
     this.refresh();
   }
 
-  public navigate() {
-    this.navCtrl.push(AddMirrorPage);
+  public navigate(location: string, parameters?: any) {
+    switch (location) {
+      case 'addMirror':
+        this.navCtrl.push(AddMirrorPage);
+        break;
+      case 'mirror':
+        this.navCtrl.setRoot(MirrorPage, parameters);
+        let elements = document.querySelectorAll(".tabbar");
+
+        if (elements != null) {
+          Object.keys(elements).map((key) => {
+            elements[key].style.display = 'none';
+          });
+        }
+        break;
+      default:
+
+    }
   }
 
   public doRefresh(event) {
@@ -32,15 +49,23 @@ export class HomePage {
   }
 
   private refresh() {
+    let loading = this.loadingCtrl.create({
+      content: 'Chargement...'
+    });
+
+    loading.present();
+
     return new Promise((resolve, reject) => {
       this.auth.getUserToken().then(result => {
         const token = result;
         this.mirrorProvider.getMirrors(token).then(mirrors => {
           this.mirrors = mirrors;
+          loading.dismiss();
           resolve('ok');
         })
       })
         .catch(error => {
+          loading.dismiss();
           reject(error);
         });
     });

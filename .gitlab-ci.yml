@@ -7,9 +7,20 @@ build:
   script:
     - rm -rf node_modules
     - npm install
-    - npm run test
+    - ionic build
   artifacts:
     paths:
       - ./storage/logs
+    expire_in: 15 days
+    when: always
+
+tests:
+  stage: tests
+  image: beevelop/ionic:latest
+  script:
+  - npm run test
+  artifacts:
+    paths:
+    - ./storage/logs
     expire_in: 15 days
     when: always

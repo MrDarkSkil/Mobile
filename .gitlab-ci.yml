@@ -7,7 +7,7 @@ build:
   script:
     - rm -rf node_modules
     - npm install
-    - ionic build
+    - npm run test
   artifacts:
     paths:
       - ./storage/logs

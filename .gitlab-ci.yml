@@ -19,7 +19,9 @@ tests:
   stage: tests
   image: weboaks/node-karma-protractor-chrome:latest
   script:
-  - npm run test
+    - rm -rf node_modules
+    - npm install
+    - npm run test
   artifacts:
     paths:
     - ./storage/logs

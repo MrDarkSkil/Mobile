@@ -16,7 +16,7 @@ build:
 
 tests:
   stage: tests
-  image: beevelop/ionic:latest
+  image: weboaks/node-karma-protractor-chrome:latest
   script:
   - npm run test
   artifacts:

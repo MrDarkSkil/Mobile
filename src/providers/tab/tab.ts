@@ -22,7 +22,7 @@ export class TabProvider {
 
     if (elements != null) {
       Object.keys(elements).map((key) => {
-        elements[key].style.display = 'block';
+        elements[key].style.display = 'flex';
       });
     }
   }

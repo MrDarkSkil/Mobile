@@ -22,22 +22,25 @@ export class AddMirrorQrCodePage {
       .then((status: QRScannerStatus) => {
         if (status.authorized) {
           console.log('Camera Permission Given');
-          this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
-            console.log('something has been scanned', text);
+          this.scanSub = this.qrScanner.scan().subscribe(mirrorId => {
+            console.log('Mirror has been scanned', mirrorId);
 
             this.authProvider.getUserToken().then(token => {
-              this.mirrorProvider.mirrorLink(text, token).then(result => {
+              this.mirrorProvider.mirrorLink(mirrorId, token).then(result => {
                 console.log('mirror linked');
+                this.qrScanner.hide();
+                this.scanSub.unsubscribe();
+                this.hideCamera();
+                this.navCtrl.pop();
               })
                 .catch(error => {
                   console.log('An error occurred', error);
+                  this.qrScanner.hide();
+                  this.scanSub.unsubscribe();
+                  this.hideCamera();
+                  this.navCtrl.pop();
                 });
             });
-
-            this.qrScanner.hide();
-            this.scanSub.unsubscribe();
-            this.hideCamera();
-            this.navCtrl.pop();
           });
 
           this.qrScanner.show();

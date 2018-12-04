@@ -34,4 +34,5 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 
-www/build/
+www/
+.sourcemaps/

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ViewController} from "ionic-angular";
 
 @Component({
   selector: 'mirror-popover',
@@ -8,9 +9,11 @@ export class MirrorPopoverComponent {
 
   text: string;
 
-  constructor() {
-    console.log('Hello MirrorPopoverComponent Component');
-    this.text = 'Hello World';
+  constructor(private viewCtrl: ViewController) {
+  }
+
+  public logout() {
+    this.viewCtrl.dismiss({logout: true});
   }
 
 }

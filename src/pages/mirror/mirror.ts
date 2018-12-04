@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LoadingController, NavController, NavParams, PopoverController} from 'ionic-angular';
+import {NavController, NavParams, PopoverController} from 'ionic-angular';
 import {HomePage} from "../main/home/home";
 import {TabProvider} from "../../providers/tab/tab";
 import {MirrorPopoverComponent} from "./mirrorPopover/mirror-popover";
@@ -13,25 +13,21 @@ export class MirrorPage {
   public mirrorName: string = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tabProvider: TabProvider,
-              private popoverCtrl: PopoverController, private loadingCtrl: LoadingController) {
+              private popoverCtrl: PopoverController) {
     this.mirrorName = this.navParams.get('name');
   }
-
-  public navigate(location: string) {
-    switch (location) {
-      case 'home':
-        this.navCtrl.setRoot(HomePage);
-        this.tabProvider.displayTab();
-        break;
-      default:
-    }
-  }
-
+  
   public mirrorSettings(ev: UIEvent) {
     let popover = this.popoverCtrl.create(MirrorPopoverComponent);
 
     popover.present({
       ev: ev
+    });
+    popover.onDidDismiss(result => {
+      if (result && result.logout) {
+        this.navCtrl.setRoot(HomePage);
+        this.tabProvider.displayTab();
+      }
     });
   }
 

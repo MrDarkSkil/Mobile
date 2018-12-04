@@ -16,7 +16,7 @@ export class MirrorPage {
               private popoverCtrl: PopoverController) {
     this.mirrorName = this.navParams.get('name');
   }
-  
+
   public mirrorSettings(ev: UIEvent) {
     let popover = this.popoverCtrl.create(MirrorPopoverComponent);
 

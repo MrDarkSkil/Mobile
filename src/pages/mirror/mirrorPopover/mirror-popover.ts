@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {ViewController} from "ionic-angular";
+import {App, ViewController} from "ionic-angular";
+import {MirrorOptionsPage} from "../mirror-options/mirror-options";
 
 @Component({
   selector: 'mirror-popover',
@@ -9,11 +10,17 @@ export class MirrorPopoverComponent {
 
   text: string;
 
-  constructor(private viewCtrl: ViewController) {
+  constructor(private viewCtrl: ViewController, private app: App) {
   }
 
   public logout() {
     this.viewCtrl.dismiss({logout: true});
+  }
+
+  public navigate() {
+    this.viewCtrl.dismiss();
+    this.app.getRootNavs()[0].push(MirrorOptionsPage).then(() => {
+    });
   }
 
 }

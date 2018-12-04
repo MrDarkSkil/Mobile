@@ -30627,3 +30627,7 @@ page-home ion-list .icon {
 page-home ion-list ion-icon {
   font-size: 2.75rem;
 }
+
+mirror-popover .list {
+  margin: 0;
+}

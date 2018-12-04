@@ -436,7 +436,7 @@ var AddMirrorPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-add-mirror',template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/main/add-mirror/add-mirror.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Ajouter un miroir</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding text-center>\n\n  <p>Pour lier un nouveau miroir à votre compte, scannez son QRCode</p>\n\n  <button ion-button [navPush]="qrcodePage">Scanner QRCode</button>\n\n  <div class="mirror-input">\n    <p>Si vous n\'avez pas la possibilité de scanner le QRCode, veuillez rentrer l\'id du miroir directement:</p>\n\n    <ion-item>\n      <ion-label color="primary" stacked>ID du miroir</ion-label>\n      <ion-input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" [(ngModel)]="mirrorId"></ion-input>\n    </ion-item>\n\n    <ion-item no-border no-lines>\n      <button ion-button (click)="linkMirror()">Envoyer</button>\n    </ion-item>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/main/add-mirror/add-mirror.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_3__providers_mirror_mirror_service__["a" /* MirrorProvider */], __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth_service__["a" /* AuthServiceProvider */]])
     ], AddMirrorPage);
     return AddMirrorPage;
@@ -643,6 +643,7 @@ var PostService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__main_home_home__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_tab_tab__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mirrorPopover_mirror_popover__ = __webpack_require__(311);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -656,11 +657,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MirrorPage = /** @class */ (function () {
-    function MirrorPage(navCtrl, navParams, tabProvider) {
+    function MirrorPage(navCtrl, navParams, tabProvider, popoverCtrl, loadingCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.tabProvider = tabProvider;
+        this.popoverCtrl = popoverCtrl;
+        this.loadingCtrl = loadingCtrl;
         this.mirrorName = null;
         this.mirrorName = this.navParams.get('name');
     }
@@ -673,13 +677,20 @@ var MirrorPage = /** @class */ (function () {
             default:
         }
     };
+    MirrorPage.prototype.mirrorSettings = function (ev) {
+        var popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_4__mirrorPopover_mirror_popover__["a" /* MirrorPopoverComponent */]);
+        popover.present({
+            ev: ev
+        });
+    };
     MirrorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-mirror',template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/mirror/mirror.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>In progress</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding text-center>\n\n  <h3>Fonctionnalité non disponible</h3>\n  <p>Développement en cours...</p>\n  <button ion-button color="primary" (click)="navigate(\'home\')">\n    Retour\n  </button>\n\n</ion-content>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/mirror/mirror.html"*/,
+            selector: 'page-mirror',template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/mirror/mirror.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{ mirrorName }}</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="mirrorSettings($event)">\n        <ion-icon name="settings"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding text-center>\n\n  <h3>Fonctionnalité non disponible</h3>\n  <p>Développement en cours...</p>\n  <button ion-button color="primary" (click)="navigate(\'home\')">\n    Retour\n  </button>\n\n</ion-content>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/mirror/mirror.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_tab_tab__["a" /* TabProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_tab_tab__["a" /* TabProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_tab_tab__["a" /* TabProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* PopoverController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* PopoverController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _e || Object])
     ], MirrorPage);
     return MirrorPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=mirror.js.map
@@ -1356,12 +1367,14 @@ var MirrorModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mirror__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mirrorPopover_mirror_popover__ = __webpack_require__(311);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1372,12 +1385,17 @@ var MirrorModule = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_1__mirror__["a" /* MirrorPage */],
+                __WEBPACK_IMPORTED_MODULE_3__mirrorPopover_mirror_popover__["a" /* MirrorPopoverComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_1__mirror__["a" /* MirrorPage */]),
             ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_3__mirrorPopover_mirror_popover__["a" /* MirrorPopoverComponent */]
+            ],
             exports: [
-                __WEBPACK_IMPORTED_MODULE_1__mirror__["a" /* MirrorPage */]
+                __WEBPACK_IMPORTED_MODULE_1__mirror__["a" /* MirrorPage */],
+                __WEBPACK_IMPORTED_MODULE_3__mirrorPopover_mirror_popover__["a" /* MirrorPopoverComponent */]
             ]
         })
     ], MirrorModule);
@@ -1385,6 +1403,40 @@ var MirrorModule = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=mirror.module.js.map
+
+/***/ }),
+
+/***/ 311:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MirrorPopoverComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MirrorPopoverComponent = /** @class */ (function () {
+    function MirrorPopoverComponent() {
+        console.log('Hello MirrorPopoverComponent Component');
+        this.text = 'Hello World';
+    }
+    MirrorPopoverComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'mirror-popover',template:/*ion-inline-start:"/home/prost_m/EIP/Mobile/src/pages/mirror/mirrorPopover/mirror-popover.html"*/'<ion-list no-lines>\n  <button menuClose ion-item>\n    <ion-icon name="options" style="vertical-align: bottom; min-width: 22px; text-align:center"></ion-icon> &nbsp;Options\n  </button>\n  <button menuClose ion-item>\n    <ion-icon name="return-left" style="vertical-align: bottom; min-width: 22px; text-align:center"></ion-icon> &nbsp;Switch\n  </button>\n</ion-list>\n'/*ion-inline-end:"/home/prost_m/EIP/Mobile/src/pages/mirror/mirrorPopover/mirror-popover.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], MirrorPopoverComponent);
+    return MirrorPopoverComponent;
+}());
+
+//# sourceMappingURL=mirror-popover.js.map
 
 /***/ }),
 

@@ -1,12 +1,25 @@
 <ion-header>
-
-  <ion-navbar>
+  <!--<ion-navbar>
     <ion-title>Options</ion-title>
   </ion-navbar>
-
+-->
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content no-bounce>
+  <div class="close-button" (click)="navigateBack()">
+    <ion-icon name="close"></ion-icon>
+  </div>
+  <div class="background"></div>
+  <div class="mirror">
+    <img src="/assets/imgs/mirror.png" height="175">
+  </div>
+  <div class="name">
+    {{ mirror.name }}
+  </div>
+  <div class="date">
+    <div class="date-content">
+      {{ mirror.created_at | date:'short'}}
+    </div>
+  </div>
 </ion-content>

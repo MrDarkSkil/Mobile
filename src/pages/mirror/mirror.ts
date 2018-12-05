@@ -10,15 +10,15 @@ import {MirrorPopoverComponent} from "./mirrorPopover/mirror-popover";
 })
 export class MirrorPage {
 
-  public mirrorName: string = null;
+  public mirror: string = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tabProvider: TabProvider,
               private popoverCtrl: PopoverController) {
-    this.mirrorName = this.navParams.get('name');
+    this.mirror = this.navParams.get('mirror');
   }
 
   public mirrorSettings(ev: UIEvent) {
-    let popover = this.popoverCtrl.create(MirrorPopoverComponent);
+    let popover = this.popoverCtrl.create(MirrorPopoverComponent, { 'mirror': this.mirror });
 
     popover.present({
       ev: ev

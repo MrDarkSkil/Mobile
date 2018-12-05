@@ -1,3 +1,42 @@
 page-mirror-options {
+  .close-button {
+    font-size: 4rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 1rem 2rem;
+    color: white;
+    z-index: 100;
+  }
 
+  .background {
+    height: 45vh;
+    width: 100%;
+    background: $gradient-background no-repeat;
+  }
+
+  .mirror {
+    text-align: center;
+    margin-top: -145px;
+  }
+
+  .name {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 1rem 0;
+  }
+
+  .date {
+    text-align: center;
+
+    &-content {
+      text-align: center;
+      color: grey;
+      border: 1px #e4e4e4 solid;
+      border-radius: 1000px;
+      display: inline-block;
+      padding: .5rem 1rem;
+      font-size: 1.2rem;
+    }
+  }
 }

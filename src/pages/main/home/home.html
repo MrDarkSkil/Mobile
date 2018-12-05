@@ -19,7 +19,7 @@
 
   <ion-list *ngIf="mirrors !== undefined">
 
-    <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem (click)="navigate('mirror', { 'name': mirror.name })">
+    <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem (click)="navigate('mirror', { 'mirror': mirror })">
       <ion-item>
         <ion-avatar class="icon" item-start>
           <ion-icon name="aperture"></ion-icon>

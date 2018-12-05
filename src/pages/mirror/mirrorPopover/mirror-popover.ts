@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {App, ViewController} from "ionic-angular";
+import {App, NavParams, ViewController} from "ionic-angular";
 import {MirrorOptionsPage} from "../mirror-options/mirror-options";
 
 @Component({
@@ -9,8 +9,10 @@ import {MirrorOptionsPage} from "../mirror-options/mirror-options";
 export class MirrorPopoverComponent {
 
   text: string;
+  private mirror;
 
-  constructor(private viewCtrl: ViewController, private app: App) {
+  constructor(private viewCtrl: ViewController, private app: App, private navParams: NavParams) {
+    this.mirror = this.navParams.get('mirror');
   }
 
   public logout() {
@@ -19,7 +21,7 @@ export class MirrorPopoverComponent {
 
   public navigate() {
     this.viewCtrl.dismiss();
-    this.app.getRootNavs()[0].push(MirrorOptionsPage).then(() => {
+    this.app.getRootNavs()[0].setRoot(MirrorOptionsPage, { 'mirror': this.mirror }).then(() => {
     });
   }
 

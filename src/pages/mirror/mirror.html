@@ -1,14 +1,27 @@
-<ion-header>
-  <ion-navbar>
+<ion-header no-border>
+  <!--<ion-navbar>
     <ion-title>{{ mirror.name }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="mirrorSettings($event)">
         <ion-icon name="settings"></ion-icon>
       </button>
     </ion-buttons>
-  </ion-navbar>
+  </ion-navbar>-->
 </ion-header>
 
 
 <ion-content>
+  <div class="header">
+    <div class="mirror">
+      <img src="/assets/imgs/mirror.png" height="175">
+      <div class="text">
+        <span class="name">{{ mirror.name }}</span>
+        <span class="model">Basic model</span>
+        <span class="date">{{ mirror.updated_at }}</span>
+      </div>
+      <div class="button"(click)="mirrorSettings($event)">
+          <ion-icon name="settings"></ion-icon>
+      </div>
+    </div>
+  </div>
 </ion-content>

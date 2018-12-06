@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {App, NavController, NavParams, ViewController} from "ionic-angular";
+import {NavController, NavParams, ViewController} from "ionic-angular";
 import {MirrorOptionsPage} from "../mirror-options/mirror-options";
 
 @Component({
@@ -11,7 +11,7 @@ export class MirrorPopoverComponent {
   text: string;
   private mirror;
 
-  constructor(private viewCtrl: ViewController, private app: App, private navParams: NavParams,
+  constructor(private viewCtrl: ViewController, private navParams: NavParams,
               private navCtrl: NavController) {
     this.mirror = this.navParams.get('mirror');
   }

@@ -39,4 +39,8 @@ page-mirror {
     color: map-get($colors, dark);
     background: transparent;
   }
+
+  .body {
+    border-top: 2px solid lightgrey;
+  }
 }

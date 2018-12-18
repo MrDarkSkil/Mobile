@@ -21,4 +21,10 @@ export class MirrorProvider {
     return this.api.post(this.api.getApiUrl() + '/api/mirrors/' + id + '/unlink', token);
   }
 
+  public changeName(id: string, token: any, name: string) {
+    return this.api.put(this.api.getApiUrl() + '/api/mirrors/' + id, token, {
+      'name': name
+    });
+  }
+
 }

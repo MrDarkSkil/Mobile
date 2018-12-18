@@ -5,6 +5,7 @@ import {PostService} from "./http/post-service";
 import {NativeHttpBackend, NativeHttpFallback, NativeHttpModule} from "ionic-native-http-connection-backend";
 import {HttpBackend, HttpClientModule, HttpXhrBackend} from '@angular/common/http';
 import {Platform} from "ionic-angular";
+import {PutService} from "./http/put-service";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {Platform} from "ionic-angular";
     ApiServiceProvider,
     GetService,
     PostService,
+    PutService,
     {
       provide: HttpBackend,
       useClass: NativeHttpFallback,

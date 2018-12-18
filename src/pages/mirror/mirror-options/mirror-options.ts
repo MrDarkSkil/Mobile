@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController, NavParams} from 'ionic-angular';
+import {MirrorProvider} from "../../../providers/mirror/mirror.service";
+import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 
 @Component({
   selector: 'page-mirror-options',
@@ -8,7 +10,8 @@ import {AlertController, NavController, NavParams} from 'ionic-angular';
 export class MirrorOptionsPage {
 
   private mirror;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController,
+              private mirrorProvider: MirrorProvider, private authProvider: AuthServiceProvider) {
     this.mirror = this.navParams.get('mirror');
   }
 
@@ -33,7 +36,9 @@ export class MirrorOptionsPage {
         {
           text: 'Valider',
           handler: data => {
-            console.log(data.name);
+            this.authProvider.getUserToken().then(token => {
+              this.mirrorProvider.changeName(this.mirror.id, token, data);
+            });
           }
         }
       ]

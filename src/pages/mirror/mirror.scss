@@ -43,4 +43,16 @@ page-mirror {
   .body {
     border-top: 2px solid lightgrey;
   }
+
+  ion-list {
+    .icon {
+      display: flex;
+      align-content: center;
+      align-items: center;
+    }
+
+    ion-icon {
+      font-size: 3.5rem;
+    }
+  }
 }

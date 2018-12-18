@@ -9,7 +9,7 @@ export class MirrorProvider {
 
   }
 
-  public getMirrors(token) {
+  public getMirrors(token: any) {
     return this.api.get<MirrorDto[]>(this.api.getApiUrl() + '/api/mirrors', token);
   }
 

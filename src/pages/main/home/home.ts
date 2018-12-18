@@ -57,6 +57,10 @@ export class HomePage {
           loading.dismiss();
           resolve('ok');
         })
+          .catch(error => {
+            loading.dismiss();
+            reject(error);
+          });
       })
         .catch(error => {
           loading.dismiss();

@@ -11,6 +11,7 @@ import {MainModule} from "../pages/main/main.module";
 import {ProvidersModule} from "../providers/providers.module";
 import {MirrorModule} from "../pages/mirror/mirror.module";
 import { TabProvider } from '../providers/tab/tab';
+import { ModuleProvider } from '../providers/module/module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TabProvider } from '../providers/tab/tab';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TabProvider,
+    ModuleProvider,
   ]
 })
 export class AppModule {}

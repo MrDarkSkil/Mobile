@@ -3,6 +3,7 @@ import {ApiServiceModule} from "./api-service/api-service.module";
 import {AuthServiceProvider} from "./auth/auth-service";
 import {MirrorModule} from "./mirror/mirror.module";
 import {IonicStorageModule} from "@ionic/storage";
+import {ModuleProvider} from "./module/module";
 
 @NgModule({
   declarations: [],
@@ -13,7 +14,8 @@ import {IonicStorageModule} from "@ionic/storage";
   exports: [],
   providers: [
     AuthServiceProvider,
-    MirrorModule
+    MirrorModule,
+    ModuleProvider
   ]
 })
 

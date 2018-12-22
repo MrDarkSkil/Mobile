@@ -25,7 +25,8 @@
     </div>
   </div>
   <div class="body">
-    <ion-list>
+    <loader *ngIf="loader" padding></loader>
+    <ion-list *ngIf="!loader">
       <ion-item-sliding *ngFor="let module of modules" (click)="navigate('module', module)">
         <ion-item>
           <ion-avatar class="icon" item-start>

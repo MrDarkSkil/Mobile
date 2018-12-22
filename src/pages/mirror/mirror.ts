@@ -15,6 +15,7 @@ export class MirrorPage {
 
   public mirror: string = null;
   public modules: {};
+  public loader = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tabProvider: TabProvider,
               private popoverCtrl: PopoverController, private moduleProvider: ModuleProvider,
@@ -22,11 +23,12 @@ export class MirrorPage {
     this.mirror = this.navParams.get('mirror');
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.authProvider.getUserToken().then(token => {
       this.moduleProvider.getModules(token).then(result => {
         this.modules = result;
-      });/*this.navCtrl.push(AddMirrorPage);*/
+        this.loader = false;
+      });
     });
   }
 

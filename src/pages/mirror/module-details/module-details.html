@@ -13,7 +13,9 @@
         <span class="name">{{ module.title }}</span>
         <span class="author">{{ module.repository }}</span>
         <div class="button">
-          <button ion-button round (click)="install()">Installer</button>
+          <button ion-button round (click)="install()">{{ loader ? '' : 'Installer' }}
+            <loader *ngIf="loader" [color]="'#FFFFF'"></loader>
+          </button>
         </div>
       </div>
     </div>

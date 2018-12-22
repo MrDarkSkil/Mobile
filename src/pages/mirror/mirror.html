@@ -26,7 +26,7 @@
   </div>
   <div class="body">
     <ion-list>
-      <ion-item-sliding *ngFor="let module of modules">
+      <ion-item-sliding *ngFor="let module of modules" (click)="navigate('module', module)">
         <ion-item>
           <ion-avatar class="icon" item-start>
             <ion-icon name="logo-dropbox"></ion-icon>
@@ -35,7 +35,7 @@
           <h2>{{ module.title }}</h2>
           <p>{{ module.repository }}</p>
           <ion-note item-end>
-            <ion-icon name="ios-cloud-download-outline" style="color: #40c4ff"></ion-icon>
+            <ion-icon name="arrow-forward"></ion-icon>
           </ion-note>
         </ion-item>
       </ion-item-sliding>

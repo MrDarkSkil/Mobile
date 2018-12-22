@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="header">
+    <div class="module">
+      <ion-icon name="logo-dropbox"></ion-icon>
+      <div class="text">
+        <span class="name">{{ module.title }}</span>
+        <span class="author">{{ module.repository }}</span>
+        <div class="button">
+          <button ion-button round (click)="install()">Installer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="pictures">
+      <h4>Preview</h4>
+      <ion-slides>
+        <ion-slide>
+          <img src="assets/imgs/picture1.jpg">
+        </ion-slide>
+        <ion-slide>
+          <img src="assets/imgs/picture2.jpg">
+        </ion-slide>
+        <ion-slide>
+          <img src="assets/imgs/picture3.jpg">
+        </ion-slide>
+        <ion-slide>
+          <img src="assets/imgs/picture4.jpg">
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div class="description">
+      <p>Here is an example of description. As modules don't have descriptions for the moment this text is here to show
+        how it would look like with description.</p>
+    </div>
+    <div class="information">
+      <h4>Informations</h4>
+      <ion-item-group>
+        <ion-item>
+          <div class="information-title">
+            Developpeur
+          </div>
+          <div class="information-content" item-end>
+            {{ module.repository }}
+          </div>
+        </ion-item>
+        <ion-item>
+          <div class="information-title">
+            Taille
+          </div>
+          <div class="information-content" item-end>
+            3.4 MB
+          </div>
+        </ion-item>
+        <ion-item>
+          <div class="information-title">
+            Catégorie
+          </div>
+          <div class="information-content" item-end>
+            Productivité
+          </div>
+        </ion-item>
+        <ion-item>
+          <div class="information-title">
+            Date de publication
+          </div>
+          <div class="information-content" item-end>
+            {{ module.created_at }}
+          </div>
+        </ion-item>
+      </ion-item-group>
+    </div>
+  </div>
+</ion-content>

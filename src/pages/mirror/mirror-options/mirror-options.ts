@@ -37,7 +37,7 @@ export class MirrorOptionsPage {
           text: 'Valider',
           handler: data => {
             this.authProvider.getUserToken().then(token => {
-              this.mirrorProvider.changeName(this.mirror.id, token, data);
+              this.mirrorProvider.changeName(this.mirror.id, token, data.name);
             });
           }
         }

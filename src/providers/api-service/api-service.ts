@@ -13,8 +13,9 @@ export class ApiServiceProvider {
               private postService: PostService, private putService: PutService) {
 
     if (this.platform.is('cordova') == true) {
-      this.apiUrl = 'http://dev.elios-mirror.com';
-    }
+      this.apiUrl = 'http://dev.elios-mirror.com';       
+     }
+
   }
 
   public getApiUrl() {

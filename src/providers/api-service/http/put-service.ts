@@ -16,9 +16,11 @@ export class PutService {
         headers: token ?
           {
             'Authorization': 'Bearer ' + token,
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
           } : {
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
           }
       }).toPromise().then(data => {
         console.log('post data => ', JSON.stringify(data));

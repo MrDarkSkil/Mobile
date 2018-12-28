@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {ApiServiceProvider} from "../api-service/api-service";
-import {MirrorDto} from "./mirror.dto";
+import { ApiServiceProvider } from "../api-service/api-service";
+import { MirrorDto } from "./mirror.dto";
 
 @Injectable()
 export class MirrorProvider {
@@ -19,6 +19,14 @@ export class MirrorProvider {
 
   public unlinkMirror(id: string, token: any) {
     return this.api.post(this.api.getApiUrl() + '/api/mirrors/' + id + '/unlink', token);
+  }
+
+  public installModule(mirrorId: string, moduleId: string, token: any) {
+    return this.api.post(this.api.getApiUrl() + '/api/mirrors/' + mirrorId + '/' + moduleId, token, null);
+  }
+
+  public uninstallModule(mirrorId: string, moduleId: string, token: any) {
+    return this.api.delete(this.api.getApiUrl() + '/api/mirrors/' + mirrorId + '/' + moduleId, token);
   }
 
   public changeName(id: string, token: any, name: string) {

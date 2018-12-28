@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { MirrorProvider } from '../../../providers/mirror/mirror.service';
+import { AuthServiceProvider } from '../../../providers/auth/auth-service';
 
 @Component({
   selector: 'page-module-details',
@@ -10,7 +12,7 @@ export class ModuleDetailsPage {
   public module: any;
   public mirror: any;
   public loader = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private mirrorProvider: MirrorProvider, private authProvider: AuthServiceProvider) {
     this.module = this.navParams.get('module');
     this.mirror = this.navParams.get('mirror');
   }
@@ -21,10 +23,15 @@ export class ModuleDetailsPage {
 
   public install() {
     this.loader = true;
-    setTimeout(() => {
-      console.log('Here do stuff');
-      this.loader = false;
-    }, 2000);
+
+    this.authProvider.getUserToken().then(token => {
+      this.mirrorProvider.installModule(this.mirror.id, this.module.id, token).then(() => {
+        this.loader = false;
+      }).catch((err) => {
+        console.log('install error', err);
+        this.loader = false;
+      });
+    });
   }
 
 }

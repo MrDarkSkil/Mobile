@@ -12,4 +12,9 @@ export class ModuleProvider {
     return this.api.get(this.api.getApiUrl() + '/api/modules', token);
   }
 
+  public getModuleById(id: string, token: any) {
+    return this.api.get(this.api.getApiUrl() + '/api/modules/' + id, token);
+  }
+
+
 }

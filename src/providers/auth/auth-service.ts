@@ -37,7 +37,8 @@ export class AuthServiceProvider {
                 'client_id': '1',
                 'client_secret': 'Rp52CEoYWjiIA0kRTTGspdbjee3tQxSaNCVn7J87',
                 'username': username,
-                'password': password
+                'password': password,
+                'provider': 'users'
             });
         } else {
 

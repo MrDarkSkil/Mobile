@@ -25,12 +25,12 @@ export class MirrorPage {
   }
 
   ionViewDidEnter() {
+    this.refreshMirrorInfos();
     this.authProvider.getUserToken().then(token => {
       this.moduleProvider.getModules(token).then(result => {
         this.modules = result;
         this.loader = false;
       });
-
     });
   }
 

@@ -12,7 +12,8 @@ export class ModuleDetailsPage {
   public module: any;
   public mirror: any;
   public loader = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private mirrorProvider: MirrorProvider, private authProvider: AuthServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private mirrorProvider: MirrorProvider, private authProvider: AuthServiceProvider) {
     this.module = this.navParams.get('module');
     this.mirror = this.navParams.get('mirror');
   }

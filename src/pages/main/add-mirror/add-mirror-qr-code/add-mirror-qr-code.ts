@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {QRScanner, QRScannerStatus} from "@ionic-native/qr-scanner";
+import {QRScanner, QRScannerStatus} from "@ionic-native/qr-scanner/ngx";
 import {NavController} from "ionic-angular";
 import {MirrorProvider} from "../../../../providers/mirror/mirror.service";
 import {AuthServiceProvider} from "../../../../providers/auth/auth-service";

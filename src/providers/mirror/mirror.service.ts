@@ -13,6 +13,10 @@ export class MirrorProvider {
     return this.api.get<MirrorDto[]>(this.api.getApiUrl() + '/api/mirrors', token);
   }
 
+  public getMirror(token: any, mirrorID: string) {
+    return this.api.get<MirrorDto>(this.api.getApiUrl() + '/api/mirrors/' + mirrorID, token);
+  }
+
   public mirrorLink(mirrorId: string, token: any) {
     return this.api.post(this.api.getApiUrl() + '/api/mirrors/' + mirrorId + '/link', token, null);
   }

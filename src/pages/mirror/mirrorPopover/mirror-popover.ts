@@ -10,10 +10,12 @@ export class MirrorPopoverComponent {
 
   text: string;
   private mirror;
+  private parentPage;
 
   constructor(private viewCtrl: ViewController, private navParams: NavParams,
               private navCtrl: NavController) {
     this.mirror = this.navParams.get('mirror');
+    this.parentPage = this.navParams.get('parentPage');
   }
 
   public logout() {
@@ -22,7 +24,7 @@ export class MirrorPopoverComponent {
 
   public navigate() {
     this.viewCtrl.dismiss();
-    this.navCtrl.push(MirrorOptionsPage, {'mirror': this.mirror});
+    this.navCtrl.push(MirrorOptionsPage, {'mirror': this.mirror, 'parentPage': this.parentPage});
   }
 
 }

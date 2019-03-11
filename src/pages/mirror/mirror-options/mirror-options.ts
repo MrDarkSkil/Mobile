@@ -10,9 +10,12 @@ import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 export class MirrorOptionsPage {
 
   private mirror;
+  private parentPage;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController,
               private mirrorProvider: MirrorProvider, private authProvider: AuthServiceProvider) {
     this.mirror = this.navParams.get('mirror');
+    this.parentPage = this.navParams.get('parentPage');
   }
 
   public navigateBack() {
@@ -37,7 +40,10 @@ export class MirrorOptionsPage {
           text: 'Valider',
           handler: data => {
             this.authProvider.getUserToken().then(token => {
-              this.mirrorProvider.changeName(this.mirror.id, token, data.name);
+              this.mirrorProvider.changeName(this.mirror.id, token, data.name).then(result => {
+                this.mirror = result;
+                this.parentPage.refreshMirrorInfos();
+              });
             });
           }
         }

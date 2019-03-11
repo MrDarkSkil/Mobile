@@ -6,6 +6,7 @@ import {MirrorPopoverComponent} from "./mirrorPopover/mirror-popover";
 import {ModuleProvider} from "../../providers/module/module";
 import {AuthServiceProvider} from "../../providers/auth/auth-service";
 import {ModuleDetailsPage} from "./module-details/module-details";
+import {MirrorProvider} from "../../providers/mirror/mirror.service";
 
 @Component({
   selector: 'page-mirror',
@@ -13,13 +14,13 @@ import {ModuleDetailsPage} from "./module-details/module-details";
 })
 export class MirrorPage {
 
-  public mirror: string = null;
+  public mirror: any = null;
   public modules: {};
   public loader = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tabProvider: TabProvider,
               private popoverCtrl: PopoverController, private moduleProvider: ModuleProvider,
-              private authProvider: AuthServiceProvider) {
+              private authProvider: AuthServiceProvider, private mirrorProvider: MirrorProvider) {
     this.mirror = this.navParams.get('mirror');
   }
 
@@ -28,6 +29,15 @@ export class MirrorPage {
       this.moduleProvider.getModules(token).then(result => {
         this.modules = result;
         this.loader = false;
+      });
+
+    });
+  }
+
+  refreshMirrorInfos() {
+    this.authProvider.getUserToken().then(token => {
+      this.mirrorProvider.getMirror(token, this.mirror.id).then(result => {
+        this.mirror = result;
       });
     });
   }
@@ -42,7 +52,7 @@ export class MirrorPage {
   }
 
   public mirrorSettings(ev: UIEvent) {
-    let popover = this.popoverCtrl.create(MirrorPopoverComponent, {'mirror': this.mirror});
+    let popover = this.popoverCtrl.create(MirrorPopoverComponent, {'mirror': this.mirror, 'parentPage': this});
 
     popover.present({
       ev: ev

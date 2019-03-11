@@ -17,7 +17,9 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list *ngIf="mirrors !== undefined">
+  <loader *ngIf="loader" padding></loader>
+
+  <ion-list *ngIf="mirrors !== undefined && !loader">
 
     <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem (click)="navigate('mirror', { 'mirror': mirror })">
       <ion-item>

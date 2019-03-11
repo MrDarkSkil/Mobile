@@ -14,6 +14,7 @@ import {TabProvider} from "../../../providers/tab/tab";
 export class HomePage {
 
   public mirrors: MirrorDto[];
+  public loader: boolean = true;
 
   constructor(public navCtrl: NavController, private mirrorProvider: MirrorProvider, private auth: AuthServiceProvider,
               public loadingCtrl: LoadingController, private tabProvider: TabProvider) {
@@ -43,27 +44,23 @@ export class HomePage {
   }
 
   private refresh() {
-    let loading = this.loadingCtrl.create({
-      content: 'Chargement...'
-    });
-
-    loading.present();
+    this.loader = true;
 
     return new Promise((resolve, reject) => {
       this.auth.getUserToken().then(result => {
         const token = result;
         this.mirrorProvider.getMirrors(token).then(mirrors => {
           this.mirrors = mirrors;
-          loading.dismiss();
+          this.loader = false;
           resolve('ok');
         })
           .catch(error => {
-            loading.dismiss();
+            this.loader = false;
             reject(error);
           });
       })
         .catch(error => {
-          loading.dismiss();
+          this.loader = false;
           reject(error);
         });
     });

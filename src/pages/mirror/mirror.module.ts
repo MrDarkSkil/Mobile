@@ -6,6 +6,7 @@ import {MirrorOptionsPage} from "./mirror-options/mirror-options";
 import {ModuleDetailsPage} from "./module-details/module-details";
 import {ComponentsModule} from "../../components/components.module";
 import {ShopTabsPage} from "./shop-tabs/shop-tabs";
+import {SearchPage} from "./search/search";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {ShopTabsPage} from "./shop-tabs/shop-tabs";
     MirrorPopoverComponent,
     MirrorOptionsPage,
     ModuleDetailsPage,
-    ShopTabsPage
+    ShopTabsPage,
+    SearchPage
   ],
   imports: [
     IonicPageModule.forChild(MirrorPage),
@@ -23,6 +25,7 @@ import {ShopTabsPage} from "./shop-tabs/shop-tabs";
     MirrorPopoverComponent,
     MirrorOptionsPage,
     ModuleDetailsPage,
+    SearchPage
   ],
   exports: [
     MirrorPage,

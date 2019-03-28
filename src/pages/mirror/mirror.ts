@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, PopoverController} from 'ionic-angular';
-import {HomePage} from "../main/home/home";
+import {App, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {TabProvider} from "../../providers/tab/tab";
 import {MirrorPopoverComponent} from "./mirrorPopover/mirror-popover";
 import {ModuleProvider} from "../../providers/module/module";
 import {AuthServiceProvider} from "../../providers/auth/auth-service";
 import {ModuleDetailsPage} from "./module-details/module-details";
 import {MirrorProvider} from "../../providers/mirror/mirror.service";
+import {TabsPage} from "../main/tabs/tabs";
 
 @Component({
   selector: 'page-mirror',
@@ -20,7 +20,7 @@ export class MirrorPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tabProvider: TabProvider,
               private popoverCtrl: PopoverController, private moduleProvider: ModuleProvider,
-              private authProvider: AuthServiceProvider, private mirrorProvider: MirrorProvider) {
+              private authProvider: AuthServiceProvider, private mirrorProvider: MirrorProvider, private app: App) {
     this.mirror = this.navParams.get('mirror');
   }
 
@@ -59,7 +59,7 @@ export class MirrorPage {
     });
     popover.onDidDismiss(result => {
       if (result && result.logout) {
-        this.navCtrl.setRoot(HomePage);
+        this.app.getRootNav().setRoot(TabsPage);
         this.tabProvider.displayTab();
       }
     });

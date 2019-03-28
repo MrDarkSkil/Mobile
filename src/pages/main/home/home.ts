@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
-import {LoadingController, NavController} from "ionic-angular";
+import {App, LoadingController, NavController} from "ionic-angular";
 import {AddMirrorPage} from "../add-mirror/add-mirror";
 import {MirrorProvider} from "../../../providers/mirror/mirror.service";
 import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 import {MirrorDto} from "../../../providers/mirror/mirror.dto";
-import {MirrorPage} from "../../mirror/mirror";
-import {TabProvider} from "../../../providers/tab/tab";
+import {ShopTabsPage} from "../../mirror/shop-tabs/shop-tabs";
 
 @Component({
   selector: 'page-home',
@@ -17,11 +16,13 @@ export class HomePage {
   public loader: boolean = true;
 
   constructor(public navCtrl: NavController, private mirrorProvider: MirrorProvider, private auth: AuthServiceProvider,
-              public loadingCtrl: LoadingController, private tabProvider: TabProvider) {
+              public loadingCtrl: LoadingController, public app: App) {
   }
 
   ionViewDidEnter() {
-    this.refresh();
+    this.refresh().then(() => {
+      this.loader = false;
+    });
   }
 
   public navigate(location: string, parameters?: any) {
@@ -30,8 +31,9 @@ export class HomePage {
         this.navCtrl.push(AddMirrorPage);
         break;
       case 'mirror':
-        this.navCtrl.setRoot(MirrorPage, parameters);
-        this.tabProvider.hideTab();
+        this.app.getRootNav().setRoot(ShopTabsPage, parameters);
+        /*this.navCtrl.setRoot(ShopTabsPage, parameters);*/
+        /*this.tabProvider.hideTab();*/
         break;
       default:
     }
@@ -44,23 +46,19 @@ export class HomePage {
   }
 
   private refresh() {
-    this.loader = true;
 
     return new Promise((resolve, reject) => {
       this.auth.getUserToken().then(result => {
         const token = result;
         this.mirrorProvider.getMirrors(token).then(mirrors => {
           this.mirrors = mirrors;
-          this.loader = false;
           resolve('ok');
         })
           .catch(error => {
-            this.loader = false;
             reject(error);
           });
       })
         .catch(error => {
-          this.loader = false;
           reject(error);
         });
     });

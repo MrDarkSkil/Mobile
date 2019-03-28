@@ -8,6 +8,7 @@ import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import {AddMirrorQrCodePage} from "./add-mirror/add-mirror-qr-code/add-mirror-qr-code";
 import {MirrorProvider} from "../../providers/mirror/mirror.service";
 import {ComponentsModule} from "../../components/components.module";
+import {ShopTabsPage} from "../mirror/shop-tabs/shop-tabs";
 
 @NgModule({
   declarations: [
@@ -20,10 +21,11 @@ import {ComponentsModule} from "../../components/components.module";
   imports: [
     IonicPageModule.forChild(HomePage),
     IonicPageModule.forChild(TabsPage),
+    IonicPageModule.forChild(ShopTabsPage),
     IonicPageModule.forChild(AccountPage),
     IonicPageModule.forChild(AddMirrorPage),
     IonicPageModule.forChild(AddMirrorQrCodePage),
-    ComponentsModule
+    ComponentsModule,
   ],
   exports: [
     HomePage,

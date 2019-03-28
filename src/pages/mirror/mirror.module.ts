@@ -5,13 +5,15 @@ import {MirrorPopoverComponent} from "./mirrorPopover/mirror-popover";
 import {MirrorOptionsPage} from "./mirror-options/mirror-options";
 import {ModuleDetailsPage} from "./module-details/module-details";
 import {ComponentsModule} from "../../components/components.module";
+import {ShopTabsPage} from "./shop-tabs/shop-tabs";
 
 @NgModule({
   declarations: [
     MirrorPage,
     MirrorPopoverComponent,
     MirrorOptionsPage,
-    ModuleDetailsPage
+    ModuleDetailsPage,
+    ShopTabsPage
   ],
   imports: [
     IonicPageModule.forChild(MirrorPage),

@@ -5,6 +5,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <loader *ngIf="loader" padding></loader>
   <ion-list *ngIf="!loader">
     <ion-item-sliding *ngFor="let module of modules" (click)="navigate('module', module)">

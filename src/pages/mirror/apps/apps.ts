@@ -20,10 +20,24 @@ export class AppsPage {
   }
 
   ionViewDidEnter() {
-    this.authProvider.getUserToken().then(token => {
-      this.moduleProvider.getModules(token).then(result => {
-        this.modules = result;
-        this.loader = false;
+    this.refresh().then(() => {
+     this.loader = false;
+    });
+  }
+
+  doRefresh(event) {
+    this.refresh().then(() => {
+      event.complete();
+    });
+  }
+
+  refresh() {
+    return new Promise((resolve, reject) => {
+      this.authProvider.getUserToken().then(token => {
+        this.moduleProvider.getModules(token).then(result => {
+          this.modules = result;
+          resolve('ok');
+        });
       });
     });
   }

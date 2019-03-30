@@ -13,7 +13,7 @@
 <ion-content>
   <div class="header">
     <div class="mirror">
-      <img src="/assets/imgs/mirror.png" height="175">
+      <img src="assets/imgs/mirror.png" height="175">
       <div class="text">
         <span class="name">{{ mirror.name }}</span>
         <span class="model">{{ mirror.model }}</span>
@@ -41,5 +41,9 @@
         </ion-item>
       </ion-item-sliding>
     </ion-list>
+    <p class="no-apps-found" *ngIf="modules.length <= 0 && !loader" text-center>
+      <img src="assets/imgs/sad.svg" alt="sad face" width="40px"><br/>
+      Aucune application n'est installée
+    </p>
   </div>
 </ion-content>

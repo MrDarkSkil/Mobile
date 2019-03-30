@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {AccountPage} from "../../main/account/account";
 import {MirrorPage} from "../mirror";
 import {NavParams} from "ionic-angular";
 import {SearchPage} from "../search/search";
+import {AppsPage} from "../apps/apps";
 
 @Component({
   selector: 'page-shop-tabs',
@@ -11,7 +11,7 @@ import {SearchPage} from "../search/search";
 export class ShopTabsPage {
 
   mirror = MirrorPage;
-  stats = AccountPage;
+  apps = AppsPage;
   search = SearchPage;
   params = {'mirror': null};
 

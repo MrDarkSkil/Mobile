@@ -8,16 +8,24 @@
 <ion-content padding>
   <div class="header">
     <div class="module">
-      <ion-icon name="logo-dropbox"></ion-icon>
-      <div class="text">
-        <span class="name">{{ module.title }}</span>
-        <span class="author">{{ module.repository }}</span>
-        <div class="button">
-          <button ion-button round (click)="install()">{{ loader ? '' : 'Installer' }}
-            <loader *ngIf="loader" [color]="'#FFFFF'"></loader>
-          </button>
-        </div>
-      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <ion-icon name="logo-dropbox"></ion-icon>
+          </ion-col>
+          <ion-col col-8>
+            <div class="text">
+              <span class="name">{{ module.title }}</span>
+              <span class="author">{{ module.repository }}</span>
+              <div class="button">
+                <button ion-button round (click)="install()">{{ loader ? '' : 'Installer' }}
+                  <loader *ngIf="loader" [color]="'#FFFFF'"></loader>
+                </button>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
   </div>
   <div class="body">

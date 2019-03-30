@@ -20,7 +20,7 @@ page-module-details {
 
   .button {
     display: block;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     text-align: left;
     button {
       padding: 0 1.5rem;
@@ -35,6 +35,7 @@ page-module-details {
 
   .author {
     color: grey;
+    word-break: break-all;
   }
 
   ion-icon {

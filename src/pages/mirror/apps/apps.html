@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Applications</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <loader *ngIf="loader" padding></loader>
+  <ion-list *ngIf="!loader">
+    <ion-item-sliding *ngFor="let module of modules" (click)="navigate('module', module)">
+      <ion-item>
+        <ion-avatar class="icon" item-start>
+          <ion-icon name="logo-dropbox"></ion-icon>
+        </ion-avatar>
+        <div class="state" [style.background]="'#27c295'"></div>
+        <h2>{{ module.title }}</h2>
+        <p>{{ module.repository }}</p>
+        <ion-note item-end>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </ion-note>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

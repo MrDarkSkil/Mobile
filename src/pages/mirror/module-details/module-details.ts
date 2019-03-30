@@ -23,7 +23,6 @@ export class ModuleDetailsPage {
   }
 
   ionViewDidLoad() {
-    this.loader = true;
     this.authProvider.getUserToken().then(token => {
       this.mirrorProvider.isModuleInstalled(token, this.mirror.id, this.module.id).then(() => {
         this.isModuleInstalled = true;
@@ -33,12 +32,22 @@ export class ModuleDetailsPage {
       }).catch(() => {
         this.isModuleInstalled = false;
         this.loader = false;
+        this.buttonText = 'Installer';
       });
     });
   }
 
   public uninstallApp() {
-    console.log('uninstalled');
+    this.loader = true;
+
+    this.authProvider.getUserToken().then(token => {
+      this.mirrorProvider.uninstallModule(this.mirror.id, this.module.id, token).then(() => {
+        this.ionViewDidLoad();
+      }).catch((err) => {
+        console.log('uninstall error', err);
+        this.loader = false;
+      });
+    });
   }
 
   public install() {
@@ -46,7 +55,6 @@ export class ModuleDetailsPage {
 
     this.authProvider.getUserToken().then(token => {
       this.mirrorProvider.installModule(this.mirror.id, this.module.id, token).then(() => {
-        this.loader = false;
         this.ionViewDidLoad();
       }).catch((err) => {
         console.log('install error', err);

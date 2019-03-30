@@ -39,4 +39,21 @@ export class MirrorProvider {
     });
   }
 
+  public isModuleInstalled(token: any, mirrorID: string, moduleID: string) {
+
+    return new Promise((resolve, reject) => {
+      this.getMirror(token, mirrorID).then(result => {
+        for (let module of result.modules) {
+          if (module.module.id === moduleID) {
+            resolve('ok')
+          }
+        }
+        reject('not found');
+      })
+        .catch(error => {
+          reject(error);
+        })
+    });
+  }
+
 }

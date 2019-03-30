@@ -7,6 +7,7 @@ import {AuthServiceProvider} from "../../providers/auth/auth-service";
 import {ModuleDetailsPage} from "./module-details/module-details";
 import {MirrorProvider} from "../../providers/mirror/mirror.service";
 import {TabsPage} from "../main/tabs/tabs";
+import {ModuleDto} from "../../providers/mirror/mirror.dto";
 
 @Component({
   selector: 'page-mirror',
@@ -15,7 +16,7 @@ import {TabsPage} from "../main/tabs/tabs";
 export class MirrorPage {
 
   public mirror: any = null;
-  public modules: {};
+  public modules: Array<ModuleDto> = [];
   public loader = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tabProvider: TabProvider,
@@ -26,18 +27,14 @@ export class MirrorPage {
 
   ionViewDidEnter() {
     this.refreshMirrorInfos();
-    this.authProvider.getUserToken().then(token => {
-      this.moduleProvider.getModules(token).then(result => {
-        this.modules = result;
-        this.loader = false;
-      });
-    });
   }
 
   refreshMirrorInfos() {
     this.authProvider.getUserToken().then(token => {
       this.mirrorProvider.getMirror(token, this.mirror.id).then(result => {
         this.mirror = result;
+        this.modules = result.modules;
+        this.loader = false;
       });
     });
   }

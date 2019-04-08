@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {App, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {TabProvider} from "../../providers/tab/tab";
 import {MirrorPopoverComponent} from "./mirrorPopover/mirror-popover";
-import {ModuleProvider} from "../../providers/module/module";
 import {AuthServiceProvider} from "../../providers/auth/auth-service";
 import {ModuleDetailsPage} from "./module-details/module-details";
 import {MirrorProvider} from "../../providers/mirror/mirror.service";
@@ -20,8 +19,8 @@ export class MirrorPage {
   public loader = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tabProvider: TabProvider,
-              private popoverCtrl: PopoverController, private moduleProvider: ModuleProvider,
-              private authProvider: AuthServiceProvider, private mirrorProvider: MirrorProvider, private app: App) {
+              private popoverCtrl: PopoverController, private authProvider: AuthServiceProvider,
+              private mirrorProvider: MirrorProvider, private app: App) {
     this.mirror = this.navParams.get('mirror');
   }
 

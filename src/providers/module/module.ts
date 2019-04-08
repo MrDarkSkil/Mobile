@@ -16,5 +16,9 @@ export class ModuleProvider {
     return this.api.get(this.api.getApiUrl() + '/api/modules/' + id, token);
   }
 
+  public getModulesBySearch(search: string, token: any) {
+    return this.api.get(this.api.getApiUrl() + '/api/store/search?q=' + search, token);
+  }
+
 
 }

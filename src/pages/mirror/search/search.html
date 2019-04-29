@@ -12,7 +12,8 @@
     <ion-item-sliding *ngFor="let module of modules" (click)="navigate('module', module)">
       <ion-item>
         <ion-avatar class="icon" item-start>
-          <ion-icon name="logo-dropbox"></ion-icon>
+          <img *ngIf="module.logo_url" src="{{ module.logo_url }}">
+          <ion-icon name="logo-dropbox" *ngIf="!module.logo_url"></ion-icon>
         </ion-avatar>
         <div class="state" [style.background]="'#27c295'"></div>
         <h2>{{ module.title }}</h2>

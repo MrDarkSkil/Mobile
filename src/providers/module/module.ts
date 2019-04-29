@@ -9,7 +9,7 @@ export class ModuleProvider {
   }
 
   public getModules(token: any) {
-    return this.api.get(this.api.getApiUrl() + '/api/modules', token);
+    return this.api.get(this.api.getApiUrl() + '/api/store', token);
   }
 
   public getModuleById(id: string, token: any) {

@@ -11,7 +11,8 @@
       <ion-grid>
         <ion-row>
           <ion-col col-4>
-            <ion-icon name="logo-dropbox"></ion-icon>
+            <img *ngIf="module.logo_url" src="{{ module.logo_url }}" style="border-radius: 20px">
+            <ion-icon name="logo-dropbox" *ngIf="!module.logo_url"></ion-icon>
           </ion-col>
           <ion-col col-8>
             <div class="text">
@@ -48,8 +49,7 @@
       </ion-slides>
     </div>
     <div class="description">
-      <p>Here is an example of description. As modules don't have descriptions for the moment this text is here to show
-        how it would look like with description.</p>
+      <p>{{ module.description }}</p>
     </div>
     <div class="information">
       <h4>Informations</h4>
@@ -64,18 +64,10 @@
         </ion-item>
         <ion-item>
           <div class="information-title">
-            Taille
-          </div>
-          <div class="information-content" item-end>
-            3.4 MB
-          </div>
-        </ion-item>
-        <ion-item>
-          <div class="information-title">
             Catégorie
           </div>
           <div class="information-content" item-end>
-            Productivité
+            {{ module.category }}
           </div>
         </ion-item>
         <ion-item>

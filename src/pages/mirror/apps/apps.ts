@@ -35,7 +35,7 @@ export class AppsPage {
     return new Promise((resolve, reject) => {
       this.authProvider.getUserToken().then(token => {
         this.moduleProvider.getModules(token).then(result => {
-          this.modules = result;
+          this.modules = result
           resolve('ok');
         });
       });

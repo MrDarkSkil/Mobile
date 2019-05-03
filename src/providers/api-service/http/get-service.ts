@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import {AlertProvider} from "../../alert/alert-service";
 
 @Injectable()
 export class GetService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private alertProvider: AlertProvider) {
   }
 
   public submit<T>(url: string, token?: string): Promise<T> {
@@ -22,6 +23,8 @@ export class GetService {
       return data;
     }).catch(err => {
       console.log('get error => ', JSON.stringify(err));
+
+      this.alertProvider.errorAlert(err);
       throw err;
     });
   }

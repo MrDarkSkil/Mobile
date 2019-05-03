@@ -7,7 +7,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "https://dev.elios-mirror.com"
+      "proxyUrl": "http://127.0.0.1:8000"
     }
   ],
   "id": "4296fc26"

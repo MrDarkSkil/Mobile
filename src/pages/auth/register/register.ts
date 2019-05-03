@@ -51,12 +51,6 @@ export class RegisterPage {
                 alert.present();
             }).catch(error => {
                 loading.dismiss();
-                let alert = this.alertCtrl.create({
-                    title: 'Erreur',
-                    subTitle: error,
-                    buttons: [{text: 'Ok'}]
-                });
-                alert.present();
             });
         }
     }

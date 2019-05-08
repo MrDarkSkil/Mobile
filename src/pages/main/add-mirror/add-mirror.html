@@ -11,7 +11,7 @@
 
   <p>Pour lier un nouveau miroir à votre compte, scannez son QRCode</p>
 
-  <button ion-button [navPush]="qrcodePage">Scanner QRCode</button>
+  <button ion-button (click)="navigate()">Scanner QRCode</button>
 
   <div class="mirror-input">
     <p>Si vous n'avez pas la possibilité de scanner le QRCode, veuillez rentrer l'id du miroir directement:</p>

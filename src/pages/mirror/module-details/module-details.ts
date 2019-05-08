@@ -63,4 +63,8 @@ export class ModuleDetailsPage {
     });
   }
 
+  public isArray(variable: any) {
+    return Array.isArray(variable);
+  }
+
 }

@@ -52,4 +52,8 @@ export class AddMirrorPage {
       toast.present();
     }
   }
+
+  public navigate() {
+    this.navCtrl.push(AddMirrorQrCodePage);
+  }
 }

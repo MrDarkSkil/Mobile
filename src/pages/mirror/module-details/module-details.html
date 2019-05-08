@@ -33,7 +33,7 @@
   <div class="body">
     <div class="pictures">
       <h4>Preview</h4>
-      <ion-slides pager="true" paginationType="bullets">
+      <ion-slides pager="true" paginationType="bullets" *ngIf="isArray(module.screenshots)">
         <ion-slide *ngFor="let screenshot of module.screenshots">
           <img src="{{ screenshot }}">
         </ion-slide>

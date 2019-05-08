@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {QRScanner, QRScannerStatus} from "@ionic-native/qr-scanner/ngx";
 import {NavController} from "ionic-angular";
 import {MirrorProvider} from "../../../../providers/mirror/mirror.service";
-import {AuthServiceProvider} from "../../../../providers/auth/auth-service";
 
 @Component({
   selector: 'page-add-mirror-qr-code',
@@ -12,8 +11,7 @@ export class AddMirrorQrCodePage {
 
   private scanSub: any;
 
-  constructor(private qrScanner: QRScanner, public navCtrl: NavController, private mirrorProvider: MirrorProvider,
-              private authProvider: AuthServiceProvider) {
+  constructor(private qrScanner: QRScanner, public navCtrl: NavController, private mirrorProvider: MirrorProvider) {
   }
 
   ionViewWillEnter() {
@@ -25,22 +23,20 @@ export class AddMirrorQrCodePage {
           this.scanSub = this.qrScanner.scan().subscribe(mirrorId => {
             console.log('Mirror has been scanned', mirrorId);
 
-            this.authProvider.getUserToken().then(token => {
-              this.mirrorProvider.mirrorLink(mirrorId, token).then(result => {
-                console.log('mirror linked');
+            this.mirrorProvider.mirrorLink(mirrorId).then(result => {
+              console.log('mirror linked');
+              this.qrScanner.hide();
+              this.scanSub.unsubscribe();
+              this.hideCamera();
+              this.navCtrl.pop();
+            })
+              .catch(error => {
+                console.log('An error occurred', error);
                 this.qrScanner.hide();
                 this.scanSub.unsubscribe();
                 this.hideCamera();
                 this.navCtrl.pop();
-              })
-                .catch(error => {
-                  console.log('An error occurred', error);
-                  this.qrScanner.hide();
-                  this.scanSub.unsubscribe();
-                  this.hideCamera();
-                  this.navCtrl.pop();
-                });
-            });
+              });
           });
 
           this.qrScanner.show();

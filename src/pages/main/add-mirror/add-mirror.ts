@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {AlertController, LoadingController, NavController, Platform, ToastController} from "ionic-angular";
 import {AddMirrorQrCodePage} from "./add-mirror-qr-code/add-mirror-qr-code";
 import {MirrorProvider} from "../../../providers/mirror/mirror.service";
-import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 @Component({
   selector: 'page-add-mirror',
   templateUrl: 'add-mirror.html',
@@ -12,8 +11,8 @@ export class AddMirrorPage {
   public mirrorId: string;
 
   constructor(public navCtrl: NavController, private toastCtrl: ToastController, public loadingCtrl: LoadingController,
-              private mirrorProvider: MirrorProvider, private authProvider: AuthServiceProvider,
-              private platform: Platform, private alertCtrl: AlertController) {
+              private mirrorProvider: MirrorProvider, private platform: Platform,
+              private alertCtrl: AlertController) {
   }
 
   public linkMirror() {

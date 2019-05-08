@@ -37,6 +37,9 @@ import {ShopTabsPage} from "../mirror/shop-tabs/shop-tabs";
   providers: [
     QRScanner,
     MirrorProvider
+  ],
+  entryComponents: [
+    TabsPage
   ]
 })
 

@@ -100,3 +100,26 @@ ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .nav-deco
 
 @import "roboto";
 @import "noto-sans";
+
+.toolbar-background {
+  background: #F9F9F9 !important;
+  border: none !important;
+}
+
+ion-header {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1) !important;
+}
+
+.tabbar {
+  background: #F9F9F9 !important;
+  border: none !important;
+  box-shadow: 0 -1px 3px rgba(0,0,0,0.05), 0 -1px 2px rgba(0,0,0,0.1) !important;
+}
+
+.item {
+  border-bottom: 1px solid #eeeeee !important;
+}
+
+.fab {
+  box-shadow: 0 -1px 3px rgba(0,0,0,0.05), 0 -1px 2px rgba(0,0,0,0.1) !important;
+}

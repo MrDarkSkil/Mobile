@@ -56,4 +56,8 @@ export class AddMirrorPage {
   public navigate() {
     this.navCtrl.push(AddMirrorQrCodePage);
   }
+
+  public close(event?) {
+    this.navCtrl.pop();
+  }
 }

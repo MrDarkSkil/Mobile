@@ -49,7 +49,7 @@ export class ApiServiceProvider {
                 location.reload();
               });
             }
-            throw err;
+            reject(err);
           });
       });
     });

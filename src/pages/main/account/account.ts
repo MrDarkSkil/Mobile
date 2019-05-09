@@ -3,6 +3,7 @@ import {AlertController, LoadingController, NavController, NavParams} from 'ioni
 import {LoginPage} from "../../auth/login/login";
 import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 import {TabProvider} from "../../../providers/tab/tab";
+import {SplashScreen} from "@ionic-native/splash-screen/ngx";
 
 @Component({
   selector: 'page-account',
@@ -14,7 +15,8 @@ export class AccountPage {
   tabBarElement: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
-              private alertCtrl: AlertController, private auth: AuthServiceProvider, private tabProvider: TabProvider) {
+              private alertCtrl: AlertController, private auth: AuthServiceProvider, private tabProvider: TabProvider,
+              private splashScreen: SplashScreen) {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
 
@@ -43,7 +45,8 @@ export class AccountPage {
             this.auth.logout().then(() => {
               this.tabProvider.hideTab();
               loading.dismiss();
-              this.navCtrl.setRoot(this.loginPage);
+              this.splashScreen.show();
+              location.reload();
             });
           }
         }

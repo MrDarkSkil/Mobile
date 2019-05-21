@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Platform} from "ionic-angular";
+import {App, Platform} from "ionic-angular";
 import {HttpClient} from '@angular/common/http';
 import {Storage} from "@ionic/storage";
 import {SplashScreen} from "@ionic-native/splash-screen/ngx";
@@ -17,7 +17,7 @@ export class ApiServiceProvider {
   private readonly apiUrl: string = '/api';
 
   constructor(private platform: Platform, private httpClient: HttpClient, private storage: Storage,
-              private splashScreen: SplashScreen) {
+              private splashScreen: SplashScreen, private app: App) {
 
     if (this.platform.is('cordova') == true) {
       this.apiUrl = 'https://api.elios-mirror.com';
@@ -41,7 +41,7 @@ export class ApiServiceProvider {
           resolve(result);
         })
           .catch((err) => {
-            if (err && err.status && err.status === 401) {
+            if (err && err.status && err.status === 401 && this.app.getRootNav().root.name != 'LoginPage') {
               console.log(token);
               this.storage.remove('access_token').then(() => {
                 console.log('Error 401: app reload');

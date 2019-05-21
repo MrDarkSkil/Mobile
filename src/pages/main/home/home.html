@@ -38,5 +38,8 @@
         </button>
       </ion-item-options>
     </ion-item-sliding>
+    <div *ngIf="!mirrors.length" text-center>
+      <p class="no-mirror-found">Aucun miroir n'est lié à ce compte</p>
+    </div>
   </ion-list>
 </ion-content>

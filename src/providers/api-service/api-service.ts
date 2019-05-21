@@ -20,7 +20,7 @@ export class ApiServiceProvider {
               private splashScreen: SplashScreen, private app: App) {
 
     if (this.platform.is('cordova') == true) {
-      this.apiUrl = 'https://api.elios-mirror.com';
+      this.apiUrl = 'https://dev.elios-mirror.com';
     }
 
   }

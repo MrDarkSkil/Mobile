@@ -21,6 +21,7 @@
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="KeyboardResize" value="false" />
     <preference name="CordovaWebViewEngine" value="CDVUIWebViewEngine" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="UseSwiftLanguageVersion" value="5" />
     <platform name="android">
         <allow-intent href="market:*" />

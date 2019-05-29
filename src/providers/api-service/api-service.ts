@@ -15,7 +15,7 @@ export class ApiServiceProvider {
                private deleteService: DeleteService) {
 
     if (this.platform.is('cordova') == true) {
-      this.apiUrl = 'http://dev.elios-mirror.com';       
+      this.apiUrl = 'https://dev.elios-mirror.com';       
      }
 
   }

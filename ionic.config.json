@@ -1,14 +1,5 @@
 {
-  "name": "Elios",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular",
-  "proxies": [
-    {
-      "path": "/api",
-      "proxyUrl": "https://dev.elios-mirror.com"
-    }
-  ],
-  "id": "4296fc26"
+  "name": "elios",
+  "integrations": {},
+  "type": "angular"
 }

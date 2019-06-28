@@ -1,43 +1,23 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { IonicStorageModule } from '@ionic/storage';
+import { RouteReuseStrategy } from '@angular/router';
 
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import {AuthModule} from "../pages/auth/auth.module";
-import {MainModule} from "../pages/main/main.module";
-import {ProvidersModule} from "../providers/providers.module";
-import {MirrorModule} from "../pages/mirror/mirror.module";
-import { TabProvider } from '../providers/tab/tab';
-import { ModuleProvider } from '../providers/module/module';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    MyApp,
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp, {
-      tabsHideOnSubPages: true,
-    }),
-    IonicStorageModule.forRoot(),
-    AuthModule,
-    MainModule,
-    ProvidersModule,
-    MirrorModule,
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-  ],
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TabProvider,
-    ModuleProvider,
-  ]
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -17,8 +17,8 @@ export class MirrorProvider {
     return this.api.get<MirrorDto>(this.api.getApiUrl() + '/api/mirrors/' + mirrorID, token);
   }
 
-  public mirrorLink(mirrorId: string, token: any) {
-    return this.api.post(this.api.getApiUrl() + '/api/mirrors/' + mirrorId + '/link', token, null);
+  public mirrorLink(mirrorId: string) {
+    return this.api.post(this.api.getApiUrl() + '/api/mirrors/' + mirrorId + '/link');
   }
 
   public unlinkMirror(id: string, token: any) {

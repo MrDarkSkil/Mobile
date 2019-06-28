@@ -66,13 +66,13 @@ export class PlatformMock {
   }
 }
 
-export class StatusBarMock extends StatusBar {
+export class StatusBarMock {
   styleDefault() {
     return;
   }
 }
 
-export class SplashScreenMock extends SplashScreen {
+export class SplashScreenMock {
   hide() {
     return;
   }

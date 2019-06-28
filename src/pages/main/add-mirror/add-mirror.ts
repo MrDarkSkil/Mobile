@@ -1,19 +1,18 @@
 import {Component} from '@angular/core';
-import {LoadingController, NavController, ToastController} from "ionic-angular";
+import {AlertController, LoadingController, NavController, Platform, ToastController} from "ionic-angular";
 import {AddMirrorQrCodePage} from "./add-mirror-qr-code/add-mirror-qr-code";
 import {MirrorProvider} from "../../../providers/mirror/mirror.service";
-import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 @Component({
   selector: 'page-add-mirror',
   templateUrl: 'add-mirror.html',
 })
 export class AddMirrorPage {
 
-  public qrcodePage: any = AddMirrorQrCodePage;
   public mirrorId: string;
 
   constructor(public navCtrl: NavController, private toastCtrl: ToastController, public loadingCtrl: LoadingController,
-              private mirrorProvider: MirrorProvider, private authProvider: AuthServiceProvider) {
+              private mirrorProvider: MirrorProvider, private platform: Platform,
+              private alertCtrl: AlertController) {
   }
 
   public linkMirror() {
@@ -24,8 +23,7 @@ export class AddMirrorPage {
 
       loading.present();
 
-      this.authProvider.getUserToken().then(token => {
-        this.mirrorProvider.mirrorLink(this.mirrorId, token).then(result => {
+        this.mirrorProvider.mirrorLink(this.mirrorId).then(result => {
           loading.dismiss();
 
           let toast = this.toastCtrl.create({
@@ -35,12 +33,20 @@ export class AddMirrorPage {
           });
 
           toast.present();
+          this.navCtrl.pop();
         })
           .catch(error => {
             loading.dismiss();
+
+            let toast = this.toastCtrl.create({
+              message: 'Erreur: Il semblerait que l\'ID ne soit pas valide',
+              duration: 3000,
+              position: 'top'
+            });
+
+            toast.present();
             console.log(error);
-          })
-      });
+          });
 
     } else {
       let toast = this.toastCtrl.create({
@@ -51,5 +57,22 @@ export class AddMirrorPage {
 
       toast.present();
     }
+  }
+
+  public navigate() {
+    if (this.platform.is('cordova') == true) {
+      this.navCtrl.push(AddMirrorQrCodePage);
+    } else {
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        subTitle: 'This feature only works on native devices',
+        buttons: [{text: 'Ok'}]
+      });
+      alert.present();
+    }
+  }
+
+  public close(event?) {
+    this.navCtrl.pop();
   }
 }

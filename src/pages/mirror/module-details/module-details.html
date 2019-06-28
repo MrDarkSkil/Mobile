@@ -33,18 +33,9 @@
   <div class="body">
     <div class="pictures">
       <h4>Preview</h4>
-      <ion-slides>
-        <ion-slide>
-          <img src="assets/imgs/picture1.jpg">
-        </ion-slide>
-        <ion-slide>
-          <img src="assets/imgs/picture2.jpg">
-        </ion-slide>
-        <ion-slide>
-          <img src="assets/imgs/picture3.jpg">
-        </ion-slide>
-        <ion-slide>
-          <img src="assets/imgs/picture4.jpg">
+      <ion-slides pager="true" paginationType="bullets" *ngIf="isArray(module.screenshots)">
+        <ion-slide *ngFor="let screenshot of module.screenshots">
+          <img src="{{ screenshot }}">
         </ion-slide>
       </ion-slides>
     </div>

@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {App, LoadingController, NavController} from "ionic-angular";
-import {AddMirrorPage} from "../add-mirror/add-mirror";
 import {MirrorProvider} from "../../../providers/mirror/mirror.service";
 import {AuthServiceProvider} from "../../../providers/auth/auth-service";
 import {MirrorDto} from "../../../providers/mirror/mirror.dto";
@@ -27,9 +26,6 @@ export class HomePage {
 
   public navigate(location: string, parameters?: any) {
     switch (location) {
-      case 'addMirror':
-        this.navCtrl.push(AddMirrorPage);
-        break;
       case 'mirror':
         this.app.getRootNav().setRoot(ShopTabsPage, parameters);
         /*this.navCtrl.setRoot(ShopTabsPage, parameters);*/

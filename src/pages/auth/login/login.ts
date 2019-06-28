@@ -39,7 +39,7 @@ export class LoginPage {
       loading.dismiss();
       let alert = this.alertCtrl.create({
         title: 'Erreur',
-        subTitle: data,
+        subTitle: data.error.message,
         buttons: [{text: 'Ok'}]
       });
       alert.present();

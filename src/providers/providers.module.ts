@@ -4,6 +4,7 @@ import {AuthServiceProvider} from "./auth/auth-service";
 import {MirrorModule} from "./mirror/mirror.module";
 import {IonicStorageModule} from "@ionic/storage";
 import {ModuleProvider} from "./module/module";
+import {AlertProvider} from "./alert/alert-service";
 
 @NgModule({
   declarations: [],
@@ -15,7 +16,8 @@ import {ModuleProvider} from "./module/module";
   providers: [
     AuthServiceProvider,
     MirrorModule,
-    ModuleProvider
+    ModuleProvider,
+    AlertProvider
   ]
 })
 

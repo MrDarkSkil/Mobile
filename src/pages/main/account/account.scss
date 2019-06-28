@@ -1,3 +1,64 @@
 page-account {
+  .close-button {
+    font-size: 35px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 2.5rem 2.5rem;
+    color: white;
+    z-index: 100;
+  }
 
+  .background {
+    height: 35vh;
+    width: 100%;
+    background: $gradient-background no-repeat;
+  }
+
+  .mirror {
+    text-align: center;
+    margin-top: -70px;
+  }
+
+  .name {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 1rem 0;
+  }
+
+  .date {
+    text-align: center;
+
+    &-content {
+      text-align: center;
+      color: grey;
+      border: 1px #e4e4e4 solid;
+      border-radius: 1000px;
+      display: inline-block;
+      padding: .5rem 1rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  .action {
+    &-buttons {
+      text-align: center;
+      margin: 3rem 1rem;
+
+      .edit-button ion-icon {
+        display: inline-block;
+        font-size: 3vh;
+        color: map-get($colors, dark);
+        background-color: #f3f3f3;
+        padding: 1.2rem 1.5rem;
+        border-radius: 1000px;
+      }
+    }
+
+    &-text {
+      display: block;
+      color: map-get($colors, dark);
+      margin-top: 1rem;
+    }
+  }
 }

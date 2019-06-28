@@ -31,7 +31,7 @@ export class RegisterPage {
             loading.dismiss();
             let alert = this.alertCtrl.create({
                 title: 'Erreur',
-                subTitle: 'Les mots de passes ne correspondent pas entre eux',
+                subTitle: 'Les mots de passe ne correspondent pas entre eux',
                 buttons: [{text: 'Ok'}]
             });
             alert.present();
@@ -51,12 +51,6 @@ export class RegisterPage {
                 alert.present();
             }).catch(error => {
                 loading.dismiss();
-                let alert = this.alertCtrl.create({
-                    title: 'Erreur',
-                    subTitle: error,
-                    buttons: [{text: 'Ok'}]
-                });
-                alert.present();
             });
         }
     }

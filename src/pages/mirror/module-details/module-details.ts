@@ -23,6 +23,10 @@ export class ModuleDetailsPage {
   }
 
   ionViewDidLoad() {
+    this.checkModule();
+  }
+
+  private checkModule() {
     this.authProvider.getUserToken().then(token => {
       this.mirrorProvider.isModuleInstalled(token, this.mirror.id, this.module.id).then(() => {
         this.isModuleInstalled = true;
@@ -33,6 +37,7 @@ export class ModuleDetailsPage {
         this.isModuleInstalled = false;
         this.loader = false;
         this.buttonText = 'Installer';
+        this.uninstall = false;
       });
     });
   }
@@ -42,7 +47,7 @@ export class ModuleDetailsPage {
 
     this.authProvider.getUserToken().then(token => {
       this.mirrorProvider.uninstallModule(this.mirror.id, this.module.id, token).then(() => {
-        this.ionViewDidLoad();
+        this.checkModule();
       }).catch((err) => {
         console.log('uninstall error', err);
         this.loader = false;
@@ -55,12 +60,16 @@ export class ModuleDetailsPage {
 
     this.authProvider.getUserToken().then(token => {
       this.mirrorProvider.installModule(this.mirror.id, this.module.id, token).then(() => {
-        this.ionViewDidLoad();
+        this.checkModule();
       }).catch((err) => {
         console.log('install error', err);
         this.loader = false;
       });
     });
+  }
+
+  public isArray(variable: any) {
+    return Array.isArray(variable);
   }
 
 }

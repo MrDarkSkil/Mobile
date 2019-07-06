@@ -1,0 +1,34 @@
+<ion-header>
+
+</ion-header>
+
+
+<ion-content class="login" padding forceOverscroll="false">
+  <div class="login-header" text-center>
+    <ion-img src="assets/imgs/elios.png"></ion-img>
+  </div>
+
+  <ion-list class="login-form" padding>
+    <h3 padding-start padding-bottom>Se connecter</h3>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+
+    <div padding-top text-right>
+      <ion-button size="default" fill="outline" color="secondary">S'inscrire</ion-button>
+      <ion-button size="default" color="primary">Envoyer</ion-button>
+    </div>
+
+    <div text-right padding-top>
+      <a text-right>Mot de passe oublié ?</a>
+    </div>
+  </ion-list>
+
+</ion-content>
+

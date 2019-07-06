@@ -1,0 +1,39 @@
+<ion-header>
+
+</ion-header>
+
+
+<ion-content class="register" padding forceOverscroll="false">
+  <div class="register-header" text-center>
+    <ion-img src="assets/imgs/elios.png"></ion-img>
+  </div>
+
+  <ion-list class="register-form" padding>
+    <h3 padding-start padding-top>S'inscrire</h3>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Répétez le mot de passe</ion-label>
+      <ion-input type="password" [(ngModel)]="passwordConfirmation"></ion-input>
+    </ion-item>
+
+    <div padding-top>
+        <ion-button color="secondary" size="default" fill="outline" href="/login">
+          <ion-icon name="arrow-dropleft"></ion-icon>
+        </ion-button>
+      <div class="send-button">
+        <ion-button color="primary" size="default">Envoyer</ion-button>
+      </div>
+    </div>
+
+  </ion-list>
+
+</ion-content>

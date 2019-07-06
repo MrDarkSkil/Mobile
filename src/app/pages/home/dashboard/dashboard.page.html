@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title>
+      <ion-img src="assets/imgs/elios.png"></ion-img>
+      <span class="title-text">Elios Mirror</span>
+    </ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-refresher>
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+<!--  <loader *ngIf="loader" padding></loader>-->
+
+  <ion-list *ngIf="mirrors !== undefined && !loader">
+
+    <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem>
+
+      <ion-item>
+        <ion-avatar class="icon">
+          <ion-icon name="aperture"></ion-icon>
+        </ion-avatar>
+
+        <div class="state" [style.background]="'#27c295'"></div>
+
+        <h2>{{ mirror.name }}</h2>
+        <p>{{ mirror.ip }}</p>
+
+        <ion-note>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </ion-note>
+
+      </ion-item>
+
+      <ion-item-options>
+        <ion-button color="danger">
+          <ion-icon name="trash" style="padding: 0"></ion-icon>
+        </ion-button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <div *ngIf="!mirrors.length" text-center>
+      <p class="no-mirror-found">Aucun miroir n'est lié à ce compte</p>
+    </div>
+
+  </ion-list>
+</ion-content>

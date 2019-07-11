@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import {Router} from '@angular/router';
 
 enum HttpMethods {
   GET,
@@ -16,7 +17,7 @@ export class ApiService {
 
   private readonly apiUrl: string = '/api';
 
-  constructor(private httpClient: HttpClient, private storage: Storage) {
+  constructor(private httpClient: HttpClient, private storage: Storage, private router: Router) {
   }
 
   private request<T>(method: HttpMethods, url: string, data: {} = {}): Promise<T> {
@@ -36,6 +37,8 @@ export class ApiService {
         })
           .catch((err) => {
             console.log('error');
+            this.storage.remove('access_token');
+            this.router.navigate(['/login']);
             reject(err);
           });
       });

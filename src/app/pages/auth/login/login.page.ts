@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertController, LoadingController} from '@ionic/angular';
-import {Router} from '@angular/router';
+import {AlertController, LoadingController, NavController} from '@ionic/angular';
 import {AuthService} from '../../../services/auth/auth.service';
 
 @Component({
@@ -13,7 +12,7 @@ export class LoginPage implements OnInit {
   public email: string = null;
   public password: string = null;
 
-  constructor(public router: Router, public loadingCtrl: LoadingController,
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController,
               private auth: AuthService, private alertCtrl: AlertController) {
   }
 
@@ -29,7 +28,7 @@ export class LoginPage implements OnInit {
 
     this.auth.login(this.email, this.password).then(data => {
       loading.dismiss();
-      this.router.navigate(['/home/dashboard']);
+      this.navCtrl.navigateRoot(['/home/dashboard']);
     }).catch(async data => {
       loading.dismiss();
       const alert = await this.alertCtrl.create({

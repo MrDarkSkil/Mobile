@@ -17,7 +17,8 @@ export class DashboardPage implements OnInit {
   constructor(private auth: AuthService, private mirrorService: MirrorService, private loadingCtrl: LoadingController) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   ionViewDidEnter() {
     this.refresh().then(() => {

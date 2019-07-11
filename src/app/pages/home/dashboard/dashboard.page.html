@@ -35,7 +35,7 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option color="danger" expandable>
+        <ion-item-option color="danger" expandable (click)="deleteMirror(slidingItem, mirror.id)">
           <ion-icon name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>

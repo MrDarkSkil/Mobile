@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {ModalController} from '@ionic/angular';
+import {AddPage} from './add/add.page';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(public modalController: ModalController) {
+  }
+
+  public async AddMirror() {
+    const modal = await this.modalController.create({
+      component: AddPage
+    });
+    return await modal.present();
+  }
 
 }

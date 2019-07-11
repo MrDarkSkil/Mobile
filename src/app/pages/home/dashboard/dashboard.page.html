@@ -11,7 +11,7 @@
 
 
 <ion-content>
-  <ion-refresher>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
@@ -23,13 +23,10 @@
 
       <ion-item>
         <ion-avatar class="icon">
-          <ion-icon name="aperture"></ion-icon>
+          <ion-icon name="aperture" style="font-size: 1.5rem"></ion-icon>
         </ion-avatar>
 
-        <div class="state" [style.background]="'#27c295'"></div>
-
-        <h2>{{ mirror.name }}</h2>
-        <p>{{ mirror.ip }}</p>
+        <ion-label>{{ mirror.name }}</ion-label>
 
         <ion-note>
           <ion-icon name="arrow-forward"></ion-icon>
@@ -37,10 +34,10 @@
 
       </ion-item>
 
-      <ion-item-options>
-        <ion-button color="danger">
-          <ion-icon name="trash" style="padding: 0"></ion-icon>
-        </ion-button>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" expandable>
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
 

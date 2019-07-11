@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MirrorDto} from '../../../services/mirror/mirror.dto';
+import {AuthService} from '../../../services/auth/auth.service';
+import {MirrorService} from '../../../services/mirror/mirror.service';
+import {LoadingController} from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +14,49 @@ export class DashboardPage implements OnInit {
   public mirrors: MirrorDto[] = null;
   public loader = true;
 
-  constructor() {
+  constructor(private auth: AuthService, private mirrorService: MirrorService, private loadingCtrl: LoadingController) {
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewDidEnter() {
+    this.refresh().then(() => {
+      this.loader = false;
+    });
+  }
+
+  public doRefresh(event) {
+    this.refresh().then(() => {
+      event.target.complete();
+    });
+  }
+
+  private refresh() {
+
+    return new Promise((resolve, reject) => {
+      this.mirrorService.getMirrors().then(mirrors => {
+        this.mirrors = mirrors;
+        resolve('ok');
+      })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  }
+
+  public async deleteMirror(mirror: any, id: string) {
+    mirror.close();
+    const loading = await this.loadingCtrl.create({
+      message: 'Chargement...'
+    });
+
+    loading.present();
+    this.mirrorService.unlinkMirror(id).then(result => {
+      console.log('done');
+      this.refresh().then(() => {
+        loading.dismiss();
+      });
+    });
   }
 
 }

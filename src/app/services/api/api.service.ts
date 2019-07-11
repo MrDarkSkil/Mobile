@@ -14,7 +14,7 @@ enum HttpMethods {
 })
 export class ApiService {
 
-  private readonly apiUrl: string = 'https://dev.elios-mirror.com';
+  private readonly apiUrl: string = '/api';
 
   constructor(private httpClient: HttpClient, private storage: Storage) {
   }
@@ -36,6 +36,7 @@ export class ApiService {
         })
           .catch((err) => {
             console.log('error');
+            reject(err);
           });
       });
     });

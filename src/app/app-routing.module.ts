@@ -9,6 +9,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'store',
+    loadChildren: './pages/home/store/store.module#StorePageModule',
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'login',
     loadChildren: './pages/auth/login/login.module#LoginPageModule'
   },

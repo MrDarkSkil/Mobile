@@ -21,16 +21,12 @@
 
     <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem>
 
-      <ion-item>
+      <ion-item routerLink="/store/mirror" routerDirection="root">
         <ion-avatar class="icon">
           <ion-icon name="aperture" style="font-size: 1.5rem"></ion-icon>
         </ion-avatar>
 
         <ion-label>{{ mirror.name }}</ion-label>
-
-        <ion-note>
-          <ion-icon name="arrow-forward"></ion-icon>
-        </ion-note>
 
       </ion-item>
 

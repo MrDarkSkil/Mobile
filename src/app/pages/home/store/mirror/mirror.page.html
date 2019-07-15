@@ -2,7 +2,9 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content forceOverscroll="false">
+
+  <ion-progress-bar type="indeterminate" *ngIf="loader"></ion-progress-bar>
 
   <div *ngIf="mirror">
     <div class="header">
@@ -19,7 +21,6 @@
       </div>
     </div>
     <div class="body">
-      <!--<loader *ngIf="loader" padding></loader>-->
       <ion-list>
 
         <ion-item-sliding *ngFor="let module of modules">

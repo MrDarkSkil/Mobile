@@ -15,9 +15,9 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-<!--  <loader *ngIf="loader" padding></loader>-->
+  <ion-progress-bar type="indeterminate" *ngIf="loader"></ion-progress-bar>
 
-  <ion-list *ngIf="mirrors !== undefined && !loader">
+  <ion-list *ngIf="mirrors !== undefined">
 
     <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem>
 

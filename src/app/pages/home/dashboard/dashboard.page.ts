@@ -23,6 +23,7 @@ export class DashboardPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.loader = true;
     this.refresh().then(() => {
       this.loader = false;
     });

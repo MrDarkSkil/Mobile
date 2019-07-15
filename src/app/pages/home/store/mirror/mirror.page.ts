@@ -14,6 +14,7 @@ export class MirrorPage implements OnInit {
 
   public mirror: any = null;
   public modules: Array<ModuleDto> = [];
+  public loader = true;
 
   constructor(private route: ActivatedRoute, private mirrorService: MirrorService,
               private popoverCtrl: PopoverController) {
@@ -37,6 +38,7 @@ export class MirrorPage implements OnInit {
     this.mirrorService.getMirror(this.mirror.id).then(result => {
       this.mirror = result;
       this.modules = result.modules;
+      this.loader = false;
     });
   }
 

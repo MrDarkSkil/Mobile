@@ -1,9 +1,49 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>mirror</ion-title>
-  </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+
+  <div *ngIf="mirror">
+    <div class="header">
+      <div class="mirror">
+        <img src="assets/imgs/mirror.png" height="175">
+        <div class="text">
+          <span class="name">{{ mirror.name }}</span>
+          <span class="model">{{ mirror.model }}</span>
+          <span class="date">{{ mirror.updated_at }}</span>
+        </div>
+        <div class="button" (click)="mirrorSettings($event)">
+          <ion-icon name="settings"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="body">
+      <!--<loader *ngIf="loader" padding></loader>-->
+      <ion-list>
+
+        <ion-item-sliding *ngFor="let module of modules">
+
+          <ion-item>
+            <ion-avatar class="icon">
+              <ion-img *ngIf="module.module.logo_url" src="{{ module.module.logo_url }}"
+                       style="height: 1.5rem; width: 1.5rem;"></ion-img>
+              <ion-icon name="logo-dropbox" *ngIf="!module.module.logo_url"></ion-icon>
+            </ion-avatar>
+
+            <ion-label>{{ module.module.title }}</ion-label>
+
+          </ion-item>
+
+        </ion-item-sliding>
+
+      </ion-list>
+      <p class="no-apps-found" *ngIf="modules.length <= 0" text-center>
+        <ion-img src="assets/imgs/sad.svg" alt="sad face"></ion-img>
+        <br/>
+        Aucune application n'est installée
+      </p>
+    </div>
+  </div>
 
 </ion-content>

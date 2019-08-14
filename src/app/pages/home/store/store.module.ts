@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { StorePage } from './store.page';
 import {StorePageRoutingModule} from './store.router.module';
 import {MirrorPopoverComponent} from './mirror/mirror-popover/mirror-popover.component';
-
 @NgModule({
   imports: [
     CommonModule,

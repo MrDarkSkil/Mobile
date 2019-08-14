@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {StorePage} from './store.page';
 
 const routes: Routes = [
@@ -13,26 +13,20 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: './mirror/mirror.module#MirrorPageModule'
+          },
+          {
+            path: 'settings',
+            loadChildren: './mirror/mirror-popover/mirror-settings/mirror-settings.module#MirrorSettingsPageModule'
           }
         ]
       },
       {
         path: 'app',
-        children: [
-          {
-            path: '',
-            loadChildren: './app/app.module#AppPageModule'
-          }
-        ]
+        loadChildren: './app/app.module#AppPageModule'
       },
       {
         path: 'search',
-        children: [
-          {
-            path: '',
-            loadChildren: './search/search.module#SearchPageModule'
-          }
-        ]
+        loadChildren: './search/search.module#SearchPageModule'
       },
       {
         path: '',
@@ -54,4 +48,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class StorePageRoutingModule {}
+export class StorePageRoutingModule {
+}

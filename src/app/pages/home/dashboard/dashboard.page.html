@@ -17,7 +17,7 @@
 
   <ion-progress-bar type="indeterminate" *ngIf="loader"></ion-progress-bar>
 
-  <ion-list *ngIf="mirrors !== undefined">
+  <ion-list *ngIf="mirrors !== undefined && mirrors !== null">
 
     <ion-item-sliding *ngFor="let mirror of mirrors" #slidingItem>
 

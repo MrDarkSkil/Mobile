@@ -39,7 +39,7 @@
         </ion-item-sliding>
 
       </ion-list>
-      <p class="no-apps-found" *ngIf="modules.length <= 0" text-center>
+      <p class="no-apps-found" *ngIf="modules.length <= 0 && !loader" text-center>
         <ion-img src="assets/imgs/sad.svg" alt="sad face"></ion-img>
         <br/>
         Aucune application n'est installée

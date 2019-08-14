@@ -1,0 +1,27 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content forceOverscroll="false">
+  <div class="close-button">
+    <ion-icon name="close"></ion-icon>
+  </div>
+  <div class="background"></div>
+  <div class="mirror">
+    <img src="assets/imgs/mirror.png" height="175">
+  </div>
+  <div class="name" *ngIf="mirror">
+    {{ mirror.name }}
+  </div>
+  <div class="date">
+    <div class="date-content" *ngIf="mirror">
+      {{ mirror.created_at }}
+    </div>
+  </div>
+  <div class="action-buttons" *ngIf="mirror">
+    <div class="edit-button" (click)="edit()">
+      <ion-icon name="md-create"></ion-icon>
+      <span class="action-text">Editer Miroir</span>
+    </div>
+  </div>
+</ion-content>

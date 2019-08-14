@@ -35,6 +35,7 @@ export class MirrorPage implements OnInit {
   }
 
   refreshMirrorInfos() {
+    this.loader = true;
     this.mirrorService.getMirror(this.mirror.id).then(result => {
       this.mirror = result;
       this.modules = result.modules;
@@ -45,6 +46,9 @@ export class MirrorPage implements OnInit {
   public async mirrorSettings(ev: UIEvent) {
     const popover = await this.popoverCtrl.create({
       component: MirrorPopoverComponent,
+      componentProps: {
+        "mirror": this.mirror
+      },
       event: ev,
       translucent: true
     });

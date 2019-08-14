@@ -9,30 +9,15 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        children: [
-          {
-            path: '',
-            loadChildren: './dashboard/dashboard.module#DashboardPageModule'
-          }
-        ]
+        loadChildren: './dashboard/dashboard.module#DashboardPageModule'
       },
       {
         path: 'add',
-        children: [
-          {
-            path: '',
-            loadChildren: './add/add.module#AddPageModule'
-          }
-        ]
+        loadChildren: './add/add.module#AddPageModule'
       },
       {
         path: 'account',
-        children: [
-          {
-            path: '',
-            loadChildren: './account/account.module#AccountPageModule'
-          }
-        ]
+        loadChildren: './account/account.module#AccountPageModule'
       },
       {
         path: '',

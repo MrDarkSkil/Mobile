@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController, PopoverController} from '@ionic/angular';
+import {NavController, NavParams, PopoverController} from '@ionic/angular';
+import {NavigationExtras} from '@angular/router';
 
 @Component({
   selector: 'app-mirror-popover',
@@ -8,7 +9,7 @@ import {NavController, PopoverController} from '@ionic/angular';
 })
 export class MirrorPopoverComponent implements OnInit {
 
-  constructor(private popoverCtrl: PopoverController, private navCtrl: NavController) {
+  constructor(private popoverCtrl: PopoverController, private navCtrl: NavController, private navParams: NavParams) {
   }
 
   ngOnInit() {
@@ -20,6 +21,23 @@ export class MirrorPopoverComponent implements OnInit {
     });
 
     this.navCtrl.navigateBack(['/home/dashboard']);
+  }
+
+  public settings() {
+    this.popoverCtrl.dismiss({
+      dismissed: true
+    });
+
+    const mirror = this.navParams.data.mirror;
+    console.log(mirror);
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        mirror: JSON.stringify(mirror)
+      }
+    };
+
+    this.navCtrl.navigateForward(['/store/mirror/settings'], navigationExtras);
   }
 
 }

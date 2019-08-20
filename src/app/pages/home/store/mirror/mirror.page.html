@@ -25,7 +25,7 @@
 
         <ion-item-sliding *ngFor="let module of modules">
 
-          <ion-item>
+          <ion-item (click)="navigateAppDetails(module.module)">
             <ion-avatar class="icon">
               <ion-img *ngIf="module.module.logo_url" src="{{ module.module.logo_url }}"
                        style="height: 1.5rem; width: 1.5rem;"></ion-img>
@@ -33,6 +33,10 @@
             </ion-avatar>
 
             <ion-label>{{ module.module.title }}</ion-label>
+
+            <ion-note item-end>
+              <ion-icon name="arrow-forward"></ion-icon>
+            </ion-note>
 
           </ion-item>
 

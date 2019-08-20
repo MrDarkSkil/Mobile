@@ -14,8 +14,9 @@ export class MirrorSettingsPage {
 
   constructor(private alertCtrl: AlertController, private mirrorService: MirrorService, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
-      console.log('ook');
-      this.mirror = JSON.parse(params['mirror']);
+      if (params.mirror) {
+        this.mirror = JSON.parse(params['mirror']);
+      }
     });
   }
 

@@ -11,17 +11,18 @@
     <div class="module">
       <ion-grid>
         <ion-row>
-          <ion-col col-4>
-            <ion-img *ngIf="application.logo_url" src="{{ application.logo_url }}" style="border-radius: 20px"></ion-img>
+          <ion-col size="4">
+            <ion-img *ngIf="application.logo_url" src="{{ application.logo_url }}"
+                     style="border-radius: 20px;"></ion-img>
             <ion-icon name="logo-dropbox" *ngIf="!application.logo_url"></ion-icon>
           </ion-col>
-          <ion-col col-8>
+          <ion-col size="8">
             <div class="text">
               <span class="name">{{ application.title }}</span>
               <span class="author">{{ application.repository }}</span>
               <div class="button">
                 <!--<loader-module *ngIf="loader"></loader-module>-->
-                <ion-button  (click)="uninstall ? uninstallApp() : install()" *ngIf="!loader">
+                <ion-button (click)="uninstall ? uninstallApp() : install()" *ngIf="!loader">
                   {{ loader ? '' : buttonText }}
                 </ion-button>
               </div>
@@ -34,7 +35,7 @@
   <div class="body">
     <div class="pictures">
       <h4>Preview</h4>
-      <ion-slides pager="true" paginationType="bullets" *ngIf="isArray(application.screenshots)">
+      <ion-slides pager="false" *ngIf="isArray(application.screenshots)">
         <ion-slide *ngFor="let screenshot of application.screenshots">
           <img src="{{ screenshot }}">
         </ion-slide>
@@ -50,7 +51,7 @@
           <div class="information-title">
             Developpeur
           </div>
-          <div class="information-content" item-end>
+          <div class="information-content" slot="end">
             {{ application.repository }}
           </div>
         </ion-item>
@@ -58,7 +59,7 @@
           <div class="information-title">
             Catégorie
           </div>
-          <div class="information-content" item-end>
+          <div class="information-content" slot="end">
             {{ application.category }}
           </div>
         </ion-item>
@@ -66,7 +67,7 @@
           <div class="information-title">
             Date de publication
           </div>
-          <div class="information-content" item-end>
+          <div class="information-content" slot="end">
             {{ application.created_at }}
           </div>
         </ion-item>

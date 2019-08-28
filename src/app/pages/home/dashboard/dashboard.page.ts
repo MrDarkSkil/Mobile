@@ -3,7 +3,8 @@ import {MirrorDto} from '../../../services/mirror/mirror.dto';
 import {AuthService} from '../../../services/auth/auth.service';
 import {MirrorService} from '../../../services/mirror/mirror.service';
 import {LoadingController} from '@ionic/angular';
-import {NavigationExtras, Router} from '@angular/router';
+import {Router} from '@angular/router';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,7 @@ export class DashboardPage implements OnInit {
   public loader = true;
 
   constructor(private auth: AuthService, private mirrorService: MirrorService, private loadingCtrl: LoadingController,
-              private router: Router) {
+              private router: Router, private storage: Storage) {
   }
 
   ngOnInit() {
@@ -64,12 +65,9 @@ export class DashboardPage implements OnInit {
   }
 
   public navigateMirrorStore(mirror) {
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        special: JSON.stringify(mirror)
-      }
-    };
-    this.router.navigate(['/store/mirror'], navigationExtras);
+    this.storage.set('currentMirror', mirror).then(() => {
+      this.router.navigate(['/store/mirror']);
+    });
   }
 
 }

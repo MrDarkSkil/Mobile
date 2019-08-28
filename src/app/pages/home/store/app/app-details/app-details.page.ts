@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MirrorService} from '../../../../../services/mirror/mirror.service';
 import {ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-app-details',
@@ -17,13 +18,16 @@ export class AppDetailsPage implements OnInit {
   public uninstall = false;
   public buttonText = 'Installer';
 
-  constructor(private mirrorService: MirrorService, private route: ActivatedRoute, private location: Location) {
+  constructor(private mirrorService: MirrorService, private route: ActivatedRoute, private location: Location,
+              private storage: Storage) {
     this.route.queryParams.subscribe(params => {
       console.log(params);
-      if (params.mirror) {
-        this.mirror = JSON.parse(params['mirror']);
+      if (params.application) {
         this.application = JSON.parse(params['application']);
       }
+    });
+    this.storage.get('currentMirror').then(mirror => {
+      this.mirror = mirror;
     });
   }
 

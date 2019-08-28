@@ -4,6 +4,7 @@ import {ActivatedRoute, NavigationExtras} from '@angular/router';
 import {MirrorService} from '../../../../services/mirror/mirror.service';
 import {NavController, PopoverController} from '@ionic/angular';
 import {MirrorPopoverComponent} from './mirror-popover/mirror-popover.component';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-mirror',
@@ -13,42 +14,38 @@ import {MirrorPopoverComponent} from './mirror-popover/mirror-popover.component'
 export class MirrorPage implements OnInit {
 
   public mirror: any = null;
-  public modules: Array<ModuleDto> = [];
+  public applications: Array<ModuleDto> = [];
   public loader = true;
 
   constructor(private route: ActivatedRoute, private mirrorService: MirrorService,
-              private popoverCtrl: PopoverController, private navCtrl: NavController) {
-
-    this.route.queryParams.subscribe(params => {
-      if (params && params.special) {
-        this.mirror = JSON.parse(params.special);
-        console.log(this.mirror);
-      }
-    });
+              private popoverCtrl: PopoverController, private navCtrl: NavController, private storage: Storage) {
   }
 
   ngOnInit() {
   }
 
   ionViewDidEnter() {
-    this.refreshMirrorInfos();
+    this.storage.get('currentMirror').then(mirror => {
+      this.mirror = mirror;
+      this.refreshMirrorInfos();
+    });
   }
 
   refreshMirrorInfos() {
     this.loader = true;
     this.mirrorService.getMirror(this.mirror.id).then(result => {
-      this.mirror = result;
-      this.modules = result.modules;
-      this.loader = false;
+      this.storage.set('currentMirror', result).then(() => {
+        this.mirror = result;
+        this.applications = result.modules;
+        this.loader = false;
+        console.log(this.applications);
+      });
     });
   }
 
   public async mirrorSettings(ev: UIEvent) {
     const popover = await this.popoverCtrl.create({
       component: MirrorPopoverComponent,
-      componentProps: {
-        'mirror': this.mirror
-      },
       event: ev,
       translucent: true
     });
@@ -59,7 +56,6 @@ export class MirrorPage implements OnInit {
   public navigateAppDetails(application) {
     const navigationExtras: NavigationExtras = {
       queryParams: {
-        mirror: JSON.stringify(this.mirror),
         application: JSON.stringify(application)
       }
     };

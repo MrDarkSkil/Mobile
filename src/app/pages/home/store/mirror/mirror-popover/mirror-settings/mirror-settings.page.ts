@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AlertController} from '@ionic/angular';
 import {MirrorService} from '../../../../../../services/mirror/mirror.service';
 import {ActivatedRoute} from '@angular/router';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-mirror-settings',
@@ -12,11 +13,10 @@ export class MirrorSettingsPage {
 
   public mirror;
 
-  constructor(private alertCtrl: AlertController, private mirrorService: MirrorService, private route: ActivatedRoute) {
-    this.route.queryParams.subscribe(params => {
-      if (params.mirror) {
-        this.mirror = JSON.parse(params['mirror']);
-      }
+  constructor(private alertCtrl: AlertController, private mirrorService: MirrorService, private route: ActivatedRoute,
+              private storage: Storage) {
+    this.storage.get('currentMirror').then(mirror => {
+      this.mirror = mirror;
     });
   }
 

@@ -23,16 +23,24 @@
     <div class="body">
       <ion-list>
 
-        <ion-item-sliding *ngFor="let module of modules">
+        <ion-item-sliding *ngFor="let application of applications">
 
-          <ion-item (click)="navigateAppDetails(module.module)">
+          <ion-item-group>
+            <ion-item-divider>
+              <ion-label>Applications installées <ion-badge color="primary">{{ applications.length }}</ion-badge></ion-label>
+            </ion-item-divider>
+
+          <ion-item (click)="navigateAppDetails(application.module)">
             <ion-avatar class="icon">
-              <ion-img *ngIf="module.module.logo_url" src="{{ module.module.logo_url }}"
+              <ion-img *ngIf="application.module.logo_url" src="{{ application.module.logo_url }}"
                        style="height: 1.5rem; width: 1.5rem;"></ion-img>
-              <ion-icon name="logo-dropbox" *ngIf="!module.module.logo_url"></ion-icon>
+              <ion-icon name="logo-dropbox" *ngIf="!application.module.logo_url"></ion-icon>
             </ion-avatar>
 
-            <ion-label>{{ module.module.title }}</ion-label>
+            <ion-label>
+              <h2>{{ application.module.title }}</h2>
+              <p>{{ application.module.category }}</p>
+            </ion-label>
 
             <ion-note item-end>
               <ion-icon name="arrow-forward"></ion-icon>
@@ -40,10 +48,12 @@
 
           </ion-item>
 
+          </ion-item-group>
+
         </ion-item-sliding>
 
       </ion-list>
-      <p class="no-apps-found" *ngIf="modules.length <= 0 && !loader" text-center>
+      <p class="no-apps-found" *ngIf="applications.length <= 0 && !loader" text-center>
         <ion-img src="assets/imgs/sad.svg" alt="sad face"></ion-img>
         <br/>
         Aucune application n'est installée

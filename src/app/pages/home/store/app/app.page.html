@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>app</ion-title>
+    <ion-title>Applications</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-progress-bar type="indeterminate" *ngIf="loader"></ion-progress-bar>
+  <ion-list *ngIf="!loader">
 
+    <ion-item-sliding *ngFor="let application of applications.data">
+
+      <ion-item (click)="navigateAppDetails(application)">
+        <ion-avatar class="icon" item-start>
+          <ion-img *ngIf="application.logo_url" src="{{ application.logo_url }}" style="height: 1.5rem; width: 1.5rem;"></ion-img>
+          <ion-icon name="logo-dropbox" *ngIf="!application.logo_url"></ion-icon>
+        </ion-avatar>
+
+        <ion-label>
+          <h2>{{ application.title }}</h2>
+          <p>{{ application.category }}</p>
+        </ion-label>
+
+        <ion-note item-end>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </ion-note>
+
+      </ion-item>
+
+    </ion-item-sliding>
+
+  </ion-list>
 </ion-content>

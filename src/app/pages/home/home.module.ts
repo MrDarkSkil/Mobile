@@ -14,7 +14,7 @@ import {AddPageModule} from './add/add.module';
     CommonModule,
     FormsModule,
     HomePageRoutingModule,
-    AddPageModule
+    AddPageModule,
   ],
   declarations: [HomePage]
 })

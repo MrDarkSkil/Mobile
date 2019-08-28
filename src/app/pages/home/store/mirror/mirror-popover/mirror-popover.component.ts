@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams, PopoverController} from '@ionic/angular';
-import {NavigationExtras} from '@angular/router';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-mirror-popover',
@@ -9,18 +9,21 @@ import {NavigationExtras} from '@angular/router';
 })
 export class MirrorPopoverComponent implements OnInit {
 
-  constructor(private popoverCtrl: PopoverController, private navCtrl: NavController, private navParams: NavParams) {
+  constructor(private popoverCtrl: PopoverController, private navCtrl: NavController, private navParams: NavParams,
+              private storage: Storage) {
   }
 
   ngOnInit() {
   }
 
   public switch() {
-    this.popoverCtrl.dismiss({
-      dismissed: true
+    this.storage.remove('currentMirror').then(() => {
+      this.popoverCtrl.dismiss({
+        dismissed: true
+      }).then(() => {
+        this.navCtrl.navigateBack(['/home/dashboard']);
+      });
     });
-
-    this.navCtrl.navigateBack(['/home/dashboard']);
   }
 
   public settings() {
@@ -31,13 +34,7 @@ export class MirrorPopoverComponent implements OnInit {
     const mirror = this.navParams.data.mirror;
     console.log(mirror);
 
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        mirror: JSON.stringify(mirror)
-      }
-    };
-
-    this.navCtrl.navigateForward(['/store/mirror/settings'], navigationExtras);
+    this.navCtrl.navigateForward(['/store/mirror/settings']);
   }
 
 }

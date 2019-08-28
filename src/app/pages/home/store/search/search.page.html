@@ -1,9 +1,40 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>search</ion-title>
+    <ion-title>Rechercher</ion-title>
   </ion-toolbar>
+  <ion-searchbar animated placeholder="Elios Store" (ionInput)="search($event)"
+                 (ionClear)="cancelButtonClicked()"></ion-searchbar>
 </ion-header>
 
 <ion-content>
+  <ion-progress-bar type="indeterminate" *ngIf="isLoading"></ion-progress-bar>
 
+  <ion-list *ngIf="!isLoading && applications">
+    <ion-item-sliding *ngFor="let application of applications" (click)="navigate('module', module)">
+
+      <ion-item>
+
+        <ion-avatar class="icon" item-start>
+          <ion-img *ngIf="application.logo_url" src="{{ application.logo_url }}"></ion-img>
+          <ion-icon name="logo-dropbox" *ngIf="!application.logo_url"></ion-icon>
+        </ion-avatar>
+
+        <ion-label>
+          <h2>{{ application.title }}</h2>
+          <p>{{ application.category }}</p>
+        </ion-label>
+
+        <ion-note item-end>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </ion-note>
+
+      </ion-item>
+
+    </ion-item-sliding>
+  </ion-list>
+
+    <p class="no-apps-found" *ngIf="!isLoading && !result" text-center>
+      <ion-img src="assets/imgs/not-found.svg" alt="sad face"></ion-img>
+      Aucune application n'a été trouvée
+    </p>
 </ion-content>

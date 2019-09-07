@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Storage } from '@ionic/storage';
-import {NavController} from '@ionic/angular';
+import {Storage} from '@ionic/storage';
+import {NavController, Platform} from '@ionic/angular';
 
 enum HttpMethods {
   GET,
@@ -17,7 +17,11 @@ export class ApiService {
 
   private readonly apiUrl: string = '/api';
 
-  constructor(private httpClient: HttpClient, private storage: Storage, private navCtrl: NavController) {
+  constructor(private httpClient: HttpClient, private storage: Storage, private navCtrl: NavController,
+              private platform: Platform) {
+    if (this.platform.is('cordova') === true) {
+      this.apiUrl = 'https://dev.elios-mirror.com';
+    }
   }
 
   private request<T>(method: HttpMethods, url: string, data: {} = {}): Promise<T> {

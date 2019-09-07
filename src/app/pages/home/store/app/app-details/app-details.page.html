@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content>
+  <ion-progress-bar type="indeterminate" *ngIf="loader"></ion-progress-bar>
   <div *ngIf="mirror && application">
     <div class="header">
       <div class="module">
@@ -23,7 +24,8 @@
                 <span class="author">{{ application.repository }}</span>
                 <div class="button">
                   <!--<loader-module *ngIf="loader"></loader-module>-->
-                  <ion-button (click)="uninstall ? uninstallApp() : install()" *ngIf="!loader">
+                  <ion-button (click)="uninstall ? uninstallApp() : install()" *ngIf="!loader"
+                              size="default" style="margin-top: 1rem;">
                     {{ loader ? '' : buttonText }}
                   </ion-button>
                 </div>

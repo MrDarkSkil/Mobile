@@ -23,14 +23,14 @@
     <div class="body">
       <ion-list>
 
-        <ion-item-sliding *ngFor="let application of applications">
+        <ion-item-sliding>
 
           <ion-item-group>
             <ion-item-divider>
               <ion-label>Applications installées <ion-badge color="primary">{{ applications.length }}</ion-badge></ion-label>
             </ion-item-divider>
 
-          <ion-item (click)="navigateAppDetails(application.module)">
+          <ion-item *ngFor="let application of applications" (click)="navigateAppDetails(application.module)">
             <ion-avatar class="icon">
               <ion-img *ngIf="application.module.logo_url" src="{{ application.module.logo_url }}"
                        style="height: 1.5rem; width: 1.5rem;"></ion-img>

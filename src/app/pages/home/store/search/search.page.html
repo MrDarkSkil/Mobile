@@ -10,9 +10,9 @@
   <ion-progress-bar type="indeterminate" *ngIf="isLoading"></ion-progress-bar>
 
   <ion-list *ngIf="!isLoading && applications">
-    <ion-item-sliding *ngFor="let application of applications" (click)="navigateAppDetails(application)">
+    <ion-item-sliding>
 
-      <ion-item>
+      <ion-item *ngFor="let application of applications" (click)="navigateAppDetails(application)">
 
         <ion-avatar class="icon" item-start>
           <ion-img *ngIf="application.logo_url" src="{{ application.logo_url }}"

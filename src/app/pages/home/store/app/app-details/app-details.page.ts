@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MirrorService} from '../../../../../services/mirror/mirror.service';
 import {ActivatedRoute} from '@angular/router';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 import {Storage} from '@ionic/storage';
 
 @Component({
@@ -28,6 +28,7 @@ export class AppDetailsPage implements OnInit {
     });
     this.storage.get('currentMirror').then(mirror => {
       this.mirror = mirror;
+      this.checkModule();
     });
   }
 
@@ -38,7 +39,7 @@ export class AppDetailsPage implements OnInit {
     this.checkModule();
   }
 
-  myBackButton(){
+  myBackButton() {
     this.location.back();
   }
 

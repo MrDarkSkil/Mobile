@@ -10,12 +10,13 @@
   <ion-progress-bar type="indeterminate" *ngIf="isLoading"></ion-progress-bar>
 
   <ion-list *ngIf="!isLoading && applications">
-    <ion-item-sliding *ngFor="let application of applications" (click)="navigate('module', module)">
+    <ion-item-sliding *ngFor="let application of applications" (click)="navigateAppDetails(application)">
 
       <ion-item>
 
         <ion-avatar class="icon" item-start>
-          <ion-img *ngIf="application.logo_url" src="{{ application.logo_url }}"></ion-img>
+          <ion-img *ngIf="application.logo_url" src="{{ application.logo_url }}"
+                   style="height: 1.5rem; width: 1.5rem;"></ion-img>
           <ion-icon name="logo-dropbox" *ngIf="!application.logo_url"></ion-icon>
         </ion-avatar>
 
@@ -33,8 +34,10 @@
     </ion-item-sliding>
   </ion-list>
 
-    <p class="no-apps-found" *ngIf="!isLoading && !result" text-center>
+  <div class="no-apps-found" *ngIf="!isLoading && !result" text-center>
+    <div class="no-apps-found-img">
       <ion-img src="assets/imgs/not-found.svg" alt="sad face"></ion-img>
-      Aucune application n'a été trouvée
-    </p>
+    </div>
+    Aucune application n'a été trouvée
+  </div>
 </ion-content>

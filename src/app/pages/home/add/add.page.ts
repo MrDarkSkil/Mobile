@@ -42,7 +42,11 @@ export class AddPage implements OnInit {
         const toast = await this.toastCtrl.create({
           message: 'Votre miroir à été lié à votre compte!',
           duration: 3000,
-          position: 'top'
+          position: 'top',
+          buttons: [{
+            text: 'Close',
+            role: 'cancel',
+          }]
         });
 
         toast.present();
@@ -56,7 +60,11 @@ export class AddPage implements OnInit {
           const toast = await this.toastCtrl.create({
             message: 'Erreur: Il semblerait que l\'ID ne soit pas valide',
             duration: 3000,
-            position: 'top'
+            position: 'top',
+            buttons: [{
+                text: 'Close',
+                role: 'cancel',
+              }]
           });
 
           toast.present();
@@ -67,7 +75,11 @@ export class AddPage implements OnInit {
       const toast = await this.toastCtrl.create({
         message: 'Erreur: Veuillez remplir l\'id du miroir',
         duration: 3000,
-        position: 'top'
+        position: 'top',
+        buttons: [{
+          text: 'Close',
+          role: 'cancel',
+        }]
       });
 
       toast.present();

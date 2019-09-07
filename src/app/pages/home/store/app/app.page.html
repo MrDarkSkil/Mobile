@@ -13,7 +13,7 @@
 
     <ion-item-sliding>
 
-      <ion-item *ngFor="let application of applications.data" (click)="navigateAppDetails(application)">
+      <ion-item *ngFor="let application of applications.data" (click)="navigateAppDetails(application)" detail="true">
         <ion-avatar class="icon" item-start>
           <ion-img *ngIf="application.logo_url" src="{{ application.logo_url }}"
                    style="height: 1.5rem; width: 1.5rem;"></ion-img>
@@ -24,11 +24,6 @@
           <h2>{{ application.title }}</h2>
           <p>{{ application.category }}</p>
         </ion-label>
-
-        <ion-note item-end>
-          <ion-icon name="arrow-forward"></ion-icon>
-        </ion-note>
-
       </ion-item>
 
     </ion-item-sliding>

@@ -27,26 +27,24 @@
 
           <ion-item-group>
             <ion-item-divider>
-              <ion-label>Applications installées <ion-badge color="primary">{{ applications.length }}</ion-badge></ion-label>
+              <ion-label>Applications installées
+                <ion-badge color="primary">{{ applications.length }}</ion-badge>
+              </ion-label>
             </ion-item-divider>
 
-          <ion-item *ngFor="let application of applications" (click)="navigateAppDetails(application.module)">
-            <ion-avatar class="icon">
-              <ion-img *ngIf="application.module.logo_url" src="{{ application.module.logo_url }}"
-                       style="height: 1.5rem; width: 1.5rem;"></ion-img>
-              <ion-icon name="logo-dropbox" *ngIf="!application.module.logo_url"></ion-icon>
-            </ion-avatar>
+            <ion-item *ngFor="let application of applications" (click)="navigateAppDetails(application.module)"
+                      detail="true">
+              <ion-avatar class="icon">
+                <ion-img *ngIf="application.module.logo_url" src="{{ application.module.logo_url }}"
+                         style="height: 1.5rem; width: 1.5rem;"></ion-img>
+                <ion-icon name="logo-dropbox" *ngIf="!application.module.logo_url"></ion-icon>
+              </ion-avatar>
 
-            <ion-label>
-              <h2>{{ application.module.title }}</h2>
-              <p>{{ application.module.category }}</p>
-            </ion-label>
-
-            <ion-note item-end>
-              <ion-icon name="arrow-forward"></ion-icon>
-            </ion-note>
-
-          </ion-item>
+              <ion-label>
+                <h2>{{ application.module.title }}</h2>
+                <p>{{ application.module.category }}</p>
+              </ion-label>
+            </ion-item>
 
           </ion-item-group>
 

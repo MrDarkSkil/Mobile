@@ -11,6 +11,7 @@ import {AppComponent} from './app.component';
 import {IonicStorageModule} from '@ionic/storage';
 import {HttpBackend, HttpClientModule, HttpXhrBackend} from '@angular/common/http';
 import {NativeHttpBackend, NativeHttpFallback, NativeHttpModule} from 'ionic-native-http-connection-backend';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import {NativeHttpBackend, NativeHttpFallback, NativeHttpModule} from 'ionic-nat
   providers: [
     StatusBar,
     SplashScreen,
+    BarcodeScanner,
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     {
       provide: HttpBackend,

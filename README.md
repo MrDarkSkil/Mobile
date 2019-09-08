@@ -19,7 +19,8 @@
 
 - To run the projet run `ionic serve` you would be able to access to the web app on [https://localhost:8100/](https://localhost:8100/)
 
-- You can also install `Ionic DevApp` on your mobile phone (Android & Apple) to see the result in realtime.
+- You can also install `Ionic DevApp` on your mobile phone (Android & Apple) to see the result in realtime.<br/>
+  _You will need to run `ionic serve --devapp` to test it on the Ionic DevApp_
 
 ## Android
 

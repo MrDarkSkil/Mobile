@@ -31,6 +31,7 @@ export class LoginPage implements OnInit {
       this.navCtrl.navigateRoot(['/home/dashboard']);
     }).catch(async data => {
       loading.dismiss();
+      console.log(data);
       const alert = await this.alertCtrl.create({
         header: 'Erreur',
         subHeader: data.error.message,

@@ -15,7 +15,7 @@ enum HttpMethods {
 })
 export class ApiService {
 
-  private readonly apiUrl: string = '/api';
+  private apiUrl = '/api';
 
   constructor(private httpClient: HttpClient, private storage: Storage, private navCtrl: NavController,
               private platform: Platform) {

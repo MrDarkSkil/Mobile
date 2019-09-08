@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AlertController, LoadingController, NavController} from '@ionic/angular';
 import {AuthService} from '../../../services/auth/auth.service';
+import {UserService} from '../../../services/user/user.service';
+import {UserDto} from '../../../services/user/user.dto';
 
 @Component({
   selector: 'app-account',
@@ -9,8 +11,14 @@ import {AuthService} from '../../../services/auth/auth.service';
 })
 export class AccountPage implements OnInit {
 
+  public userInfos: UserDto = null;
+
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController,
-              private alertCtrl: AlertController, private auth: AuthService) { }
+              private alertCtrl: AlertController, private auth: AuthService, private userService: UserService) {
+    this.userService.getUserInfos().then(result => {
+      this.userInfos = result;
+    });
+  }
 
   ngOnInit() {
   }

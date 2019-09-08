@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {AlertController, LoadingController} from '@ionic/angular';
+import {AlertController, LoadingController, NavController} from '@ionic/angular';
 import {AuthService} from '../../../services/auth/auth.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class RegisterPage implements OnInit {
   public passwordConfirmation: string = null;
 
   constructor(public router: Router, public loadingCtrl: LoadingController,
-              private alertCtrl: AlertController, private auth: AuthService) { }
+              private alertCtrl: AlertController, private auth: AuthService, private navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -28,13 +28,14 @@ export class RegisterPage implements OnInit {
     loading.present();
 
     if (this.password !== this.passwordConfirmation) {
-      loading.dismiss();
-      const alert = await this.alertCtrl.create({
-        header: 'Erreur',
-        subHeader: 'Les mots de passe ne correspondent pas entre eux',
-        buttons: [{text: 'Ok'}]
+      loading.dismiss().then(async () => {
+        const alert = await this.alertCtrl.create({
+          header: 'Erreur',
+          subHeader: 'Les mots de passe ne correspondent pas entre eux',
+          buttons: [{text: 'Ok'}]
+        });
+        alert.present();
       });
-      alert.present();
     } else {
       this.auth.register(this.email, this.password).then(async data => {
         loading.dismiss();
@@ -44,16 +45,27 @@ export class RegisterPage implements OnInit {
           buttons: [{
             text: 'Yeeeees',
             handler: () => {
-              this.router.navigate(['/login']);
+              this.navCtrl.back();
             }
           }]
         });
         alert.present();
       }).catch(error => {
         console.log(error);
-        loading.dismiss();
+        loading.dismiss().then(async () => {
+          const alert = await this.alertCtrl.create({
+            header: 'Erreur',
+            subHeader: error,
+            buttons: [{text: 'Ok'}]
+          });
+          alert.present();
+        });
       });
     }
+  }
+
+  goBack() {
+    this.navCtrl.back();
   }
 
 }

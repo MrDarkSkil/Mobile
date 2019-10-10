@@ -16,13 +16,13 @@
       <ion-item *ngFor="let application of applications.data" (click)="navigateAppDetails(application)" detail="true">
         <ion-avatar class="icon" item-start>
           <ion-img *ngIf="application.logo_url" src="{{ application.logo_url }}"
-                   style="height: 1.5rem; width: 1.5rem;"></ion-img>
+                   style="height: 2.5rem; width: 2.5rem;"></ion-img>
           <ion-icon name="logo-dropbox" *ngIf="!application.logo_url"></ion-icon>
         </ion-avatar>
 
         <ion-label>
-          <h2>{{ application.title }}</h2>
-          <p>{{ application.category }}</p>
+          <h2 style="margin-left: 1rem">{{ application.title }}</h2>
+          <p style="margin-left: 1rem">{{ application.category }}</p>
         </ion-label>
       </ion-item>
 

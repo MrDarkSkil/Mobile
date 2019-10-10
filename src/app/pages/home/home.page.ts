@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {AddPage} from './add/add.page';
+import {MirrorService} from '../../services/mirror/mirror.service';
+import {MirrorDto} from '../../services/mirror/mirror.dto';
 
 @Component({
   selector: 'app-tabs',
@@ -9,7 +11,13 @@ import {AddPage} from './add/add.page';
 })
 export class HomePage {
 
-  constructor(public modalController: ModalController) {
+  mirrors: Array<MirrorDto> = [];
+
+  constructor(public modalController: ModalController, private mirrorService: MirrorService) {
+    this.mirrorService.getMirrors().then(mirrors => {
+      this.mirrors = mirrors;
+      console.log(this.mirrors);
+    });
   }
 
   public async AddMirror() {

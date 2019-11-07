@@ -23,6 +23,7 @@ export class HomePage {
     const modal = await this.modalController.create({
       component: AddPage
     });
+
     return await modal.present();
   }
 

@@ -3,6 +3,12 @@
     <ion-buttons slot="start" (click)="myBackButton()">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -36,7 +42,7 @@
       </div>
     </div>
     <div class="body">
-      <div class="pictures">
+      <div class="pictures" *ngIf="application.screenshots.length > 0">
         <h4>Preview</h4>
         <ion-slides pager="false" *ngIf="isArray(application.screenshots)">
           <ion-slide *ngFor="let screenshot of application.screenshots">

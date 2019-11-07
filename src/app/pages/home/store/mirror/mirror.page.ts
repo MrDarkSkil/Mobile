@@ -3,7 +3,6 @@ import {ModuleDto} from '../../../../services/mirror/mirror.dto';
 import {ActivatedRoute, NavigationExtras} from '@angular/router';
 import {MirrorService} from '../../../../services/mirror/mirror.service';
 import {NavController, PopoverController} from '@ionic/angular';
-import {MirrorPopoverComponent} from './mirror-popover/mirror-popover.component';
 import {Storage} from '@ionic/storage';
 
 @Component({
@@ -43,16 +42,6 @@ export class MirrorPage implements OnInit {
     });
   }
 
-  public async mirrorSettings(ev: UIEvent) {
-    const popover = await this.popoverCtrl.create({
-      component: MirrorPopoverComponent,
-      event: ev,
-      translucent: true
-    });
-
-    return await popover.present();
-  }
-
   public navigateAppDetails(application) {
     const navigationExtras: NavigationExtras = {
       queryParams: {
@@ -60,6 +49,10 @@ export class MirrorPage implements OnInit {
       }
     };
     this.navCtrl.navigateForward(['/store/app-details'], navigationExtras);
+  }
+
+  public navigateSettings() {
+    this.navCtrl.navigateForward(['/store/mirror/settings']);
   }
 
 }

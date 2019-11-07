@@ -18,14 +18,14 @@
   <ion-progress-bar type="indeterminate" *ngIf="loader"></ion-progress-bar>
 
   <ion-grid *ngIf="mirrors !== undefined && mirrors !== null">
-    <ion-row>
-      <ion-col size="6" *ngFor="let mirror of mirrors" (click)="navigateMirrorStore(mirror)">
-        <ion-card>
-          <ion-card-header class="ion-text-center">
-              <ion-icon name="home" style="font-size: 2.5rem"></ion-icon>
+    <ion-row align-items-center>
+      <ion-col size="6" *ngFor="let mirror of mirrors" (click)="navigateMirrorStore(mirror)" style="margin: 0 auto">
+        <ion-card mode="ios">
+          <ion-card-header class="ion-text-center" mode="ios">
+              <ion-icon name="home" style="font-size: 2.5rem" mode="ios"></ion-icon>
           </ion-card-header>
 
-          <ion-card-content class="ion-text-center">
+          <ion-card-content class="ion-text-center" mode="ios">
             {{ mirror.name }}
           </ion-card-content>
         </ion-card>

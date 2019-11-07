@@ -16,7 +16,7 @@ const routes: Routes = [
           },
           {
             path: 'settings',
-            loadChildren: './mirror/mirror-popover/mirror-settings/mirror-settings.module#MirrorSettingsPageModule'
+            loadChildren: './mirror/mirror-settings/mirror-settings.module#MirrorSettingsPageModule'
           }
         ]
       },

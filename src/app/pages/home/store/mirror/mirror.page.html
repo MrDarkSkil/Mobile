@@ -1,5 +1,17 @@
 <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/dashboard"></ion-back-button>
+    </ion-buttons>
 
+    <ion-title *ngIf="mirror">{{ mirror.name }}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="navigateSettings()">
+        <ion-icon name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -9,14 +21,10 @@
   <div *ngIf="mirror">
     <div class="header">
       <div class="mirror">
-        <img src="assets/imgs/mirror.png" height="175">
+        <img src="assets/imgs/mirror.png" alt="mirror-image" height="175">
         <div class="text">
-          <span class="name">{{ mirror.name }}</span>
           <span class="model">{{ mirror.model }}</span>
           <span class="date">{{ mirror.updated_at }}</span>
-        </div>
-        <div class="button" (click)="mirrorSettings($event)">
-          <ion-icon name="settings"></ion-icon>
         </div>
       </div>
     </div>

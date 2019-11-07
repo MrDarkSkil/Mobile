@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { StorePage } from './store.page';
 import {StorePageRoutingModule} from './store.router.module';
-import {MirrorPopoverComponent} from './mirror/mirror-popover/mirror-popover.component';
 
 @NgModule({
   imports: [
@@ -16,11 +15,7 @@ import {MirrorPopoverComponent} from './mirror/mirror-popover/mirror-popover.com
     StorePageRoutingModule,
   ],
   declarations: [
-    StorePage,
-    MirrorPopoverComponent
-  ],
-  entryComponents: [
-    MirrorPopoverComponent
+    StorePage
   ]
 })
 export class StorePageModule {}

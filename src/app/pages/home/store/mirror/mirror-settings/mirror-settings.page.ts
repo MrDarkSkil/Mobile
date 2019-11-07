@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AlertController} from '@ionic/angular';
-import {MirrorService} from '../../../../../../services/mirror/mirror.service';
+import {MirrorService} from '../../../../../services/mirror/mirror.service';
 import {ActivatedRoute} from '@angular/router';
 import {Storage} from '@ionic/storage';
 

@@ -3,6 +3,8 @@ ion-list {
     display: flex;
     align-content: center;
     align-items: center;
+    margin: 0 auto;
+    text-align: center;
   }
 }
 
@@ -23,4 +25,13 @@ ion-img {
   width: 30px;
   vertical-align: middle;
   display: inline-block;
+}
+
+ion-card-header {
+  --background: #212121;
+  color: white;
+}
+
+ion-card-content {
+  font-size: 1rem;
 }

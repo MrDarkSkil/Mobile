@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, NgZone} from '@angular/core';
 import {AlertController} from '@ionic/angular';
 import {MirrorService} from '../../../../../services/mirror/mirror.service';
 import {ActivatedRoute} from '@angular/router';
@@ -14,7 +14,7 @@ export class MirrorSettingsPage {
   public mirror;
 
   constructor(private alertCtrl: AlertController, private mirrorService: MirrorService, private route: ActivatedRoute,
-              private storage: Storage) {
+              private storage: Storage, private ngZone: NgZone) {
     this.storage.get('currentMirror').then(mirror => {
       this.mirror = mirror;
     });
@@ -38,8 +38,9 @@ export class MirrorSettingsPage {
           text: 'Valider',
           handler: data => {
             this.mirrorService.changeName(this.mirror.id, data.name).then(result => {
-              this.mirror = result;
-              console.log('changed!', this.mirror);
+              this.ngZone.run(() => {
+                this.mirror = result;
+              });
             });
           }
         }

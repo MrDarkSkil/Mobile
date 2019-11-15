@@ -40,7 +40,7 @@ export class ApiService {
           resolve(result);
         })
           .catch((err) => {
-            if (err.error.status === '401') {
+            if (err.status === 401) {
               this.storage.remove('access_token');
               this.navCtrl.navigateRoot(['/login']);
               reject(err);

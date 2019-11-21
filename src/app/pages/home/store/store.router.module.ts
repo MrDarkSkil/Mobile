@@ -26,7 +26,12 @@ const routes: Routes = [
       },
       {
         path: 'app-details',
-        loadChildren: './app/app-details/app-details.module#AppDetailsPageModule'
+        children: [
+          {
+            path: '',
+            loadChildren: './app/app-details/app-details.module#AppDetailsPageModule',
+          },
+        ]
       },
       {
         path: 'search',

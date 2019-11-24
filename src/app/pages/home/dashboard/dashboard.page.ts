@@ -48,7 +48,7 @@ export class DashboardPage implements OnInit {
         });
     });
   }
-  
+
   public navigateMirrorStore(mirror) {
     this.storage.set('currentMirror', mirror).then(() => {
       this.navCtrl.navigateForward(['/store/mirror']);

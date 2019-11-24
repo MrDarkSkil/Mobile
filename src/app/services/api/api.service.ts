@@ -44,16 +44,14 @@ export class ApiService {
             if (err && err.status && err.status === 401) {
               this.storage.remove('access_token');
               this.navCtrl.navigateRoot(['/login']);
-              reject(err);
             } else if (err && err.status && err.status === 400) {
               this.navCtrl.navigateRoot(['/error/400']);
-            } else if (err && err.status && err.status === 404) {
-              this.navCtrl.navigateRoot(['/error/404']);
             } else if (err && err.status && err.status === 504) {
               this.navCtrl.navigateRoot(['/error/504']);
             } else if (err && err.status && err.status === 500) {
               this.navCtrl.navigateRoot(['/error/500']);
             }
+            reject(err);
           });
       });
     });

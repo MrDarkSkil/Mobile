@@ -67,6 +67,7 @@ export class AppDetailsPage implements OnInit {
     }).catch((err) => {
       console.log('uninstall error', err);
       this.loader = false;
+      this.checkModule();
     });
   }
 

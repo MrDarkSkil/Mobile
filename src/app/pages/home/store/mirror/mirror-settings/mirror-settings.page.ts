@@ -1,5 +1,5 @@
 import {Component, NgZone} from '@angular/core';
-import {AlertController} from '@ionic/angular';
+import {AlertController, NavController} from '@ionic/angular';
 import {MirrorService} from '../../../../../services/mirror/mirror.service';
 import {ActivatedRoute} from '@angular/router';
 import {Storage} from '@ionic/storage';
@@ -14,7 +14,7 @@ export class MirrorSettingsPage {
   public mirror;
 
   constructor(private alertCtrl: AlertController, private mirrorService: MirrorService, private route: ActivatedRoute,
-              private storage: Storage, private ngZone: NgZone) {
+              private storage: Storage, private ngZone: NgZone, private navCtrl: NavController) {
     this.storage.get('currentMirror').then(mirror => {
       this.mirror = mirror;
     });
@@ -46,7 +46,32 @@ export class MirrorSettingsPage {
         }
       ]
     });
-    alert.present();
+
+    await alert.present();
+  }
+
+  public async unlink() {
+    const alert = await this.alertCtrl.create({
+      header: 'Dissocier Miroir ?',
+      message: 'Etes vous sur de vouloir dissocier ce miroir de votre compte ?',
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Dissocier',
+          handler: () => {
+            this.mirrorService.unlinkMirror(this.mirror.id).then(result => {
+              console.log('done');
+              this.navCtrl.navigateRoot('/home/dashboard');
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }

@@ -6,7 +6,7 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" *ngIf="values.length > 0">
       <ion-button>
         Enregistrer
       </ion-button>
@@ -32,10 +32,13 @@
       <!-- TYPE IS DROPDOWN -->
       <ion-item *ngIf="value.type === 'dropdown'">
         <ion-label>{{ value.placeholder }}</ion-label>
-        <ion-select placeholder="Select One">
+        <ion-select>
           <ion-select-option *ngFor="let opt of value.values" value="{{ opt.value }}">{{ opt.text }}</ion-select-option>
         </ion-select>
       </ion-item>
+    </div>
+    <div *ngIf="values.length === 0">
+      <p class="ion-text-center">Aucune option n'est disponible pour cette application</p>
     </div>
   </ion-list>
 </ion-content>

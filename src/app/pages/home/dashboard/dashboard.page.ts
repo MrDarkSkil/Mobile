@@ -48,22 +48,7 @@ export class DashboardPage implements OnInit {
         });
     });
   }
-
-  public async deleteMirror(mirror: any, id: string) {
-    mirror.close();
-    const loading = await this.loadingCtrl.create({
-      message: 'Chargement...'
-    });
-
-    loading.present();
-    this.mirrorService.unlinkMirror(id).then(result => {
-      console.log('done');
-      this.refresh().then(() => {
-        loading.dismiss();
-      });
-    });
-  }
-
+  
   public navigateMirrorStore(mirror) {
     this.storage.set('currentMirror', mirror).then(() => {
       this.navCtrl.navigateForward(['/store/mirror']);

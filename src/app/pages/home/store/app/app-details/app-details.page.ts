@@ -87,7 +87,10 @@ export class AppDetailsPage implements OnInit {
 
   public async navigateProtocol() {
     const modal = await this.modalController.create({
-      component: ProtocolPage
+      component: ProtocolPage,
+      componentProps: {
+        moduleId: this.application.id,
+      }
     });
     return await modal.present();
   }

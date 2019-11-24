@@ -4,7 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
 
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" *ngIf="uninstall">
       <ion-button (click)="navigateProtocol()">
         <ion-icon name="settings"></ion-icon>
       </ion-button>

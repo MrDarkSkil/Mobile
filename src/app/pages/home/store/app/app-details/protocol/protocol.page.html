@@ -15,5 +15,27 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <div *ngFor="let value of values">
+      <!-- TYPE IS TOGGLE -->
+      <ion-item *ngIf="value.type === 'toggle'">
+        <ion-label>{{ value.placeholder }}</ion-label>
+        <ion-toggle color="primary"></ion-toggle>
+      </ion-item>
 
+      <!-- TYPE IS INPUT -->
+      <ion-item *ngIf="value.type === 'input'">
+        <ion-label position="stacked">{{ value.placeholder }}</ion-label>
+        <ion-input placeholder="Lorem Ipsum"></ion-input>
+      </ion-item>
+
+      <!-- TYPE IS DROPDOWN -->
+      <ion-item *ngIf="value.type === 'dropdown'">
+        <ion-label>{{ value.placeholder }}</ion-label>
+        <ion-select placeholder="Select One">
+          <ion-select-option *ngFor="let opt of value.values" value="{{ opt.value }}">{{ opt.text }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  </ion-list>
 </ion-content>

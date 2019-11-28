@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ApplicationsService} from '../../../../services/applications/applications.service';
 import {ActivatedRoute, NavigationExtras} from '@angular/router';
-import {NavController} from '@ionic/angular';
+import {ModalController, NavController} from '@ionic/angular';
+import {AppCategoryPage} from './app-category/app-category.page';
+import {ApplicationsDto} from '../../../../services/applications/applications.dto';
 
 @Component({
   selector: 'app-app',
@@ -11,14 +13,18 @@ import {NavController} from '@ionic/angular';
 export class AppPage implements OnInit {
 
   public loader = true;
-  public applications = {};
+  public applications: ApplicationsDto;
   public mirror: any = null;
 
-  constructor(private appsService: ApplicationsService, private route: ActivatedRoute, private navCtrl: NavController) {
+  private category: any = null;
+
+  constructor(private appsService: ApplicationsService, private route: ActivatedRoute, private navCtrl: NavController,
+              private modalCtrl: ModalController) {
+    this.category = this.route.snapshot.paramMap.get('category');
+
     this.route.queryParams.subscribe(params => {
       if (params && params.special) {
         this.mirror = JSON.parse(params.special);
-        console.log(this.mirror);
       }
     });
   }
@@ -40,11 +46,11 @@ export class AppPage implements OnInit {
 
   refresh() {
     return new Promise((resolve, reject) => {
-        this.appsService.getModules().then(result => {
-          this.applications = result;
-          console.log(result);
-          resolve('ok');
-        });
+      this.appsService.getModules().then(result => {
+        this.applications = result;
+        console.log(this.applications);
+        resolve('ok');
+      });
     });
   }
 
@@ -55,6 +61,30 @@ export class AppPage implements OnInit {
       }
     };
     this.navCtrl.navigateForward(['/store/app-details'], navigationExtras);
+  }
+
+  public async show_category() {
+    const categoryMap = new Map();
+
+    this.applications.data.forEach(application => {
+      categoryMap.set(application.category, true);
+    });
+
+    const modal = await this.modalCtrl.create({
+      component: AppCategoryPage,
+      componentProps: {
+        categories: Array.from(categoryMap.keys()),
+      }
+    });
+
+    await modal.present();
+
+    const {data} = await modal.onWillDismiss();
+    await this.navCtrl.navigateRoot('/store/app/' + data.value);
+  }
+
+  public clearCategory() {
+    this.navCtrl.navigateRoot('/store/app');
   }
 
 }

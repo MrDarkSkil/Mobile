@@ -22,7 +22,16 @@ const routes: Routes = [
       },
       {
         path: 'app',
-        loadChildren: './app/app.module#AppPageModule'
+        children: [
+          {
+            path: '',
+            loadChildren: './app/app.module#AppPageModule'
+          },
+          {
+            path: ':category',
+            loadChildren: './app/app.module#AppPageModule'
+          }
+        ]
       },
       {
         path: 'app-details',

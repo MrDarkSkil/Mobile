@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="close" mode="md"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      Catégories
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list>
+    <ion-radio-group>
+      <ion-item *ngFor="let category of categories">
+        <ion-label>{{ category }}</ion-label>
+        <ion-radio slot="start" color="primary" value="{{ category }}" (ionSelect)="selected(category)"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>

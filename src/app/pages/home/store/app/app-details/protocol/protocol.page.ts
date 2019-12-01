@@ -1,7 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {ModalController, NavParams} from '@ionic/angular';
-import {ProtocolService} from '../../../../../../services/protocol/protocol.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { ModalController, NavParams } from '@ionic/angular';
+import { ProtocolService } from '../../../../../../services/protocol/protocol.service';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-protocol',
@@ -13,7 +13,7 @@ export class ProtocolPage {
   @Input() moduleId: string;
   private dataToSend = new Map();
   private todo: FormGroup;
-  public values = [
+  public inputs = [
     {
       type: 'toggle',
       name: 'show_media',
@@ -57,17 +57,34 @@ export class ProtocolPage {
     }
   ];
 
+  public formData = {};
+
   constructor(private modalCtrl: ModalController, private navParams: NavParams,
-              private protocolService: ProtocolService, private formBuilder: FormBuilder) {
+    private protocolService: ProtocolService, private formBuilder: FormBuilder) {
     const moduleId = navParams.get('moduleId');
 
     /*this.protocolService.getModuleForm(moduleId).then(result => {
       console.log('kek');
     });*/
 
-    this.todo = this.formBuilder.group({
-      value: [''],
-    });
+    let object = {}
+
+    // Up peu sale je sais j'ai pas trouvé mieux ahah 
+    this.inputs.forEach((input) => {
+      if (input.type === 'toggle') {
+        object[input.name] = new FormControl(input.value ? input.value : false)
+      } else if (input.type === 'input') {
+        object[input.name] = new FormControl(input.value ? input.value : '')
+      } else if (input.type === 'dropdown') {
+        object[input.name] = new FormControl(input.value ? input.value : '0')
+      } else {
+        object[input.name] = new FormControl(input.value ? input.value : '')
+      }
+    })
+
+
+
+    this.todo = this.formBuilder.group(object);
   }
 
   public close() {

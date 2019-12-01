@@ -7,7 +7,7 @@
     </ion-buttons>
 
     <ion-buttons slot="end" *ngIf="values.length > 0">
-      <ion-button>
+      <ion-button (click)="sendData()">
         Enregistrer
       </ion-button>
     </ion-buttons>
@@ -17,25 +17,31 @@
 <ion-content>
   <ion-list>
     <div *ngFor="let value of values">
-      <!-- TYPE IS TOGGLE -->
-      <ion-item *ngIf="value.type === 'toggle'">
-        <ion-label>{{ value.placeholder }}</ion-label>
-        <ion-toggle color="primary"></ion-toggle>
-      </ion-item>
+      <form [formGroup]="todo" (ngSubmit)="logForm()">
 
-      <!-- TYPE IS INPUT -->
-      <ion-item *ngIf="value.type === 'input'">
-        <ion-label position="stacked">{{ value.placeholder }}</ion-label>
-        <ion-input placeholder="Lorem Ipsum"></ion-input>
-      </ion-item>
+        <!-- TYPE IS TOGGLE -->
+        <ion-item *ngIf="value.type === 'toggle'">
+          <ion-label>{{ value.placeholder }}</ion-label>
+          <ion-toggle color="primary" checked="{{ value.value ? value.value : false }}" formControlName="value"
+          ></ion-toggle>
+        </ion-item>
 
-      <!-- TYPE IS DROPDOWN -->
-      <ion-item *ngIf="value.type === 'dropdown'">
-        <ion-label>{{ value.placeholder }}</ion-label>
-        <ion-select>
-          <ion-select-option *ngFor="let opt of value.values" value="{{ opt.value }}">{{ opt.text }}</ion-select-option>
-        </ion-select>
-      </ion-item>
+        <!-- TYPE IS INPUT -->
+        <ion-item *ngIf="value.type === 'input'">
+          <ion-label position="stacked">{{ value.placeholder }}</ion-label>
+          <ion-input placeholder="Lorem Ipsum" value="{{ value.value ? value.value : '' }}" formControlName="value"></ion-input>
+        </ion-item>
+
+        <!-- TYPE IS DROPDOWN -->
+        <ion-item *ngIf="value.type === 'dropdown'">
+          <ion-label>{{ value.placeholder }}</ion-label>
+          <ion-select>
+            <ion-select-option *ngFor="let opt of value.values" formControlName="value"
+                               value="{{ opt.value }}">{{ opt.text }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      </form>
     </div>
     <div *ngIf="values.length === 0">
       <p class="ion-text-center">Aucune option n'est disponible pour cette application</p>

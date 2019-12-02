@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
-import { ProtocolService } from '../../../../../../services/protocol/protocol.service';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import {Component, Input} from '@angular/core';
+import {ModalController, NavParams} from '@ionic/angular';
+import {ProtocolService} from '../../../../../../services/protocol/protocol.service';
+import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-protocol',
@@ -11,77 +11,33 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 export class ProtocolPage {
 
   @Input() moduleId: string;
-  private dataToSend = new Map();
   private todo: FormGroup;
-  public inputs = [
-    {
-      type: 'toggle',
-      name: 'show_media',
-      placeholder: 'Voulez-vous afficher ce media ?',
-      required: false,
-      values: true,
-      value: true,
-    },
-    {
-      type: 'toggle',
-      name: 'media',
-      placeholder: 'Voulez-vous afficher ce media ?',
-      required: false,
-      values: true,
-      value: false,
-    },
-    {
-      type: 'input',
-      name: 'email',
-      placeholder: 'Votre adresse email',
-      required: true,
-      values: true,
-      value: 'Kek'
-    },
-    {
-      type: 'dropdown',
-      name: 'option',
-      placeholder: 'Quelle option ?',
-      required: false,
-      values: [
-        {
-          text: 'Option 1',
-          value: 1
-        },
-        {
-          text: 'Option 2',
-          value: 2
-        }
-      ],
-      value: 2
-    }
-  ];
 
-  public formData = {};
+  public inputs = [];
 
   constructor(private modalCtrl: ModalController, private navParams: NavParams,
-    private protocolService: ProtocolService, private formBuilder: FormBuilder) {
+              private protocolService: ProtocolService, private formBuilder: FormBuilder) {
     const moduleId = navParams.get('moduleId');
 
-    /*this.protocolService.getModuleForm(moduleId).then(result => {
-      console.log('kek');
-    });*/
+    this.protocolService.getModuleForm(moduleId).then(result => {
+      this.inputs = result;
+    }).catch(error => {
+      console.log('PROTOCOL ERROR:', error);
+    });
 
-    let object = {}
+    const object = {};
 
-    // Up peu sale je sais j'ai pas trouvé mieux ahah 
     this.inputs.forEach((input) => {
       if (input.type === 'toggle') {
-        object[input.name] = new FormControl(input.value ? input.value : false)
+        object[input.name] = new FormControl(input.value ? input.value : false);
       } else if (input.type === 'input') {
-        object[input.name] = new FormControl(input.value ? input.value : '')
+        object[input.name] = new FormControl(input.value ? input.value : '');
       } else if (input.type === 'dropdown') {
-        object[input.name] = new FormControl(input.value ? input.value : '0')
+        object[input.name] = new FormControl(input.value ? input.value : '0');
       } else {
-        object[input.name] = new FormControl(input.value ? input.value : '')
+        object[input.name] = new FormControl(input.value ? input.value : '');
       }
-    })
-
+    });
 
 
     this.todo = this.formBuilder.group(object);
@@ -94,10 +50,8 @@ export class ProtocolPage {
   }
 
   logForm() {
+    this.protocolService.sendModuleFormData(this.navParams.get('moduleId'), this.todo.value);
     console.log(this.todo.value);
-  }
-
-  public sendData() {
   }
 
 }

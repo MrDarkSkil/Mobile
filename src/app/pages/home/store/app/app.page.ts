@@ -80,7 +80,9 @@ export class AppPage implements OnInit {
     await modal.present();
 
     const {data} = await modal.onWillDismiss();
-    await this.navCtrl.navigateRoot('/store/app/' + data.value);
+    if (data.value) {
+      await this.navCtrl.navigateRoot('/store/app/' + data.value);
+    }
   }
 
   public clearCategory() {

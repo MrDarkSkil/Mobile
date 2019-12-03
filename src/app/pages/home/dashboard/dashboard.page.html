@@ -32,7 +32,7 @@
 
       </ion-col>
 
-      <div *ngIf="!mirrors.length" text-center>
+      <div *ngIf="mirrors.length === 0" style="width: 100%" text-center>
         <p class="no-mirror-found">Aucun miroir n'est lié à ce compte</p>
       </div>
     </ion-row>

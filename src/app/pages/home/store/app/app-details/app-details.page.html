@@ -26,8 +26,8 @@
             </ion-col>
             <ion-col size="8">
               <div class="text">
-                <span class="name">{{ application.title }}</span>
-                <span class="author">{{ application.repository }}</span>
+                <span class="name" style="text-transform: capitalize;">{{ application.title }}</span>
+                <span class="author">{{ application.category }}</span>
                 <div class="button">
                   <!--<loader-module *ngIf="loader"></loader-module>-->
                   <ion-button (click)="uninstall ? uninstallApp() : install()" *ngIf="!loader"

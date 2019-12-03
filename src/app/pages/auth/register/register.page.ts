@@ -55,7 +55,7 @@ export class RegisterPage implements OnInit {
         loading.dismiss().then(async () => {
           const alert = await this.alertCtrl.create({
             header: 'Erreur',
-            subHeader: error,
+            subHeader: 'L\'email est déjà utilisé !',
             buttons: [{text: 'Ok'}]
           });
           alert.present();

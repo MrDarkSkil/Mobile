@@ -44,13 +44,13 @@
                       detail="true">
               <ion-avatar class="icon">
                 <ion-img *ngIf="application.module.logo_url" src="{{ application.module.logo_url }}"
-                         style="height: 1.5rem; width: 1.5rem;"></ion-img>
+                         style="width: 3rem;"></ion-img>
                 <ion-icon name="logo-dropbox" *ngIf="!application.module.logo_url"></ion-icon>
               </ion-avatar>
 
               <ion-label>
-                <h2>{{ application.module.title }}</h2>
-                <p>{{ application.module.category }}</p>
+                <h2 style="margin-left: 1rem; text-transform: capitalize;">{{ application.module.title }}</h2>
+                <p style="margin-left: 1rem; text-transform: capitalize;">{{ application.module.category }}</p>
               </ion-label>
             </ion-item>
 

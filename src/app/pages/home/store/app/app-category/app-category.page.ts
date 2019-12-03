@@ -8,7 +8,7 @@ import {ModalController, NavParams} from '@ionic/angular';
 })
 export class AppCategoryPage implements OnInit {
 
-  private readonly categories;
+  public readonly categories;
 
   constructor(private modalCtrl: ModalController, private navParams: NavParams) {
     this.categories = navParams.get('categories');

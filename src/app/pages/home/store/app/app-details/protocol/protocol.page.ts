@@ -14,12 +14,14 @@ export class ProtocolPage {
   private todo: FormGroup;
 
   public inputs = [];
+  private readonly mirrorId;
 
   constructor(private modalCtrl: ModalController, private navParams: NavParams,
               private protocolService: ProtocolService, private formBuilder: FormBuilder) {
     const moduleId = navParams.get('moduleId');
+    this.mirrorId = navParams.get('mirrorId');
 
-    this.protocolService.getModuleForm(moduleId).then(result => {
+    this.protocolService.getModuleForm(this.mirrorId, moduleId).then(result => {
       this.inputs = result;
     }).catch(error => {
       console.log('PROTOCOL ERROR:', error);
@@ -50,7 +52,7 @@ export class ProtocolPage {
   }
 
   logForm() {
-    this.protocolService.sendModuleFormData(this.navParams.get('moduleId'), this.todo.value);
+    this.protocolService.sendModuleFormData(this.mirrorId, this.navParams.get('moduleId'), this.todo.value);
     console.log(this.todo.value);
   }
 

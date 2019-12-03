@@ -91,6 +91,7 @@ export class AppDetailsPage implements OnInit {
       component: ProtocolPage,
       componentProps: {
         moduleId: this.application.id,
+        mirrorId: this.mirror.id
       }
     });
     return await modal.present();

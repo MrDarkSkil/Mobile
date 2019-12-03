@@ -8,11 +8,11 @@ export class ProtocolService {
 
   constructor(private api: ApiService) { }
 
-  public getModuleForm(moduleId: string) {
-    return this.api.get<Array<any>>(this.api.getApiUrl() + '/api/modules/' + moduleId + '/form');
+  public getModuleForm(mirrorId: string, moduleId: string) {
+    return this.api.get<Array<any>>(this.api.getApiUrl() + '/api/mirrors/' + mirrorId + '/' + moduleId + '/form');
   }
 
-  public sendModuleFormData(moduleId: string, data: JSON) {
-    return this.api.put(this.api.getApiUrl() + '/api/modules/' + moduleId + '/form', data);
+  public sendModuleFormData(mirrorId: string, moduleId: string, data: JSON) {
+    return this.api.put(this.api.getApiUrl() + '/api/mirrors/' + mirrorId + '/' + moduleId + '/form', data);
   }
 }

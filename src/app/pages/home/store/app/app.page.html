@@ -1,6 +1,15 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Applications</ion-title>
+
+    <ion-buttons slot="end" *ngIf="applications && applications.data && applications.data.length > 0">
+      <ion-button *ngIf="!category" (click)="show_category()">
+        Catégories
+      </ion-button>
+      <ion-button *ngIf="category" (click)="clearCategory()">
+        Effacer
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -13,18 +22,20 @@
 
     <ion-item-sliding>
 
-      <ion-item *ngFor="let application of applications.data" (click)="navigateAppDetails(application)" detail="true">
-        <ion-avatar class="icon" item-start>
-          <ion-img *ngIf="application.logo_url" src="{{ application.logo_url }}"
-                   style="height: 2.5rem; width: 2.5rem;"></ion-img>
-          <ion-icon name="logo-dropbox" *ngIf="!application.logo_url"></ion-icon>
-        </ion-avatar>
+      <div *ngFor="let application of applications.data">
+        <ion-item *ngIf="(category && application.category === category) || !category" (click)="navigateAppDetails(application)" detail="true">
+          <ion-avatar class="icon" item-start>
+            <ion-img *ngIf="application.logo_url" src="{{ application.logo_url }}"
+                     style="width: 3rem;"></ion-img>
+            <ion-icon name="logo-dropbox" *ngIf="!application.logo_url"></ion-icon>
+          </ion-avatar>
 
-        <ion-label>
-          <h2 style="margin-left: 1rem">{{ application.title }}</h2>
-          <p style="margin-left: 1rem">{{ application.category }}</p>
-        </ion-label>
-      </ion-item>
+          <ion-label>
+            <h2 style="margin-left: 1rem; text-transform: capitalize;">{{ application.title }}</h2>
+            <p style="margin-left: 1rem; text-transform: capitalize;">{{ application.category }}</p>
+          </ion-label>
+        </ion-item>
+      </div>
 
     </ion-item-sliding>
 

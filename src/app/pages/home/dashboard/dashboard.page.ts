@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MirrorDto} from '../../../services/mirror/mirror.dto';
 import {AuthService} from '../../../services/auth/auth.service';
 import {MirrorService} from '../../../services/mirror/mirror.service';
-import {LoadingController} from '@ionic/angular';
+import {LoadingController, NavController} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {Storage} from '@ionic/storage';
 
@@ -17,7 +17,7 @@ export class DashboardPage implements OnInit {
   public loader = true;
 
   constructor(private auth: AuthService, private mirrorService: MirrorService, private loadingCtrl: LoadingController,
-              private router: Router, private storage: Storage) {
+              private router: Router, private storage: Storage, private navCtrl: NavController) {
   }
 
   ngOnInit() {
@@ -49,24 +49,9 @@ export class DashboardPage implements OnInit {
     });
   }
 
-  public async deleteMirror(mirror: any, id: string) {
-    mirror.close();
-    const loading = await this.loadingCtrl.create({
-      message: 'Chargement...'
-    });
-
-    loading.present();
-    this.mirrorService.unlinkMirror(id).then(result => {
-      console.log('done');
-      this.refresh().then(() => {
-        loading.dismiss();
-      });
-    });
-  }
-
   public navigateMirrorStore(mirror) {
     this.storage.set('currentMirror', mirror).then(() => {
-      this.router.navigate(['/store/mirror']);
+      this.navCtrl.navigateForward(['/store/mirror']);
     });
   }
 

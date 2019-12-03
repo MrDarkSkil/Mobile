@@ -16,17 +16,31 @@ const routes: Routes = [
           },
           {
             path: 'settings',
-            loadChildren: './mirror/mirror-popover/mirror-settings/mirror-settings.module#MirrorSettingsPageModule'
+            loadChildren: './mirror/mirror-settings/mirror-settings.module#MirrorSettingsPageModule'
           }
         ]
       },
       {
         path: 'app',
-        loadChildren: './app/app.module#AppPageModule'
+        children: [
+          {
+            path: '',
+            loadChildren: './app/app.module#AppPageModule'
+          },
+          {
+            path: ':category',
+            loadChildren: './app/app.module#AppPageModule'
+          }
+        ]
       },
       {
         path: 'app-details',
-        loadChildren: './app/app-details/app-details.module#AppDetailsPageModule'
+        children: [
+          {
+            path: '',
+            loadChildren: './app/app-details/app-details.module#AppDetailsPageModule',
+          },
+        ]
       },
       {
         path: 'search',

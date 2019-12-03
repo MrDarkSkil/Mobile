@@ -6,7 +6,7 @@
 .text {
   display: inline-block;
   vertical-align: top;
-  margin-left: 2rem;
+  margin-left: .5rem;
 }
 
 .name {
@@ -26,6 +26,12 @@
   }
 }
 
+.module {
+  ion-icon {
+    font-size: 8rem;
+  }
+}
+
 .model {
   vertical-align: top;
   display: block;
@@ -34,10 +40,6 @@
 .author {
   color: grey;
   word-break: break-all;
-}
-
-ion-icon {
-  font-size: 8rem;
 }
 
 .body {

@@ -3,6 +3,12 @@
     <ion-buttons slot="start" (click)="myBackButton()">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf="uninstall">
+      <ion-button (click)="navigateProtocol()">
+        <ion-icon name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -20,8 +26,8 @@
             </ion-col>
             <ion-col size="8">
               <div class="text">
-                <span class="name">{{ application.title }}</span>
-                <span class="author">{{ application.repository }}</span>
+                <span class="name" style="text-transform: capitalize;">{{ application.title }}</span>
+                <span class="author">{{ application.category }}</span>
                 <div class="button">
                   <!--<loader-module *ngIf="loader"></loader-module>-->
                   <ion-button (click)="uninstall ? uninstallApp() : install()" *ngIf="!loader"
@@ -36,8 +42,8 @@
       </div>
     </div>
     <div class="body">
-      <div class="pictures">
-        <h4>Preview</h4>
+      <div class="pictures" *ngIf="application.screenshots.length > 0">
+        <h4>Aperçu</h4>
         <ion-slides pager="false" *ngIf="isArray(application.screenshots)">
           <ion-slide *ngFor="let screenshot of application.screenshots">
             <img src="{{ screenshot }}">

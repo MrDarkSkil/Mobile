@@ -24,7 +24,28 @@ const routes: Routes = [
   {
     path: 'lost-password',
     loadChildren: './pages/auth/lost-password/lost-password.module#LostPasswordPageModule'
-  }
+  },
+  {
+    path: 'error',
+    children: [
+      {
+        path: '504',
+        loadChildren: './pages/errors/no-internet/no-internet.module#NoInternetPageModule'
+      },
+      {
+        path: '400',
+        loadChildren: './pages/errors/bad-request/bad-request.module#BadRequestPageModule'
+      },
+      {
+        path: '404',
+        loadChildren: './pages/errors/not-found/not-found.module#NotFoundPageModule'
+      },
+      {
+        path: '500',
+        loadChildren: './pages/errors/internal-server-error/internal-server-error.module#InternalServerErrorPageModule'
+      }
+    ],
+  },
 ];
 
 @NgModule({

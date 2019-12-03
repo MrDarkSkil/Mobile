@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MirrorPopoverComponent } from './mirror-popover.component';
+import { AppCategoryPage } from './app-category.page';
 
-describe('MirrorPopoverComponent', () => {
-  let component: MirrorPopoverComponent;
-  let fixture: ComponentFixture<MirrorPopoverComponent>;
+describe('AppCategoryPage', () => {
+  let component: AppCategoryPage;
+  let fixture: ComponentFixture<AppCategoryPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MirrorPopoverComponent ],
+      declarations: [ AppCategoryPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MirrorPopoverComponent);
+    fixture = TestBed.createComponent(AppCategoryPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,26 @@
+ion-content {
+  --ion-background-color: linear-gradient(141deg, #40c4ff 15%, #7a43f2 80%) no-repeat;
+}
+
+.content {
+  text-align: center;
+
+  &-header {
+    &-title {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: white;
+      margin-bottom: .5rem;
+    }
+
+    &-subtitle {
+      color: white;
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  &-middle {
+
+  }
+}

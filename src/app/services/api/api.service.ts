@@ -40,11 +40,18 @@ export class ApiService {
           resolve(result);
         })
           .catch((err) => {
-            if (err.error.status === '401') {
+            console.log(err);
+            if (err && err.status && err.status === 401) {
               this.storage.remove('access_token');
               this.navCtrl.navigateRoot(['/login']);
-              reject(err);
+            } else if (err && err.status && err.status === 400) {
+              this.navCtrl.navigateRoot(['/error/400']);
+            } else if (err && err.status && err.status === 504) {
+              this.navCtrl.navigateRoot(['/error/504']);
+            } else if (err && err.status && err.status === 500) {
+              this.navCtrl.navigateRoot(['/error/500']);
             }
+            reject(err);
           });
       });
     });
@@ -58,7 +65,7 @@ export class ApiService {
     return this.request<T>(HttpMethods.POST, url, data);
   }
 
-  public delete<T>(url: string,): Promise<T> {
+  public delete<T>(url: string): Promise<T> {
     return this.request<T>(HttpMethods.DELETE, url);
   }
 

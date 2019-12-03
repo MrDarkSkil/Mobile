@@ -36,6 +36,8 @@ export interface ModuleInfosDto {
   publisher_id: string;
   created_at: string;
   updated_at: string;
+  logo_url: string;
+  category: string;
 }
 
 export interface LinkDto {

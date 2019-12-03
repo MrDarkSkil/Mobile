@@ -3,6 +3,8 @@ import {MirrorService} from '../../../../../services/mirror/mirror.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {Storage} from '@ionic/storage';
+import {ModalController} from '@ionic/angular';
+import {ProtocolPage} from './protocol/protocol.page';
 
 @Component({
   selector: 'app-app-details',
@@ -19,7 +21,7 @@ export class AppDetailsPage implements OnInit {
   public buttonText = 'Installer';
 
   constructor(private mirrorService: MirrorService, private route: ActivatedRoute, private location: Location,
-              private storage: Storage) {
+              private storage: Storage, private modalController: ModalController) {
     this.route.queryParams.subscribe(params => {
       console.log(params);
       if (params.application) {
@@ -65,6 +67,7 @@ export class AppDetailsPage implements OnInit {
     }).catch((err) => {
       console.log('uninstall error', err);
       this.loader = false;
+      this.checkModule();
     });
   }
 
@@ -81,6 +84,17 @@ export class AppDetailsPage implements OnInit {
 
   public isArray(variable: any) {
     return Array.isArray(variable);
+  }
+
+  public async navigateProtocol() {
+    const modal = await this.modalController.create({
+      component: ProtocolPage,
+      componentProps: {
+        moduleId: this.application.id,
+        mirrorId: this.mirror.id
+      }
+    });
+    return await modal.present();
   }
 
 }

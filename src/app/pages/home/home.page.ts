@@ -16,7 +16,6 @@ export class HomePage {
   constructor(public modalController: ModalController, private mirrorService: MirrorService) {
     this.mirrorService.getMirrors().then(mirrors => {
       this.mirrors = mirrors;
-      console.log(this.mirrors);
     });
   }
 
@@ -24,6 +23,7 @@ export class HomePage {
     const modal = await this.modalController.create({
       component: AddPage
     });
+
     return await modal.present();
   }
 

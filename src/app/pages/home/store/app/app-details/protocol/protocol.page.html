@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="close" mode="md"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf="inputs.length > 0">
+      <ion-button (click)="logForm()">
+        Enregistrer
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngFor="let input of inputs">
+      <form [formGroup]="todo" (ngSubmit)="logForm()">
+
+        <!-- TYPE IS TOGGLE -->
+        <ion-item *ngIf="input.type === 'toggle'">
+          <ion-label>{{ input.placeholder }}</ion-label>
+          <ion-toggle color="primary" [checked]="input.value ? input.value : false" [id]="input.name"
+            [formControlName]="input.name">
+          </ion-toggle>
+        </ion-item>
+
+        <!-- TYPE IS INPUT -->
+        <ion-item *ngIf="input.type === 'input'">
+          <ion-label position="stacked">{{ input.placeholder }}</ion-label>
+          <ion-input placeholder="Lorem Ipsum" value="{{ input.value ? input.value : '' }}" [id]="input.name"
+            [formControlName]="input.name"></ion-input>
+        </ion-item>
+
+        <!-- TYPE IS DROPDOWN -->
+        <ion-item *ngIf="input.type === 'dropdown'">
+          <ion-label>{{ input.placeholder }}</ion-label>
+          <ion-select [id]="input.name" [formControlName]="input.name">
+            <ion-select-option *ngFor="let opt of input.values" [value]="opt.value"
+              [selected]="input.value ? opt.value === input.value  : false">
+              {{ opt.text }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      </form>
+    </div>
+    <div *ngIf="inputs.length === 0">
+      <p class="ion-text-center">Aucune option n'est disponible pour cette application</p>
+    </div>
+  </ion-list>
+</ion-content>

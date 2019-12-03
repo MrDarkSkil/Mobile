@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
-import { ProtocolService } from '../../../../../../services/protocol/protocol.service';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import {Component, Input} from '@angular/core';
+import {ModalController, NavParams} from '@ionic/angular';
+import {ProtocolService} from '../../../../../../services/protocol/protocol.service';
+import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-protocol',
@@ -17,7 +17,7 @@ export class ProtocolPage {
   private readonly mirrorId;
 
   constructor(private modalCtrl: ModalController, private navParams: NavParams,
-    private protocolService: ProtocolService, private formBuilder: FormBuilder) {
+              private protocolService: ProtocolService, private formBuilder: FormBuilder) {
     const moduleId = navParams.get('moduleId');
     this.mirrorId = navParams.get('mirrorId');
 
@@ -52,6 +52,9 @@ export class ProtocolPage {
 
   logForm() {
     this.protocolService.sendModuleFormData(this.mirrorId, this.navParams.get('moduleId'), this.todo.value);
+    this.modalCtrl.dismiss({
+      dismissed: true
+    });
     console.log(this.todo.value);
   }
 

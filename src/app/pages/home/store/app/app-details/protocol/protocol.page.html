@@ -30,7 +30,7 @@
         <!-- TYPE IS INPUT -->
         <ion-item *ngIf="input.type === 'input'">
           <ion-label position="stacked">{{ input.placeholder }}</ion-label>
-          <ion-input placeholder="Lorem Ipsum" value="{{ input.value ? input.value : '' }}" [id]="input.name"
+          <ion-input placeholder="Votre texte" value="{{ input.value ? input.value : '' }}" [id]="input.name"
             [formControlName]="input.name"></ion-input>
         </ion-item>
 

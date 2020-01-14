@@ -31,7 +31,7 @@
         <ion-item *ngIf="input.type === 'input'">
           <ion-label position="stacked">{{ input.placeholder }}</ion-label>
           <ion-input placeholder="Votre texte" value="{{ input.value ? input.value : '' }}" [id]="input.name"
-            [formControlName]="input.name"></ion-input>
+            [formControlName]="input.name" type="{{ input.validator }}"></ion-input>
         </ion-item>
 
         <!-- TYPE IS DROPDOWN -->
